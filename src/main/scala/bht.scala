@@ -13,7 +13,7 @@ class BHT extends Module {
   })
 
   val numEntries = 16
-  val tagWidth = 28
+  val tagWidth = 26
 
   class BHTEntry extends Bundle {
     val tag = UInt(tagWidth.W)
@@ -23,19 +23,19 @@ class BHT extends Module {
 
   val bhtTable = Mem(numEntries, new BHTEntry)
 
-  val index = io.pc(3, 0)
+  val index = io.pc(5, 2)
 
   val bhtEntry = bhtTable.read(index)
 
-  io.`match` := bhtEntry.tag === io.pc(31, 4)
+  io.`match` := bhtEntry.tag === io.pc(31, 6)
   io.valid := bhtEntry.valid
   io.bht_pred_pc := bhtEntry.target_pc
 
   when(io.pcsrc === 1.U) {
     val newEntry = Wire(new BHTEntry)
-    newEntry.tag := io.mem_pc(31, 4)
+    newEntry.tag := io.mem_pc(31, 6)
     newEntry.valid := 1.U
     newEntry.target_pc := io.target_pc
-    bhtTable.write(index, newEntry)
+    bhtTable.write(io.mem_pc(5,2), newEntry)
   }
 }

@@ -14,7 +14,7 @@ class BTB extends Module {
   val btbTable = Mem(16, UInt(2.W))
 
   // Read the BTB table at the index specified by mem_pc
-  val btbEntry = btbTable(io.pc(3, 0))
+  val btbEntry = btbTable(io.pc(5, 2))
 
   // Predict the target based on the saturating counter value
   val btbPredict = btbEntry(1)
@@ -23,19 +23,16 @@ class BTB extends Module {
   when(io.branch === 1.U) {
     when(io.pcsrc === 1.U) {
       // If the branch is taken, increment the saturating counter
-      when(btbEntry < 3.U) {
-        btbTable(io.mem_pc(3, 0)) := btbEntry + 1.U
+      when(btbTable(io.mem_pc(5, 2)) < 3.U) {
+        btbTable.write(io.mem_pc(5, 2), btbTable(io.mem_pc(5, 2)) + 1.U)
       }
     }.otherwise {
       // If the branch is not taken, decrement the saturating counter
-      when(btbEntry > 0.U) {
-        btbTable(io.mem_pc(3, 0)) := btbEntry - 1.U
+      when(btbTable(io.mem_pc(5, 2)) > 0.U) {
+        btbTable.write(io.mem_pc(5, 2), btbTable(io.mem_pc(5, 2)) - 1.U)
       }
     }
   }
-
   // Output the prediction result
   io.btb_taken := btbPredict
 }
-
-

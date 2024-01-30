@@ -10,38 +10,55 @@ module BTB(
 `ifdef RANDOMIZE_MEM_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_MEM_INIT
-  reg [1:0] btbTable [0:15]; // @[cmd2.sc 14:21]
-  wire [1:0] btbTable_btbEntry_data; // @[cmd2.sc 14:21]
-  wire [3:0] btbTable_btbEntry_addr; // @[cmd2.sc 14:21]
-  wire [1:0] btbTable_MPORT_data; // @[cmd2.sc 14:21]
-  wire [3:0] btbTable_MPORT_addr; // @[cmd2.sc 14:21]
-  wire  btbTable_MPORT_mask; // @[cmd2.sc 14:21]
-  wire  btbTable_MPORT_en; // @[cmd2.sc 14:21]
-  wire [1:0] btbTable_MPORT_1_data; // @[cmd2.sc 14:21]
-  wire [3:0] btbTable_MPORT_1_addr; // @[cmd2.sc 14:21]
-  wire  btbTable_MPORT_1_mask; // @[cmd2.sc 14:21]
-  wire  btbTable_MPORT_1_en; // @[cmd2.sc 14:21]
-  wire  _T_3 = btbTable_btbEntry_data < 2'h3; // @[cmd2.sc 26:21]
-  wire  _T_7 = btbTable_btbEntry_data > 2'h0; // @[cmd2.sc 31:21]
-  wire  _GEN_12 = io_pcsrc & _T_3; // @[cmd2.sc 24:28 cmd2.sc 14:21]
-  wire  _GEN_17 = io_pcsrc ? 1'h0 : _T_7; // @[cmd2.sc 24:28 cmd2.sc 14:21]
-  assign btbTable_btbEntry_addr = io_pc[3:0];
-  assign btbTable_btbEntry_data = btbTable[btbTable_btbEntry_addr]; // @[cmd2.sc 14:21]
-  assign btbTable_MPORT_data = btbTable_btbEntry_data + 2'h1;
-  assign btbTable_MPORT_addr = io_mem_pc[3:0];
-  assign btbTable_MPORT_mask = 1'h1;
-  assign btbTable_MPORT_en = io_branch & _GEN_12;
-  assign btbTable_MPORT_1_data = btbTable_btbEntry_data - 2'h1;
-  assign btbTable_MPORT_1_addr = io_mem_pc[3:0];
+  reg [1:0] btbTable [0:15]; // @[cmd4.sc 14:21]
+  wire [1:0] btbTable_btbEntry_data; // @[cmd4.sc 14:21]
+  wire [3:0] btbTable_btbEntry_addr; // @[cmd4.sc 14:21]
+  wire [1:0] btbTable_MPORT_data; // @[cmd4.sc 14:21]
+  wire [3:0] btbTable_MPORT_addr; // @[cmd4.sc 14:21]
+  wire [1:0] btbTable_MPORT_2_data; // @[cmd4.sc 14:21]
+  wire [3:0] btbTable_MPORT_2_addr; // @[cmd4.sc 14:21]
+  wire [1:0] btbTable_MPORT_3_data; // @[cmd4.sc 14:21]
+  wire [3:0] btbTable_MPORT_3_addr; // @[cmd4.sc 14:21]
+  wire [1:0] btbTable_MPORT_5_data; // @[cmd4.sc 14:21]
+  wire [3:0] btbTable_MPORT_5_addr; // @[cmd4.sc 14:21]
+  wire [1:0] btbTable_MPORT_1_data; // @[cmd4.sc 14:21]
+  wire [3:0] btbTable_MPORT_1_addr; // @[cmd4.sc 14:21]
+  wire  btbTable_MPORT_1_mask; // @[cmd4.sc 14:21]
+  wire  btbTable_MPORT_1_en; // @[cmd4.sc 14:21]
+  wire [1:0] btbTable_MPORT_4_data; // @[cmd4.sc 14:21]
+  wire [3:0] btbTable_MPORT_4_addr; // @[cmd4.sc 14:21]
+  wire  btbTable_MPORT_4_mask; // @[cmd4.sc 14:21]
+  wire  btbTable_MPORT_4_en; // @[cmd4.sc 14:21]
+  wire  _T_4 = btbTable_MPORT_data < 2'h3; // @[cmd4.sc 26:38]
+  wire  _T_10 = btbTable_MPORT_3_data > 2'h0; // @[cmd4.sc 31:38]
+  wire  _GEN_17 = io_pcsrc & _T_4; // @[cmd4.sc 24:28 cmd4.sc 14:21]
+  wire  _GEN_23 = io_pcsrc ? 1'h0 : 1'h1; // @[cmd4.sc 24:28 cmd4.sc 14:21 cmd4.sc 31:20]
+  wire  _GEN_26 = io_pcsrc ? 1'h0 : _T_10; // @[cmd4.sc 24:28 cmd4.sc 14:21]
+  assign btbTable_btbEntry_addr = io_pc[5:2];
+  assign btbTable_btbEntry_data = btbTable[btbTable_btbEntry_addr]; // @[cmd4.sc 14:21]
+  assign btbTable_MPORT_addr = io_mem_pc[5:2];
+  assign btbTable_MPORT_data = btbTable[btbTable_MPORT_addr]; // @[cmd4.sc 14:21]
+  assign btbTable_MPORT_2_addr = io_mem_pc[5:2];
+  assign btbTable_MPORT_2_data = btbTable[btbTable_MPORT_2_addr]; // @[cmd4.sc 14:21]
+  assign btbTable_MPORT_3_addr = io_mem_pc[5:2];
+  assign btbTable_MPORT_3_data = btbTable[btbTable_MPORT_3_addr]; // @[cmd4.sc 14:21]
+  assign btbTable_MPORT_5_addr = io_mem_pc[5:2];
+  assign btbTable_MPORT_5_data = btbTable[btbTable_MPORT_5_addr]; // @[cmd4.sc 14:21]
+  assign btbTable_MPORT_1_data = btbTable_MPORT_2_data + 2'h1;
+  assign btbTable_MPORT_1_addr = io_mem_pc[5:2];
   assign btbTable_MPORT_1_mask = 1'h1;
   assign btbTable_MPORT_1_en = io_branch & _GEN_17;
-  assign io_btb_taken = btbTable_btbEntry_data[1]; // @[cmd2.sc 20:28]
+  assign btbTable_MPORT_4_data = btbTable_MPORT_5_data - 2'h1;
+  assign btbTable_MPORT_4_addr = io_mem_pc[5:2];
+  assign btbTable_MPORT_4_mask = 1'h1;
+  assign btbTable_MPORT_4_en = io_branch & _GEN_26;
+  assign io_btb_taken = btbTable_btbEntry_data[1]; // @[cmd4.sc 20:28]
   always @(posedge clock) begin
-    if(btbTable_MPORT_en & btbTable_MPORT_mask) begin
-      btbTable[btbTable_MPORT_addr] <= btbTable_MPORT_data; // @[cmd2.sc 14:21]
-    end
     if(btbTable_MPORT_1_en & btbTable_MPORT_1_mask) begin
-      btbTable[btbTable_MPORT_1_addr] <= btbTable_MPORT_1_data; // @[cmd2.sc 14:21]
+      btbTable[btbTable_MPORT_1_addr] <= btbTable_MPORT_1_data; // @[cmd4.sc 14:21]
+    end
+    if(btbTable_MPORT_4_en & btbTable_MPORT_4_mask) begin
+      btbTable[btbTable_MPORT_4_addr] <= btbTable_MPORT_4_data; // @[cmd4.sc 14:21]
     end
   end
 // Register and memory initialization
