@@ -91,7 +91,7 @@ void Simulator::simulate() {
   memset(&this->EX_MEMRegNew,0, sizeof(this->EX_MEMRegNew));
   memset(&this->MEM_WBReg,   0, sizeof(this->MEM_WBReg));
   memset(&this->MEM_WBNew,   0, sizeof(this->MEM_WBNew));
-
+  this->BHT_verify=true;//debug test
   // Insert Bubble to later pipeline stages
   IF_IDReg.bubble = true;
   ID_EXReg.bubble = true;
@@ -544,10 +544,12 @@ void Simulator::decode() {
     predictedBranch = this->branchPredictor->predict(this->IF_IDReg.id_pc,imm);
     if (predictedBranch) {
       //BHT
-      bool hit=this->branchPredictor->bht_hit(this->IF_IDReg.id_pc);
-      if(hit){
+      bool BHT_hit=this->branchPredictor->bht_hit(this->IF_IDReg.id_pc);
+      uint32_t BHT_target_pc=this->branchPredictor->get_bht_address(this->IF_IDReg.id_pc);
+      bool BHT_valid=this->branchPredictor->get_bht_valid(this->IF_IDReg.id_pc);
+      if(BHT_hit&&BHT_valid){
         if(verbose)printf("the inst is hit bht_entry\n");
-        this->predictedPC = this->branchPredictor->get_bht_address(this->IF_IDReg.id_pc);
+        this->predictedPC = BHT_target_pc;
       }
       else 
       {
@@ -556,6 +558,7 @@ void Simulator::decode() {
       }
       this->anotherPC = this->IF_IDReg.id_pc + 4;    //保存后端重定向地址
       this->IF_IDRegNew.bubble = true;
+      if(this->BHT_verify)printf("Module:BHT  match %d, valid %d ,bht_pred_pc 0x%.8x\n",BHT_hit,BHT_valid,BHT_target_pc);
     } else {
       this->anotherPC = this->IF_IDReg.id_pc + imm; //保存后端重定向地址
     }
@@ -725,9 +728,13 @@ void Simulator::execute() {
   default:    this->panic("Unknown instruction type %d\n", insttype);
   }
   if(branch==true)
-  {
+  { //BHT_update
     this->EX_MEMRegNew.target_pc=dRegPC;
     this->branchPredictor->update_bht(this->ID_EXReg.ex_pc,this->EX_MEMRegNew.target_pc);
+    
+    if(this->BHT_verify){
+      this->branchPredictor->print_bht();
+    }
   }
   // branch Related Code
   if (this->ID_EXReg.isBranch) {
@@ -1306,5 +1313,3 @@ void Simulator::panic(const char *format, ...) {
   fprintf(stderr, "Execution history and memory dump in dump.txt\n");
   exit(-1);
 }
-
-

@@ -22,7 +22,9 @@ public:
 
   bool bht_hit(uint32_t pc);
   uint32_t get_bht_address(uint32_t pc);
+  bool get_bht_valid(uint32_t pc);
   void update_bht(uint32_t pc,uint32_t target_pc);
+  void print_bht();
   std::string strategyName();
   
 private:

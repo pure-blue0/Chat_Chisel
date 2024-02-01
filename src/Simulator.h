@@ -160,6 +160,13 @@ class Simulator {
 public:
   bool isSingleStep;
   bool verbose;
+  bool ispcsrc;
+  //BHT
+  bool BHT_verify;
+  bool BHT_hit;
+  uint32_t BHT_target_pc;
+  bool BHT_valid;
+
   bool shouldDumpHistory;
   uint32_t pcNew;
   uint32_t pc;
@@ -184,6 +191,7 @@ public:
   void printInfo();
 
   void printStatistics();
+  void print_BHT_Info();
 
 private:
   struct FReg {

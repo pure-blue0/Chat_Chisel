@@ -50,7 +50,8 @@ bool BranchPredictor::bht_hit(uint32_t pc)
 {
   int index = pc % BHT_SIZE;
 
-  if(this->bht_entry[index].valid && (this->bht_entry[index].tag==pc>>BHT_SIZE_BIT)){
+  if(this->bht_entry[index].tag==pc>>BHT_SIZE_BIT){
+    printf("Will get data from BHT_entry[%-2d]:tag:0x%.4x , valid:%d ,targetpc:0x%.5x\n",index,this->bht_entry[index].tag,this->bht_entry[index].valid,this->bht_entry[index].target_pc);
     return true;
   }
   else 
@@ -61,14 +62,29 @@ uint32_t BranchPredictor::get_bht_address(uint32_t pc)
   int index = pc % BHT_SIZE;
   return this->bht_entry[index].target_pc;
 }
+bool BranchPredictor::get_bht_valid(uint32_t pc)
+{
+  int index = pc % BHT_SIZE;
+  if(this->bht_entry[index].valid==1)return true;
+  else return false;
+}
 void BranchPredictor::update_bht(uint32_t pc,uint32_t target_pc)
 {
   int index = pc % BHT_SIZE;
   this->bht_entry[index].tag = pc>>BHT_SIZE_BIT;
   this->bht_entry[index].valid = true;
   this->bht_entry[index].target_pc = target_pc;
+  printf("updata BHT_entry[%-2d]:tag:0x%.4x , valid:%d ,targetpc:0x%.5x\n",index,this->bht_entry[index].tag,this->bht_entry[index].valid,this->bht_entry[index].target_pc);
+  
 }
+void BranchPredictor::print_bht()
+{
+  for (int i = 0; i < BHT_SIZE; ++i) {
+    printf("BHT_entry[%-2d]:tag:0x%.4x , valid:%d ,targetpc:0x%.5x\n",i,this->bht_entry[i].tag,this->bht_entry[i].valid,this->bht_entry[i].target_pc);
+  }
+  printf("--------------------------------------------\n");
 
+}
 std::string BranchPredictor::strategyName() {
   
   return "Branch Prediction Buffer";
