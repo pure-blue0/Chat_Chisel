@@ -14,7 +14,7 @@ BranchPredictor::BranchPredictor() {
 
 BranchPredictor::~BranchPredictor() {}
 
-bool BranchPredictor::predict(uint32_t pc, int32_t offset) {
+bool BranchPredictor::predict(uint32_t pc) {
   PredictorState state = this->predbuf[pc % PRED_BUF_SIZE];
   if (state == STRONG_TAKEN || state == WEAK_TAKEN) {
     return true;
@@ -46,12 +46,12 @@ void BranchPredictor::update(uint32_t pc, bool branch) {
     } // do noting if STRONG_NOT_TAKEN
   }
 }
-bool BranchPredictor::bht_hit(uint32_t pc)
+bool BranchPredictor::bht_match(uint32_t pc)
 {
   int index = pc % BHT_SIZE;
 
   if(this->bht_entry[index].tag==pc>>BHT_SIZE_BIT){
-    printf("Will get data from BHT_entry[%-2d]:tag:0x%.4x , valid:%d ,targetpc:0x%.5x\n",index,this->bht_entry[index].tag,this->bht_entry[index].valid,this->bht_entry[index].target_pc);
+    //printf("Will get data from BHT_entry[%-2d]:tag:0x%.4x , valid:%d ,targetpc:0x%.5x\n",index,this->bht_entry[index].tag,this->bht_entry[index].valid,this->bht_entry[index].target_pc);
     return true;
   }
   else 
@@ -74,8 +74,7 @@ void BranchPredictor::update_bht(uint32_t pc,uint32_t target_pc)
   this->bht_entry[index].tag = pc>>BHT_SIZE_BIT;
   this->bht_entry[index].valid = true;
   this->bht_entry[index].target_pc = target_pc;
-  printf("updata BHT_entry[%-2d]:tag:0x%.4x , valid:%d ,targetpc:0x%.5x\n",index,this->bht_entry[index].tag,this->bht_entry[index].valid,this->bht_entry[index].target_pc);
-  
+  //printf("updata BHT_entry[%-2d]:tag:0x%.4x , valid:%d ,targetpc:0x%.5x\n",index,this->bht_entry[index].tag,this->bht_entry[index].valid,this->bht_entry[index].target_pc);
 }
 void BranchPredictor::print_bht()
 {

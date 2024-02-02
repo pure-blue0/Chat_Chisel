@@ -61,7 +61,7 @@ Simulator::Simulator(MemoryManager *memory, BranchPredictor *predictor) {
   this->branchPredictor = predictor;
   this->pc = 0;
   this->pcNew=0;
-  this->pcWrite = 0;
+  this->pcWrite = true;
   for (int i = 0; i < REGNUM; ++i) {
     this->reg[i] = 0;
   }
@@ -91,7 +91,9 @@ void Simulator::simulate() {
   memset(&this->EX_MEMRegNew,0, sizeof(this->EX_MEMRegNew));
   memset(&this->MEM_WBReg,   0, sizeof(this->MEM_WBReg));
   memset(&this->MEM_WBNew,   0, sizeof(this->MEM_WBNew));
-  this->BHT_verify=true;//debug test
+  this->BHT_verify=false;//debug test
+  this->write_data_back_verify=false;
+  this->immGen_verify=false;
   // Insert Bubble to later pipeline stages
   IF_IDReg.bubble = true;
   ID_EXReg.bubble = true;
@@ -121,6 +123,8 @@ void Simulator::simulate() {
     }
     CYCLE++;
 
+    
+
     this->fetch();
     this->decode();
     this->execute();
@@ -140,13 +144,11 @@ void Simulator::simulate() {
     if(!this->IF_IDReg.stall)this->pcWrite=true;
 
     //The back-end redirection is performed at the end
-    if(this->pcWrite)
-    {
-      if (!this->ID_EXReg.bubble && !this->ID_EXReg.stall && !this->IF_IDReg.stall && this->ID_EXReg.predictedBranch) {
-      this->pc = this->predictedPC;
-      }
+    if (!this->ID_EXReg.bubble && !this->ID_EXReg.stall && !this->IF_IDReg.stall && this->ID_EXReg.predictedBranch) {
+    this->pcNew = this->predictedPC;
     }
-    else this->pc=this->pc;
+    
+    
 
     this->history.cycleCount++;
     this->history.regRecord.push_back(this->getRegInfoStr());
@@ -168,10 +170,24 @@ void Simulator::simulate() {
 }
 
 void Simulator::fetch() {
+
+  if(this->pcWrite)this->pc=this->pcNew;
+  else this->pc=this->pc;
   
   if (this->pc % 2 != 0) this->panic("Illegal PC 0x%x!\n", this->pc);
-  
-  uint32_t inst = this->memory->getInt(this->pc);//get fetch
+  //get fetch(The process of getting the finger from the Icache is also in the function)
+  uint32_t inst = this->memory->getInt(this->pc);
+  /*
+  bool predictedBranch = false;
+  predictedBranch = this->branchPredictor->predict(this->pc);
+  bool BHT_match=this->branchPredictor->bht_match(this->IF_IDReg.id_pc);
+  bool BHT_valid=this->branchPredictor->get_bht_valid(this->IF_IDReg.id_pc);
+  uint32_t BHT_target_pc=this->branchPredictor->get_bht_address(this->IF_IDReg.id_pc);
+  if (predictedBranch && BHT_match && BHT_valid) {
+    this->predictedPC = BHT_target_pc;
+    this->IF_IDRegNew.bubble = true;
+    if(this->BHT_verify)printf("Module:BHT  match %d, valid %d ,bht_pred_pc 0x%.8x\n",BHT_match,BHT_valid,BHT_target_pc);
+  } */
 
   if (this->verbose) printf("Fetched instruction 0x%.8x at address 0x%x\n", inst, this->pc);
   
@@ -179,14 +195,14 @@ void Simulator::fetch() {
   this->IF_IDRegNew.stall = false;
   this->IF_IDRegNew.inst = inst;
   this->IF_IDRegNew.id_pc = this->pc;
-  this->pc = this->pc + 4; 
+  this->pcNew = this->pc + 4; 
 }
 
 
 void Simulator::decode() {
   if (this->IF_IDReg.stall) {
     if (verbose) printf("Decode: Stall\n");
-    this->pc = this->pc - 4;
+
     return;
   }
   if (this->IF_IDReg.bubble || this->IF_IDReg.inst == 0) {
@@ -213,17 +229,18 @@ void Simulator::decode() {
   RegId rd  = (inst >> 7 ) & 0x1F;
   RegId rs1 = (inst >> 15) & 0x1F;
   RegId rs2 = (inst >> 20) & 0x1F;
+  
+  Rs1_op = this->reg[rs1];
+  Rs2_op = this->reg[rs2];
+  imm=imm_gen(inst);
+  reg1 = rs1;
+  reg2 = rs2;
+  dest = rd;
   //get control signals
   control(opcode,funct3,funct7);
   //Decode
   switch (opcode) {
   case OP_REG:
-    Rs1_op = this->reg[rs1];
-    Rs2_op = this->reg[rs2];
-    reg1 = rs1;
-    reg2 = rs2;
-    dest = rd;
-
     switch (funct3) {
     case 0x0: // add,sub
       if (funct7 == 0x00) {
@@ -274,7 +291,7 @@ void Simulator::decode() {
       } 
       else this->panic("Unknown funct7 0x%x for funct3 0x%x\n", funct7, funct3);
       break;
-    case 0x6: // or, rem
+    case 0x6: // or
       if (funct7 == 0x00) {
         instname = "or";
         insttype = OR;
@@ -297,13 +314,6 @@ void Simulator::decode() {
     inststr = instname + " " + deststr + "," + op1str + "," + op2str;
     break;
   case OP_IMM:
-    type=I_TYPE;
-    Rs1_op = this->reg[rs1];
-    Rs2_op = 0;
-    imm=imm_gen(inst,type);
-    reg1 = rs1;
-    dest = rd;
-
     switch (funct3) {
     case 0x0:
       instname = "addi";
@@ -312,7 +322,6 @@ void Simulator::decode() {
     case 0x1:
       instname = "slli";
       insttype = SLLI;
-      Rs2_op = Rs2_op & 0x3F;
       break;
     case 0x2:
       instname = "slti";
@@ -330,11 +339,9 @@ void Simulator::decode() {
       if (((inst >> 26) & 0x3F) == 0x0) {
         instname = "srli";
         insttype = SRLI;
-        Rs2_op = Rs2_op & 0x3F;
       } else if (((inst >> 26) & 0x3F) == 0x10) {
         instname = "srai";
         insttype = SRAI;
-        Rs2_op = Rs2_op & 0x3F;
       } 
       else this->panic("Unknown funct7 0x%x for OP_IMM\n", (inst >> 26) & 0x3F);
       break;
@@ -355,12 +362,6 @@ void Simulator::decode() {
     inststr = instname + " " + deststr + "," + op1str + "," + offsetstr;
     break;
   case OP_LUI:
-    type=U_TYPE;
-    Rs1_op = imm_gen(inst,type);
-    Rs2_op = 0;
-    imm = imm_gen(inst,type);
-    dest = rd;
-
     instname = "lui";
     insttype = LUI;
     offsetstr = std::to_string(imm);
@@ -368,12 +369,6 @@ void Simulator::decode() {
     inststr = instname + " " + deststr + "," + offsetstr;
     break;
   case OP_AUIPC:
-    type=U_TYPE;
-    Rs1_op = 0;
-    Rs2_op = 0;
-    imm = imm_gen(inst,type);
-    dest = rd;
-
     instname = "auipc";
     insttype = AUIPC;
     offsetstr = std::to_string(imm);
@@ -381,12 +376,6 @@ void Simulator::decode() {
     inststr = instname + " " + deststr + "," + offsetstr;
     break;
   case OP_JAL:
-    type=UJ_TYPE;
-    Rs1_op = 0;
-    Rs2_op = 0;
-    imm = imm_gen(inst,type);
-    dest = rd;
-    
     instname = "jal";
     insttype = JAL;
     offsetstr = std::to_string(imm);
@@ -394,13 +383,6 @@ void Simulator::decode() {
     inststr = instname + " " + deststr + "," + offsetstr;
     break;
   case OP_JALR:
-    type=I_TYPE;
-    Rs1_op = this->reg[rs1];
-    reg1 = rs1;
-    Rs2_op = 0;
-    imm = imm_gen(inst,type);
-    dest = rd;
-
     instname = "jalr";
     insttype = JALR;
     op1str = REGNAME[rs1];
@@ -409,13 +391,6 @@ void Simulator::decode() {
     inststr = instname + " " + deststr + "," +offsetstr+"(" +op1str+ ")" ;
     break;
   case OP_BRANCH:
-    type=SB_TYPE;
-    Rs1_op = this->reg[rs1];
-    Rs2_op = this->reg[rs2];
-    reg1 = rs1;
-    reg2 = rs2;
-    imm = imm_gen(inst,type);
-
     switch (funct3) {
     case 0x0:
       instname = "beq"; 
@@ -450,13 +425,6 @@ void Simulator::decode() {
     inststr = instname + " " + op1str + "," + op2str + "," + offsetstr;
     break;
   case OP_STORE:
-    type=S_TYPE;
-    Rs1_op = this->reg[rs1];
-    Rs2_op = this->reg[rs2];
-    imm = imm_gen(inst,type);
-    reg1 = rs1;
-    reg2 = rs2;    
-
     switch (funct3) {
     case 0x0:
       instname = "sb";
@@ -479,13 +447,6 @@ void Simulator::decode() {
     inststr = instname + " " + op2str + "," + offsetstr + "(" + op1str + ")";
     break;
   case OP_LOAD:
-    type=I_TYPE;
-    Rs1_op = this->reg[rs1];
-    Rs2_op = 0;
-    imm = imm_gen(inst,type);
-    reg1 = rs1;
-    dest = rd;
-
     switch (funct3) {
     case 0x0:
       instname = "lb";
@@ -541,13 +502,13 @@ void Simulator::decode() {
   bool predictedBranch = false;
   if (this->ID_EXRegNew.isBranch) {
 
-    predictedBranch = this->branchPredictor->predict(this->IF_IDReg.id_pc,imm);
+    predictedBranch = this->branchPredictor->predict(this->IF_IDReg.id_pc);
     if (predictedBranch) {
       //BHT
-      bool BHT_hit=this->branchPredictor->bht_hit(this->IF_IDReg.id_pc);
+      bool BHT_match=this->branchPredictor->bht_match(this->IF_IDReg.id_pc);
       uint32_t BHT_target_pc=this->branchPredictor->get_bht_address(this->IF_IDReg.id_pc);
       bool BHT_valid=this->branchPredictor->get_bht_valid(this->IF_IDReg.id_pc);
-      if(BHT_hit&&BHT_valid){
+      if(BHT_match&&BHT_valid){
         if(verbose)printf("the inst is hit bht_entry\n");
         this->predictedPC = BHT_target_pc;
       }
@@ -556,13 +517,10 @@ void Simulator::decode() {
         if(verbose)printf("the inst is not bht_entry\n");
         this->predictedPC = this->IF_IDReg.id_pc + imm;//当前指令的地址+偏移
       }
-      this->anotherPC = this->IF_IDReg.id_pc + 4;    //保存后端重定向地址
+
       this->IF_IDRegNew.bubble = true;
-      if(this->BHT_verify)printf("Module:BHT  match %d, valid %d ,bht_pred_pc 0x%.8x\n",BHT_hit,BHT_valid,BHT_target_pc);
-    } else {
-      this->anotherPC = this->IF_IDReg.id_pc + imm; //保存后端重定向地址
-    }
-    
+      if(this->BHT_verify)printf("Module:BHT  match %d, valid %d ,bht_pred_pc 0x%.8x\n",BHT_match,BHT_valid,BHT_target_pc);
+    } 
   }
 
   this->ID_EXRegNew.stall =  false;
@@ -595,7 +553,7 @@ void Simulator::execute() {
     this->EX_MEMRegNew.bubble = true;
     return;
   }
-  if (verbose) printf("Execute: %s\n", INSTNAME[this->ID_EXReg.insttype]);
+  if (verbose) printf("Execute: %s\n ALUOP is:%d", INSTNAME[this->ID_EXReg.insttype],this->ID_EXReg.ALUOp);
 
   this->history.instCount++;//PMU
 
@@ -727,8 +685,9 @@ void Simulator::execute() {
   case ECALL: result = handleSystemCall(Rs1_op, Rs2_op); break;
   default:    this->panic("Unknown instruction type %d\n", insttype);
   }
+  //BHT_update
   if(branch==true)
-  { //BHT_update
+  { 
     this->EX_MEMRegNew.target_pc=dRegPC;
     this->branchPredictor->update_bht(this->ID_EXReg.ex_pc,this->EX_MEMRegNew.target_pc);
     
@@ -736,6 +695,7 @@ void Simulator::execute() {
       this->branchPredictor->print_bht();
     }
   }
+
   // branch Related Code
   if (this->ID_EXReg.isBranch) {
     if (this->ID_EXReg.predictedBranch == branch) {
@@ -743,8 +703,8 @@ void Simulator::execute() {
     } 
     else {
       // Control Hazard Here
-      this->pc = this->anotherPC;//可以理解为后端重定向的那个mux
-      this->EX_MEMRegNew.target_pc=this->anotherPC;
+      this->pcNew = dRegPC;//可以理解为后端重定向的那个mux
+      this->EX_MEMRegNew.target_pc=dRegPC;
 
       this->IF_IDRegNew.bubble = true;
       this->ID_EXRegNew.bubble = true;
@@ -756,7 +716,7 @@ void Simulator::execute() {
   }
   if (this->ID_EXReg.isJump) {
     // Control hazard here
-    this->pc = dRegPC; //可以理解为后端重定向的那个mux
+    this->pcNew = dRegPC; //可以理解为后端重定向的那个mux
     this->EX_MEMRegNew.target_pc=dRegPC;
     this->IF_IDRegNew.bubble = true;
     this->ID_EXRegNew.bubble = true;
@@ -956,22 +916,19 @@ void Simulator::writeBack() {
     return;
   }
   if (verbose) printf("WriteBack: %s\n", INSTNAME[this->MEM_WBReg.insttype]);
-
   //在实际的riscv-cpu 中，WB产生的数据一旦写入reg，那么同一时刻，ID中读取到的数据就是新写入的这个reg
   //（因为规定在一个周期内对一个reg操作，总是先写后读）,因此这个数据前递就被硬件自动解决了。
   //但是在model中，由于流水线的本质还是线性进行，因此上面的操作无法自动实现，所以也需要在WB阶段实现数据前递
   if (this->MEM_WBReg.RegWrite && this->MEM_WBReg.rd != 0) {// forward data
-    uint32_t forward_data=0;
-    //00:write this->MEM_WBNew.reg_pc to rd
-    if(this->MEM_WBReg.MemtoReg==0x0)       forward_data = this->MEM_WBReg.reg_pc;
-    else if(this->MEM_WBReg.MemtoReg==0x1)  forward_data = this->MEM_WBReg.Mem_Result;
-    else if(this->MEM_WBReg.MemtoReg==0x2)  forward_data = this->MEM_WBReg.ALU_Result;
-
+    uint32_t writedata=this->Writedata_back(this->MEM_WBReg.reg_pc,
+                                            this->MEM_WBReg.Mem_Result,
+                                            this->MEM_WBReg.ALU_Result,
+                                            this->MEM_WBReg.MemtoReg);
     if (this->ID_EXRegNew.rs1 == this->MEM_WBReg.rd) {
       // Avoid overwriting recent data
       if (!this->executeWriteBack  ||(this->executeWriteBack && this->executeWBReg != this->MEM_WBReg.rd)) {
         if (!this->memoryWriteBack ||(this->memoryWriteBack  && this->memoryWBReg != this->MEM_WBReg.rd)) {
-          this->ID_EXRegNew.Rs1_op = forward_data;
+          this->ID_EXRegNew.Rs1_op = writedata;
           this->history.dataHazardCount++;
           if (verbose) printf("  Forward Data %s to Decode op1\n",REGNAME[this->MEM_WBReg.rd]);
         }
@@ -981,14 +938,14 @@ void Simulator::writeBack() {
       // Avoid overwriting recent data
       if (!this->executeWriteBack || (this->executeWriteBack && this->executeWBReg != this->MEM_WBReg.rd)) {
         if (!this->memoryWriteBack || (this->memoryWriteBack && this->memoryWBReg != this->MEM_WBReg.rd)) {
-          this->ID_EXRegNew.Rs2_op = forward_data;
+          this->ID_EXRegNew.Rs2_op = writedata;
           this->history.dataHazardCount++;
           if (verbose) printf("  Forward Data %s to Decode op2\n",REGNAME[this->MEM_WBReg.rd]);
         }
       }
     }
     // Real Write Back
-    this->reg[this->MEM_WBReg.rd] = forward_data;
+    this->reg[this->MEM_WBReg.rd] = writedata;
   }
 }
 
@@ -1104,17 +1061,39 @@ void Simulator::dumpHistory() {
 }
 
 //decode module
-uint32_t Simulator::imm_gen(uint32_t inst,RISCV::InstType type){
+uint32_t Simulator::imm_gen(uint32_t inst){
+  uint32_t imm_gen__opcode = inst & 0x7F;
+  InstType imm_gen__type=NULL_TYPE;
+  //decode the type
+  switch(imm_gen__opcode)
+  {
+    case OP_REG:    imm_gen__type=R_TYPE; break; //0X33
+    case OP_IMM:    imm_gen__type=I_TYPE; break; //0X13
+    case OP_LUI:    imm_gen__type=U_TYPE; break; //0X37
+    case OP_AUIPC:  imm_gen__type=U_TYPE; break; //0X17
+    case OP_JAL:    imm_gen__type=UJ_TYPE;break; //0X6F
+    case OP_JALR:   imm_gen__type=I_TYPE; break; //0X67
+    case OP_BRANCH: imm_gen__type=SB_TYPE;break; //0X63
+    case OP_STORE:  imm_gen__type=S_TYPE; break; //0X23
+    case OP_LOAD:   imm_gen__type=I_TYPE; break; //0X03
+    case OP_SYSTEM: imm_gen__type=R_TYPE; break; //0X73
+  }
+  //generate the imm
   int32_t imm_data=0;
-  if(type==I_TYPE)        imm_data=int32_t(inst) >> 20;
-  else if(type==S_TYPE)   imm_data=int32_t(((inst >> 7) & 0x1F) | ((inst >> 20) & 0xFE0)) << 20 >> 20;
-  else if(type==SB_TYPE)  imm_data=int32_t(((inst >> 7) & 0x1E) | ((inst >> 20) & 0x7E0) |
+  if(imm_gen__type==I_TYPE)        imm_data=int32_t(inst) >> 20;
+  else if(imm_gen__type==S_TYPE)   imm_data=int32_t(((inst >> 7) & 0x1F) | ((inst >> 20) & 0xFE0)) << 20 >> 20;
+  else if(imm_gen__type==SB_TYPE)  imm_data=int32_t(((inst >> 7) & 0x1E) | ((inst >> 20) & 0x7E0) |
                                         ((inst << 4) & 0x800) | ((inst >> 19) & 0x1000))<< 19 >>19;
-  else if(type==U_TYPE)   imm_data=int32_t(inst) >> 12;
-  else if(type==UJ_TYPE)  imm_data=int32_t(((inst >> 21) & 0x3FF) | ((inst >> 10) & 0x400) |
+  else if(imm_gen__type==U_TYPE)   imm_data=int32_t(inst) >> 12;
+  else if(imm_gen__type==UJ_TYPE)  imm_data=int32_t(((inst >> 21) & 0x3FF) | ((inst >> 10) & 0x400) |
                                         ((inst >> 1) & 0x7F800) | ((inst >> 12) & 0x80000))<< 12 >>11;
-  else  this->panic("Illegal Inst type!!! 0x%x!,%d\n", inst,type);
-
+  else if(imm_gen__type==R_TYPE)        imm_data=0;
+  else  this->panic("Illegal Inst type!!! 0x%x!,%d\n", inst,imm_gen__type);
+  if(this->immGen_verify){
+    printf("----------------------------------imm_gen module----------------------------------\n");
+    printf("Input :instruction:0x%.8x\n",inst);
+    printf("Output:imm_data   :%d\n",imm_data);
+  }
   return imm_data;
 }
 
@@ -1300,6 +1279,22 @@ void Simulator::control(uint32_t opcode,uint32_t funct3,uint32_t funct7){
   {
     this->ID_EXRegNew.RegWrite = 1;
   }
+}
+
+uint32_t Simulator::Writedata_back(uint32_t wb_reg_pc,uint32_t wb_readdata,uint32_t wb_AluResult,uint32_t wb_memtoreg){
+  uint32_t writedata=0;
+  if(this->MEM_WBReg.MemtoReg==0x0)       writedata = wb_reg_pc;
+  else if(this->MEM_WBReg.MemtoReg==0x1)  writedata = wb_readdata;
+  else if(this->MEM_WBReg.MemtoReg==0x2)  writedata = wb_AluResult;
+  if(this->write_data_back_verify){
+    printf("----------------------------------writedata_back module----------------------------------\n");
+    printf("Input :wb_reg_pc:0x%x ,wb_readdata:0x%x ,wb_AluResult:0x%x ,wb_memtoreg:0x%.2x\n",wb_reg_pc,
+                                                                                              wb_readdata,
+                                                                                              wb_AluResult,
+                                                                                              wb_memtoreg);
+    printf("Output:writedata:0x%x\n",writedata);
+  }
+  return writedata;
 }
 
 void Simulator::panic(const char *format, ...) {

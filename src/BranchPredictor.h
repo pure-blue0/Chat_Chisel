@@ -17,10 +17,10 @@ public:
   BranchPredictor();
   ~BranchPredictor();
 
-  bool predict(uint32_t pc, int32_t offset);
+  bool predict(uint32_t pc);
   void update(uint32_t pc, bool branch);
 
-  bool bht_hit(uint32_t pc);
+  bool bht_match(uint32_t pc);
   uint32_t get_bht_address(uint32_t pc);
   bool get_bht_valid(uint32_t pc);
   void update_bht(uint32_t pc,uint32_t target_pc);

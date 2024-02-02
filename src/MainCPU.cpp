@@ -78,7 +78,7 @@ int main(int argc, char **argv) {
   simulator.verbose = verbose;
   simulator.shouldDumpHistory = dumpHistory;
   simulator.branchPredictor->strategy = strategy;
-  simulator.pc = reader.get_entry();
+  simulator.pcNew = reader.get_entry();
   simulator.initStack(stackBaseAddr, stackSize);
   simulator.simulate();
 

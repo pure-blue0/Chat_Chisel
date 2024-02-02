@@ -128,8 +128,6 @@ const int OP_SYSTEM = 0x73;
 const int OP_AUIPC = 0x17;
 const int OP_JAL = 0x6F;
 const int OP_JALR = 0x67;
-const int OP_IMM32 = 0x1B;
-const int OP_32 = 0x3B;
 
 inline bool isBranch(Inst inst) {
   if (inst == BEQ || inst == BNE || inst == BLT || inst == BGE ||
@@ -163,16 +161,18 @@ public:
   bool ispcsrc;
   //BHT
   bool BHT_verify;
-  bool BHT_hit;
+  bool BHT_match;
   uint32_t BHT_target_pc;
   bool BHT_valid;
+
+  bool write_data_back_verify;
+  bool immGen_verify;
 
   bool shouldDumpHistory;
   uint32_t pcNew;
   uint32_t pc;
   uint32_t pcWrite;
   uint32_t predictedPC; // for branch prediction module, predicted PC destination
-  uint32_t anotherPC; // // another possible prediction destination
   uint32_t reg[RISCV::REGNUM];
   uint32_t stackBase;
   uint32_t maximumStackSize;
@@ -322,9 +322,9 @@ private:
 
   std::string getRegInfoStr();
   //decode module
-  uint32_t imm_gen(uint32_t inst,RISCV::InstType type);
+  uint32_t imm_gen(uint32_t inst);
   void control(uint32_t opcode,uint32_t funct3,uint32_t funct7);
-
+  uint32_t Writedata_back(uint32_t wb_reg_pc,uint32_t wb_readdata,uint32_t wb_AluResult,uint32_t wb_memtoreg);
   void panic(const char *format, ...);
 };
 
