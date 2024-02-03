@@ -5,7 +5,6 @@ class TargetGen extends Module {
     val ex_pc = Input(UInt(32.W))
     val imm = Input(UInt(32.W))
     val alu_result = Input(UInt(32.W))
-    val isupper = Input(UInt(1.W))
     val pcsel = Input(UInt(1.W))
     val rdsel = Input(UInt(1.W))
     val reg_pc = Output(UInt(32.W))

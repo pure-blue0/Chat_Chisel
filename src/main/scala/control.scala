@@ -18,6 +18,8 @@ class Control extends Module {
     val rdsel = Output(UInt(1.W))
     val isjump = Output(UInt(1.W))
     val islui = Output(UInt(1.W))
+    val use_rs1 = Output(UInt(1.W))
+    val use_rs2 = Output(UInt(1.W))
   })
 
   val default = WireDefault(0.U) // Default value for unused control signals
@@ -33,6 +35,9 @@ class Control extends Module {
   io.rdsel := default // Set default value for rdsel
   io.isjump := default // Set default value for isjump
   io.islui := default // Set default value for islui
+  io.use_rs1 := default // Set default value for use_rs1
+  io.use_rs2 := default // Set default value for use_rs2
+
 
   // Control signal generation logic goes here
   io.aluop := MuxLookup(io.opcode, "b0000".U(4.W), 
@@ -105,7 +110,16 @@ class Control extends Module {
     "b1101111".U -> 1.U,
     "b1100111".U -> 1.U,
     "b0110111".U -> 1.U,
-    "b0010111".U -> 1.U
+    "b0010111".U -> 1.U,
+    "b1110011".U -> MuxLookup(io.funct3, 0.U, Array(
+    "b000".U -> 0.U,
+    "b001".U -> 0.U,
+    "b010".U -> 0.U,
+    "b011".U -> 0.U,
+    "b101".U -> 1.U,
+    "b110".U -> 1.U,
+    "b111".U -> 1.U
+  ))
   ))
 
   io.isbranch := MuxLookup(io.opcode, 0.U, Array(
@@ -129,7 +143,16 @@ class Control extends Module {
     "b1101111".U -> 1.U,
     "b1100111".U -> 1.U,
     "b0110111".U -> 1.U,
-    "b0010111".U -> 1.U
+    "b0010111".U -> 1.U,
+    "b1110011".U -> MuxLookup(io.funct3, 0.U, Array(
+    "b000".U -> 0.U,
+    "b001".U -> 1.U,
+    "b010".U -> 1.U,
+    "b011".U -> 1.U,
+    "b101".U -> 1.U,
+    "b110".U -> 1.U,
+    "b111".U -> 1.U
+  ))
   ))
 
   io.memtoreg := MuxLookup(io.opcode, 0.U, Array(
@@ -137,7 +160,16 @@ class Control extends Module {
     "b0010011".U -> "b10".U,
     "b0000011".U -> "b01".U,
     "b1101111".U -> "b00".U,
-    "b0110111".U -> "b10".U
+    "b0110111".U -> "b10".U,
+    "b1110011".U -> MuxLookup(io.funct3, "b00".U, Array(
+    "b000".U -> "b00".U,
+    "b001".U -> "b11".U,
+    "b010".U -> "b11".U,
+    "b011".U -> "b11".U,
+    "b101".U -> "b11".U,
+    "b110".U -> "b11".U,
+    "b111".U -> "b11".U
+  ))
   ))
 
   io.pcsel := MuxLookup(io.opcode, 0.U, Array(
@@ -156,6 +188,48 @@ class Control extends Module {
 
   io.islui := MuxLookup(io.opcode, 0.U, Array(
     "b0110111".U -> 1.U
+  ))
+
+  io.use_rs1 := MuxLookup(io.opcode, 0.U, Array(
+  "b0110011".U -> 1.U,
+  "b0010011".U -> 1.U,
+  "b0000011".U -> 1.U,
+  "b0100011".U -> 1.U,
+  "b1100011".U -> 1.U,
+  "b1101111".U -> 0.U,
+  "b1100111".U -> 1.U,
+  "b0110111".U -> 0.U,
+  "b0010111".U -> 0.U,
+  "b1110011".U -> MuxLookup(io.funct3, 0.U, Array(
+    "b000".U -> 0.U,
+    "b001".U -> 1.U,
+    "b010".U -> 1.U,
+    "b011".U -> 1.U,
+    "b101".U -> 0.U,
+    "b110".U -> 0.U,
+    "b111".U -> 0.U
+    ))
+  ))
+
+io.use_rs2 := MuxLookup(io.opcode, 0.U, Array(
+  "b0110011".U -> 1.U,
+  "b0010011".U -> 0.U,
+  "b0000011".U -> 0.U,
+  "b0100011".U -> 1.U,
+  "b1100011".U -> 1.U,
+  "b1101111".U -> 0.U,
+  "b1100111".U -> 0.U,
+  "b0110111".U -> 0.U,
+  "b0010111".U -> 0.U,
+  "b1110011".U -> MuxLookup(io.funct3, 0.U, Array(
+    "b000".U -> 0.U,
+    "b001".U -> 0.U,
+    "b010".U -> 0.U,
+    "b011".U -> 0.U,
+    "b101".U -> 0.U,
+    "b110".U -> 0.U,
+    "b111".U -> 0.U
+    ))
   ))
 
 }
