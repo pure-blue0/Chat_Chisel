@@ -43,14 +43,14 @@ int main(int argc, char **argv) {
   l1i_Policy.blockNum = l1i_Policy.cacheSize / l1i_Policy.blockSize;
   l1i_Policy.associativity = 8;
   l1i_Policy.hitLatency = 0;
-  l1i_Policy.missLatency = 8;
+  l1i_Policy.missLatency = 0;
 
   l1d_Policy.cacheSize = 32 * 1024;
   l1d_Policy.blockSize = 64;
   l1d_Policy.blockNum = l1d_Policy.cacheSize / l1d_Policy.blockSize;
   l1d_Policy.associativity = 8;
   l1d_Policy.hitLatency = 0;
-  l1d_Policy.missLatency = 8;
+  l1d_Policy.missLatency = 0;
 
   l1i_Cache = new Cache(&memory, l1i_Policy);
   l1d_Cache = new Cache(&memory, l1d_Policy);

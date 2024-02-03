@@ -159,6 +159,7 @@ public:
   bool isSingleStep;
   bool verbose;
   bool ispcsrc;
+  bool BP_mux;//The first mux value in PCgen
   //BHT
   bool BHT_verify;
   bool BHT_match;
@@ -167,6 +168,9 @@ public:
 
   bool write_data_back_verify;
   bool immGen_verify;
+  bool hazard_verify;
+  bool dcache_verify;
+  bool targetGen_verify;
 
   bool shouldDumpHistory;
   uint32_t pcNew;
@@ -242,23 +246,22 @@ private:
     // Control Signals
     bool bubble;
     uint32_t stall;
-
     RISCV::Inst insttype;
     RISCV::RegId rd;
-    uint32_t Rs2_op;
-    
-    uint32_t result;
-    bool readSignExt;
-    uint32_t memLen;
 
-    //Control
+    uint32_t Rs2_op;
+    uint32_t AluResult;
+    int32_t  funct3;
+
+    
     uint32_t mem_pc;
     uint32_t reg_pc;
     uint32_t target_pc;
 
     bool Branch_zero;
     bool predictedbranch;
-
+    
+    //Control
     uint32_t isBranch;
     uint32_t isJump;
     uint32_t MemRead;
@@ -271,17 +274,16 @@ private:
     // Control Signals
     bool bubble;
     uint32_t stall;
-
-    uint32_t reg_pc;
     RISCV::Inst insttype;
+
+    RISCV::RegId rd;
+    //data
+    uint32_t reg_pc;
     uint32_t ALU_Result;
     uint32_t Mem_Result;
-    RISCV::RegId rd;
-
     //control
     uint32_t RegWrite;
     uint32_t MemtoReg; //2bit
-
   } MEM_WBReg, MEM_WBNew;
 
   // Pipeline Related Variables
@@ -324,7 +326,16 @@ private:
   //decode module
   uint32_t imm_gen(uint32_t inst);
   void control(uint32_t opcode,uint32_t funct3,uint32_t funct7);
+  //hazard
+  void DataHazard(uint32_t memRead,RISCV::RegId id_rs1,RISCV::RegId id_rs2,RISCV::RegId ex_rd);
+  //mem
+  int32_t Dcache_Read(uint32_t mem_read,int32_t funct3,int32_t AluResult,uint32_t *cycles);
+  bool Dcache_Write(uint32_t mem_write, int32_t funct3,int32_t AluResult,int32_t RS2_op,uint32_t *cycles);
+
+  //wb
   uint32_t Writedata_back(uint32_t wb_reg_pc,uint32_t wb_readdata,uint32_t wb_AluResult,uint32_t wb_memtoreg);
+  
+
   void panic(const char *format, ...);
 };
 

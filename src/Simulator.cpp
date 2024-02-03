@@ -62,6 +62,10 @@ Simulator::Simulator(MemoryManager *memory, BranchPredictor *predictor) {
   this->pc = 0;
   this->pcNew=0;
   this->pcWrite = true;
+  //default get value is pc+4
+  this->BP_mux  = false;
+  this->ispcsrc = false;
+
   for (int i = 0; i < REGNUM; ++i) {
     this->reg[i] = 0;
   }
@@ -91,9 +95,13 @@ void Simulator::simulate() {
   memset(&this->EX_MEMRegNew,0, sizeof(this->EX_MEMRegNew));
   memset(&this->MEM_WBReg,   0, sizeof(this->MEM_WBReg));
   memset(&this->MEM_WBNew,   0, sizeof(this->MEM_WBNew));
-  this->BHT_verify=false;//debug test
+  //debug test
+  this->BHT_verify=false;
   this->write_data_back_verify=false;
   this->immGen_verify=false;
+  this->hazard_verify=false;
+  this->dcache_verify=false;
+  this->targetGen_verify=false;
   // Insert Bubble to later pipeline stages
   IF_IDReg.bubble = true;
   ID_EXReg.bubble = true;
@@ -177,18 +185,22 @@ void Simulator::fetch() {
   if (this->pc % 2 != 0) this->panic("Illegal PC 0x%x!\n", this->pc);
   //get fetch(The process of getting the finger from the Icache is also in the function)
   uint32_t inst = this->memory->getInt(this->pc);
-  /*
+  
   bool predictedBranch = false;
+  bool BP_mux=false;
   predictedBranch = this->branchPredictor->predict(this->pc);
-  bool BHT_match=this->branchPredictor->bht_match(this->IF_IDReg.id_pc);
-  bool BHT_valid=this->branchPredictor->get_bht_valid(this->IF_IDReg.id_pc);
-  uint32_t BHT_target_pc=this->branchPredictor->get_bht_address(this->IF_IDReg.id_pc);
-  if (predictedBranch && BHT_match && BHT_valid) {
-    this->predictedPC = BHT_target_pc;
+  /*
+  bool BHT_match=this->branchPredictor->bht_match(this->pc);
+  bool BHT_valid=this->branchPredictor->get_bht_valid(this->pc);
+  uint32_t BHT_target_pc=this->branchPredictor->get_bht_address(this->pc);
+  BP_mux=predictedBranch&&BHT_match&&BHT_valid;
+  if (BP_mux) {
+    this->pcNew = BHT_target_pc;
     this->IF_IDRegNew.bubble = true;
-    if(this->BHT_verify)printf("Module:BHT  match %d, valid %d ,bht_pred_pc 0x%.8x\n",BHT_match,BHT_valid,BHT_target_pc);
-  } */
-
+  } 
+  else this->pcNew = this->pc + 4; 
+  if(this->BHT_verify)printf("Module:BHT  match %d, valid %d ,bht_pred_pc 0x%.8x\n",BHT_match,BHT_valid,BHT_target_pc);
+  */
   if (this->verbose) printf("Fetched instruction 0x%.8x at address 0x%x\n", inst, this->pc);
   
   this->IF_IDRegNew.bubble = false;
@@ -562,107 +574,40 @@ void Simulator::execute() {
   int32_t Rs2_op = this->ID_EXReg.Rs2_op;
   int32_t offset = this->ID_EXReg.imm;
 
-  uint32_t dRegPC = this->ID_EXReg.ex_pc;
-  RegId rd   = this->ID_EXReg.rd;
+  uint32_t ex_pc = this->ID_EXReg.ex_pc;
+  uint32_t target_pc = 0;
+  RegId ex_rd   = this->ID_EXReg.rd;
   int32_t result  = 0;
-  
-  bool readSignExt = false;
-  uint32_t memLen = 0;
+
   bool branch = false;
+  
+  
 
   switch (insttype) {
-  case LUI:   
-    result = offset << 12;
-    break;
-  case AUIPC: 
-    result = dRegPC + (offset << 12); 
-    this->EX_MEMRegNew.reg_pc=result;
-    
-    break;
-  case JAL:  
-    this->EX_MEMRegNew.reg_pc=dRegPC + 4;
-    dRegPC = dRegPC + offset; 
-    branch = true;
-    break;
+  case LUI: result = offset;break;
+  case AUIPC:result = ex_pc + offset; break;
+  case JAL:  branch = true; break;
   case JALR:      
-    this->EX_MEMRegNew.reg_pc=dRegPC + 4;
-    dRegPC = (Rs1_op + offset) & (~(uint32_t)1);  
+    result = (Rs1_op + offset) & (~(uint32_t)1);  
     branch = true;
     break;
-  case BEQ:
-    if (Rs1_op == Rs2_op) {
-      branch = true;
-      dRegPC = dRegPC + offset; 
-    }
-    break;
-  case BNE:
-    if (Rs1_op != Rs2_op) {
-      branch = true;
-      dRegPC = dRegPC + offset; 
-    }
-    break;
-  case BLT:
-    if (Rs1_op < Rs2_op) {
-      branch = true;
-      dRegPC = dRegPC + offset; 
-    }
-    break;
-  case BGE:
-    if (Rs1_op >= Rs2_op) {
-      branch = true;
-      dRegPC = dRegPC + offset; 
-    }
-    break;
-  case BLTU:
-    if ((uint32_t)Rs1_op < (uint32_t)Rs2_op) {
-      branch = true;
-      dRegPC = dRegPC + offset; 
-    }
-    break;
-  case BGEU:
-    if ((uint32_t)Rs1_op >= (uint32_t)Rs2_op) {
-      branch = true;
-      dRegPC = dRegPC + offset; 
-    }
-    break;
-  case LB:
-    memLen = 1;
-    result = Rs1_op + offset;
-    readSignExt = true;
-    break;
-  case LH:
-    memLen = 2;
-    result = Rs1_op + offset;
-    readSignExt = true;
-    break;
-  case LW:
-    memLen = 4;
-    result = Rs1_op + offset;
-    readSignExt = true;
-    break;
-  case LBU:
-    memLen = 1;
-    result = Rs1_op + offset;
-    break;
-  case LHU:
-    memLen = 2;
-    result = Rs1_op + offset;
-    break;
-  case SB:
-    memLen = 1;
-    result = Rs1_op + offset;
-    Rs2_op = Rs2_op & 0xFF;
-    break;
-  case SH:
-    memLen = 2;
-    result = Rs1_op + offset;
-    Rs2_op = Rs2_op & 0xFFFF;
-    break;
-  case SW:
-    memLen = 4;
-    result = Rs1_op + offset;
-    Rs2_op = Rs2_op & 0xFFFFFFFF;
-    break;
+  case BEQ:if (Rs1_op == Rs2_op) branch = true; break;
+  case BNE:if (Rs1_op != Rs2_op) branch = true; break;
+  case BLT:if (Rs1_op <  Rs2_op) branch = true; break;
+  case BGE:if (Rs1_op >= Rs2_op) branch = true; break;
+  case BLTU:if ((uint32_t)Rs1_op <  (uint32_t)Rs2_op) branch = true; break; 
+  case BGEU:if ((uint32_t)Rs1_op >= (uint32_t)Rs2_op) branch = true; break;
+    
+  case LB: result = Rs1_op + offset; break;
+  case LH: result = Rs1_op + offset; break;
+  case LW: result = Rs1_op + offset; break;
+  case LBU:result = Rs1_op + offset; break;
+  case LHU:result = Rs1_op + offset; break;
+
+  case SB: result = Rs1_op + offset; break;
+  case SH: result = Rs1_op + offset; break;
+  case SW: result = Rs1_op + offset; break;
+  
   case ADD:   result = Rs1_op + Rs2_op;  break;
   case ADDI:  result = Rs1_op + offset;  break;
   case SUB:   result = Rs1_op - Rs2_op;  break;
@@ -685,26 +630,46 @@ void Simulator::execute() {
   case ECALL: result = handleSystemCall(Rs1_op, Rs2_op); break;
   default:    this->panic("Unknown instruction type %d\n", insttype);
   }
-  //BHT_update
-  if(branch==true)
-  { 
-    this->EX_MEMRegNew.target_pc=dRegPC;
-    this->branchPredictor->update_bht(this->ID_EXReg.ex_pc,this->EX_MEMRegNew.target_pc);
-    
-    if(this->BHT_verify){
-      this->branchPredictor->print_bht();
+  
+  if (this->ID_EXReg.isJump||(this->ID_EXReg.isBranch &&branch)) this->ispcsrc=true;
+  else this->ispcsrc=false;
+  
+  //target_gen
+  if(this->ID_EXReg.rdsel)this->EX_MEMRegNew.reg_pc=ex_pc+ offset;//inst：auipc，rdsel=1
+  else this->EX_MEMRegNew.reg_pc=ex_pc+ 4;
+
+  if(this->ID_EXReg.pcsel)target_pc=result; //jalr
+  else 
+  {
+    if(branch)target_pc=ex_pc+offset;      //jal | prediction jump
+    else if(!branch)target_pc=ex_pc+4;     //prediction not jump
+  }
+  if(targetGen_verify){
+    printf("-----------------------------------Target_Gen module------------ ------------------------\n");
+    if(this->ID_EXReg.rdsel)printf("-->Reg_PC=EX_PC+imm  [auipc]\n");
+    else  printf("-->Reg_PC=EX_PC+4 [jal/jalr]\n");  
+    printf("Input :RdSel:%d ,EX_PC:0x%.5x ,imm:0x%x\n",this->ID_EXReg.rdsel,ex_pc,offset);
+    printf("OutPUT:Reg_PC:0x%.5x \n",this->EX_MEMRegNew.reg_pc);
+    if(this->ID_EXReg.pcsel)printf("-->Target_PC=Alu_Result\n");
+    else
+    {
+      if(branch)printf("-->Target_PC=EX_PC+imm [Prediction right]\n");
+      else  printf("-->Target_PC=EX_PC+4 [Prediction fault]\n");
     }
+    printf("Input :PCSel:%d ,EX_PC:0x%.5x ,imm:0x%x ,Alu_Result:0x%x\n",this->ID_EXReg.rdsel,ex_pc,offset,result);
+    printf("OutPUT:Reg_PC:0x%.5x \n",this->EX_MEMRegNew.reg_pc);
   }
 
   // branch Related Code
   if (this->ID_EXReg.isBranch) {
+    //Calculate the back-end redirection address
     if (this->ID_EXReg.predictedBranch == branch) {
       this->history.predictedBranch++;
     } 
     else {
-      // Control Hazard Here
-      this->pcNew = dRegPC;//可以理解为后端重定向的那个mux
-      this->EX_MEMRegNew.target_pc=dRegPC;
+      //Branch prediction error, Control Hazard 
+      this->pcNew = target_pc;//可以理解为后端重定向的那个mux
+      this->EX_MEMRegNew.target_pc=target_pc;
 
       this->IF_IDRegNew.bubble = true;
       this->ID_EXRegNew.bubble = true;
@@ -716,38 +681,42 @@ void Simulator::execute() {
   }
   if (this->ID_EXReg.isJump) {
     // Control hazard here
-    this->pcNew = dRegPC; //可以理解为后端重定向的那个mux
-    this->EX_MEMRegNew.target_pc=dRegPC;
+    this->pcNew = target_pc; //可以理解为后端重定向的那个mux
+    this->EX_MEMRegNew.target_pc=target_pc;
     this->IF_IDRegNew.bubble = true;
     this->ID_EXRegNew.bubble = true;
     this->history.controlHazardCount++;
   }
-  if (this->ID_EXReg.MemRead) {
-    //如果当前指令是读指令，且下一个指令的rs1或rs2等于当前指令的目的寄存器，那么fetch和decode需要停顿两个周期（从内存取数据、写入目标寄存器）
-    if (this->ID_EXRegNew.rs1 == rd || this->ID_EXRegNew.rs2 == rd) {
-      this->IF_IDRegNew.stall = 2;
-      this->ID_EXRegNew.stall = 2;
-      this->EX_MEMRegNew.bubble = true;//这里不能忘
-      this->pcWrite=false;
-      this->history.memoryHazardCount++;
+
+  //BHT_update
+  if(branch==true)
+  { 
+    this->EX_MEMRegNew.target_pc=target_pc;
+    this->branchPredictor->update_bht(this->ID_EXReg.ex_pc,this->EX_MEMRegNew.target_pc);
+    
+    if(this->BHT_verify){
+      this->branchPredictor->print_bht();
     }
   }
 
-  // Check for data hazard and forward data
-  if (this->ID_EXReg.RegWrite && rd != 0 && !this->ID_EXReg.MemRead) {
-    if (this->ID_EXRegNew.rs1 == rd) {
+  //DataHazard
+  this->DataHazard(this->ID_EXReg.MemRead,this->ID_EXRegNew.rs1,this->ID_EXRegNew.rs2,ex_rd);
+
+  //forward data
+  if (this->ID_EXReg.RegWrite && ex_rd != 0 && !this->ID_EXReg.MemRead) {
+    if (this->ID_EXRegNew.rs1 == ex_rd) {
       this->ID_EXRegNew.Rs1_op = result;
-      this->executeWBReg = rd;
+      this->executeWBReg = ex_rd;
       this->executeWriteBack = true;
       this->history.dataHazardCount++;
-      if (verbose) printf("  Forward Data %s to Decode op1\n", REGNAME[rd]);
+      if (verbose) printf("  Forward Data %s to Decode op1\n", REGNAME[ex_rd]);
     }
-    if (this->ID_EXRegNew.rs2 == rd) {
+    if (this->ID_EXRegNew.rs2 == ex_rd) {
       this->ID_EXRegNew.Rs2_op = result;
-      this->executeWBReg = rd;
+      this->executeWBReg = ex_rd;
       this->executeWriteBack = true;
       this->history.dataHazardCount++;
-      if (verbose) printf("  Forward Data %s to Decode op2\n", REGNAME[rd]);
+      if (verbose) printf("  Forward Data %s to Decode op2\n", REGNAME[ex_rd]);
     }
   }
 
@@ -762,12 +731,11 @@ void Simulator::execute() {
   this->EX_MEMRegNew.MemWrite=this->ID_EXReg.MemWrite;
   this->EX_MEMRegNew.RegWrite=this->ID_EXReg.RegWrite;
   this->EX_MEMRegNew.MemtoReg=this->ID_EXReg.MemtoReg;
+  this->EX_MEMRegNew.funct3  =this->ID_EXReg.funct3;
 
-  this->EX_MEMRegNew.readSignExt = readSignExt;
   this->EX_MEMRegNew.insttype = insttype;   //no need later
-  this->EX_MEMRegNew.rd  = rd;
-  this->EX_MEMRegNew.result   = result; 
-  this->EX_MEMRegNew.memLen = memLen;
+  this->EX_MEMRegNew.rd  = ex_rd;
+  this->EX_MEMRegNew.AluResult   = result; 
   this->EX_MEMRegNew.Rs2_op = Rs2_op;     // for store
 }
 
@@ -785,67 +753,16 @@ void Simulator::memoryAccess() {
   Inst insttype = this->EX_MEMReg.insttype;
   RegId rd = this->EX_MEMReg.rd;
   int32_t Rs2_op = this->EX_MEMReg.Rs2_op; // for store
-  int32_t ALU_Result = this->EX_MEMReg.result;
+  int32_t ALU_Result = this->EX_MEMReg.AluResult;
   int32_t Mem_Result =0;
-  bool readSignExt = this->EX_MEMReg.readSignExt;
-  uint32_t memLen = this->EX_MEMReg.memLen;
 
-  bool good = true;
   uint32_t cycles = 0;
-
-  if (this->EX_MEMReg.MemWrite) {
-    switch (memLen) {
-    case 1:
-      good = this->memory->setByte(ALU_Result, Rs2_op, &cycles);
-      break;
-    case 2:
-      good = this->memory->setShort(ALU_Result,Rs2_op, &cycles);
-      break;
-    case 4:
-      good = this->memory->setInt(ALU_Result, Rs2_op, &cycles);
-      break;
-      this->panic("Unknown memLen %d\n", memLen);
-    }
-  }
-
-  if (!good) {
-    this->panic("Invalid Mem Access!\n");
-  }
-
-  if (this->EX_MEMReg.MemRead) {
-    switch (memLen) {
-    case 1:
-      if (readSignExt) {
-        Mem_Result = (int32_t)this->memory->getByte(ALU_Result, &cycles);
-        
-      } else {
-        Mem_Result = (uint32_t)this->memory->getByte(ALU_Result, &cycles);
-      }
-      break;
-    case 2:
-      if (readSignExt) {
-        Mem_Result = (int32_t)this->memory->getShort(ALU_Result, &cycles);
-      } else {
-        Mem_Result = (uint32_t)this->memory->getShort(ALU_Result, &cycles);
-      }
-      break;
-    case 4:
-      if (readSignExt) {
-        Mem_Result = (int32_t)this->memory->getInt(ALU_Result, &cycles);
-      } else {
-        Mem_Result = (uint32_t)this->memory->getInt(ALU_Result, &cycles);
-      }
-      break;
-    default:
-      this->panic("Unknown memLen %d\n", memLen);
-    }
+  //Dcache Write and read
+  bool good= this->Dcache_Write(this->EX_MEMReg.MemWrite,this->EX_MEMReg.funct3,ALU_Result,Rs2_op,&cycles);
+  Mem_Result=this->Dcache_Read(this->EX_MEMReg.MemRead,this->EX_MEMReg.funct3,ALU_Result,&cycles);
   
-  }
-
-
-  if (verbose) {
-    printf("Memory Access: %s\n", INSTNAME[insttype]);
-  }
+  if (!good) this->panic("Invalid Mem Access!\n");
+  if (verbose) printf("Memory Access: %s\n", INSTNAME[insttype]);
   
   //00:write this->MEM_WBNew.reg_pc to rd
   uint32_t forward_data=0;
@@ -854,8 +771,6 @@ void Simulator::memoryAccess() {
   else if(this->EX_MEMReg.MemtoReg==0x2)  forward_data = ALU_Result;
   //forward data
   if (this->EX_MEMReg.RegWrite && rd != 0) {
-    
-    
     if (this->ID_EXRegNew.rs1 == rd) {
       // Avoid overwriting recent values.if exe stage don't forward 
       //or exe stage forward but the destreg is not same as this one 
@@ -865,8 +780,8 @@ void Simulator::memoryAccess() {
         this->memoryWriteBack = true;
         this->memoryWBReg = rd;
         this->history.dataHazardCount++;
-        if (verbose)
-          printf("  Forward Data %s to Decode op1\n", REGNAME[rd]);
+        if (verbose) printf("  Forward Data %s to Decode op1\n", REGNAME[rd]);
+          
       }
     }
     if (this->ID_EXRegNew.rs2 == rd) {
@@ -895,13 +810,14 @@ void Simulator::memoryAccess() {
 
   this->MEM_WBNew.bubble = false;
   this->MEM_WBNew.stall = false;
-  //control
+  this->MEM_WBNew.insttype = insttype;
+
+  this->MEM_WBNew.rd = rd;
+  //data
+  this->MEM_WBNew.reg_pc  =this->EX_MEMReg.reg_pc;
   this->MEM_WBNew.RegWrite=this->EX_MEMReg.RegWrite;
   this->MEM_WBNew.MemtoReg=this->EX_MEMReg.MemtoReg;
-  this->MEM_WBNew.reg_pc  =this->EX_MEMReg.reg_pc;
-
-  this->MEM_WBNew.insttype = insttype;// no need later
-  this->MEM_WBNew.rd = rd;
+  //control
   this->MEM_WBNew.ALU_Result = ALU_Result;
   this->MEM_WBNew.Mem_Result = Mem_Result;
 }
@@ -916,14 +832,19 @@ void Simulator::writeBack() {
     return;
   }
   if (verbose) printf("WriteBack: %s\n", INSTNAME[this->MEM_WBReg.insttype]);
-  //在实际的riscv-cpu 中，WB产生的数据一旦写入reg，那么同一时刻，ID中读取到的数据就是新写入的这个reg
-  //（因为规定在一个周期内对一个reg操作，总是先写后读）,因此这个数据前递就被硬件自动解决了。
-  //但是在model中，由于流水线的本质还是线性进行，因此上面的操作无法自动实现，所以也需要在WB阶段实现数据前递
-  if (this->MEM_WBReg.RegWrite && this->MEM_WBReg.rd != 0) {// forward data
+  
+  if (this->MEM_WBReg.RegWrite && this->MEM_WBReg.rd != 0) {
+    //Select the data to be written to the rd
     uint32_t writedata=this->Writedata_back(this->MEM_WBReg.reg_pc,
                                             this->MEM_WBReg.Mem_Result,
                                             this->MEM_WBReg.ALU_Result,
                                             this->MEM_WBReg.MemtoReg);
+    //writeback the data to update regfile value
+    this->reg[this->MEM_WBReg.rd] = writedata;
+    //forward data
+    //在实际的riscv-cpu 中，WB产生的数据一旦写入reg，那么同一时刻，ID中读取到的数据就是新写入的这个reg
+    //（因为规定在一个周期内对一个reg操作，总是先写后读）,因此这个数据前递就被硬件自动解决了。
+    //但是在model中，由于流水线的本质还是线性进行，因此上面的操作无法自动实现，所以也需要在WB阶段实现数据前递
     if (this->ID_EXRegNew.rs1 == this->MEM_WBReg.rd) {
       // Avoid overwriting recent data
       if (!this->executeWriteBack  ||(this->executeWriteBack && this->executeWBReg != this->MEM_WBReg.rd)) {
@@ -944,8 +865,6 @@ void Simulator::writeBack() {
         }
       }
     }
-    // Real Write Back
-    this->reg[this->MEM_WBReg.rd] = writedata;
   }
 }
 
@@ -1084,7 +1003,7 @@ uint32_t Simulator::imm_gen(uint32_t inst){
   else if(imm_gen__type==S_TYPE)   imm_data=int32_t(((inst >> 7) & 0x1F) | ((inst >> 20) & 0xFE0)) << 20 >> 20;
   else if(imm_gen__type==SB_TYPE)  imm_data=int32_t(((inst >> 7) & 0x1E) | ((inst >> 20) & 0x7E0) |
                                         ((inst << 4) & 0x800) | ((inst >> 19) & 0x1000))<< 19 >>19;
-  else if(imm_gen__type==U_TYPE)   imm_data=int32_t(inst) >> 12;
+  else if(imm_gen__type==U_TYPE)   imm_data=int32_t(inst) >> 12<<12;
   else if(imm_gen__type==UJ_TYPE)  imm_data=int32_t(((inst >> 21) & 0x3FF) | ((inst >> 10) & 0x400) |
                                         ((inst >> 1) & 0x7F800) | ((inst >> 12) & 0x80000))<< 12 >>11;
   else if(imm_gen__type==R_TYPE)        imm_data=0;
@@ -1281,6 +1200,64 @@ void Simulator::control(uint32_t opcode,uint32_t funct3,uint32_t funct7){
   }
 }
 
+//Hazard
+void Simulator::DataHazard(uint32_t memRead,RISCV::RegId id_rs1,RISCV::RegId id_rs2,RISCV::RegId ex_rd){
+  if (memRead&&(id_rs1 == ex_rd || id_rs2 == ex_rd)) {
+    //如果当前指令是读指令，且下一个指令的rs1或rs2等于当前指令的目的寄存器，那么fetch和decode需要停顿1个周期
+      this->IF_IDRegNew.stall = 1;
+      this->ID_EXRegNew.stall = 1;//as same as set id_ex_flush=1(clean all the control signal)
+      this->pcWrite=false;
+      this->history.memoryHazardCount++;
+  }
+  if(false){
+  //if(this->hazard_verify){
+    printf("--------------------------------------hazard module--------------------------------------\n");
+    printf("-->DataHazard\n");
+    printf("Input :MemRead :%d ,ID_RS1:%s ,ID_RS2:%s ,EX_RD:%s \n",memRead,REGNAME[id_rs1],REGNAME[id_rs2],REGNAME[ex_rd]);
+    printf("Output:PC_Stall:%d ,IF_ID_Stall:%d ,ID_EX_Flush:%d \n",this->pcWrite,this->IF_IDRegNew.stall,this->ID_EXRegNew.stall);
+  }
+}
+//MEM
+//Dcache_Write
+bool Simulator::Dcache_Write(uint32_t mem_write, int32_t funct3,int32_t AluResult,int32_t RS2_op,uint32_t *cycles){
+  bool good=true;
+  if (mem_write) {
+    switch (funct3) {
+    case 0:good = this->memory->setByte(AluResult, RS2_op& 0xFF, cycles); break;
+    case 1:good = this->memory->setShort(AluResult,RS2_op& 0xFFFF, cycles); break;
+    case 2:good = this->memory->setInt(AluResult, RS2_op& 0xFFFFFFFF, cycles); break;
+    default:this->panic("Unknown funct3 %d\n", this->EX_MEMReg.funct3);
+    }
+    if(this->dcache_verify){
+      printf("-----------------------------------Dcache Write module-----------------------------------\n");
+      printf("Input :mem_write:%d ,funct3:0x%.2x ,AluResult:0x%x ,RS2_op:%d \n",mem_write,funct3,AluResult,RS2_op);
+    }
+  }
+  
+  return good;
+}
+//Dcache_Read
+int32_t Simulator::Dcache_Read(uint32_t mem_read, int32_t funct3,int32_t AluResult,uint32_t *cycles){
+  int32_t Mem_Result;
+  if (mem_read) {
+    switch (funct3) {
+    case 0: Mem_Result = (int32_t)this->memory->getByte(AluResult, cycles);break;
+    case 1: Mem_Result = (int32_t)this->memory->getShort(AluResult, cycles);break;
+    case 2: Mem_Result = (int32_t)this->memory->getInt(AluResult, cycles);break;
+    case 4: Mem_Result = (uint32_t)this->memory->getByte(AluResult, cycles);break;
+    case 5: Mem_Result = (uint32_t)this->memory->getShort(AluResult, cycles);break;
+    default:this->panic("Unknown funct3 %d\n", this->EX_MEMReg.funct3);
+    }
+    if(this->dcache_verify){
+      printf("-----------------------------------Dcache Read module----------- ------------------------\n");
+      printf("Input :mem_write:%d ,funct3:0x%.2x ,AluResult:0x%x \n",mem_read,funct3,AluResult);
+      printf("OutPUT:Mem_Result:%d \n",Mem_Result);
+    }
+  }
+  
+  return Mem_Result;
+}
+//WB
 uint32_t Simulator::Writedata_back(uint32_t wb_reg_pc,uint32_t wb_readdata,uint32_t wb_AluResult,uint32_t wb_memtoreg){
   uint32_t writedata=0;
   if(this->MEM_WBReg.MemtoReg==0x0)       writedata = wb_reg_pc;
