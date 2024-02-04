@@ -1,5 +1,4 @@
 #include "BranchPredictor.h"
-#include "Debug.h"
 
 BranchPredictor::BranchPredictor() {
   for (int i = 0; i < PRED_BUF_SIZE; ++i) {
@@ -21,7 +20,7 @@ bool BranchPredictor::BTB_Predict(uint32_t pc) {
   } else if (state == STRONG_NOT_TAKEN || state == WEAK_NOT_TAKEN) {
     return false;
   } else {
-    dbgprintf("Strange Prediction Buffer!\n");
+    printf("Strange Prediction Buffer!\n");
   }   
 }
 

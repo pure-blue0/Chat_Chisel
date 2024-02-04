@@ -139,10 +139,6 @@ void Cache::printInfo(bool verbose) {
       printf("Block %d: tag 0x%x id %d %s %s (last ref %d)\n", j, b.tag, b.id,
              b.valid ? "valid" : "invalid",
              b.modified ? "modified" : "unmodified", b.lastReference);
-      // printf("Data: ");
-      // for (uint8_t d : b.data)
-      // printf("%d ", d);
-      // printf("\n");
     }
   }
 }

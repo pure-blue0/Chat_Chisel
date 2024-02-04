@@ -124,10 +124,10 @@ const int OP_LUI = 0x37;
 const int OP_BRANCH = 0x63;
 const int OP_STORE = 0x23;
 const int OP_LOAD = 0x03;
-const int OP_SYSTEM = 0x73;
 const int OP_AUIPC = 0x17;
 const int OP_JAL = 0x6F;
 const int OP_JALR = 0x67;
+const int OP_SYSTEM = 0x73;
 
 inline bool isBranch(Inst inst) {
   if (inst == BEQ || inst == BNE || inst == BLT || inst == BGE ||
@@ -171,8 +171,6 @@ public:
   bool hazard_verify;
   bool dcache_verify;
   bool targetGen_verify;
-
-  bool shouldDumpHistory;
   
   uint32_t pcNew;
   uint32_t pc;
@@ -190,8 +188,6 @@ public:
   void initStack(uint32_t baseaddr, uint32_t maxSize);
 
   void simulate();
-
-  void dumpHistory();
 
   void printInfo();
 

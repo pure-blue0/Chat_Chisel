@@ -8,8 +8,8 @@ set(CMAKE_CXX_FLAGS "-O2 -Wall")
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
 add_executable(
-    Simulator 
-    src/MainCPU.cpp 
+    model 
+    src/main.cpp 
     src/MemoryManager.cpp 
     src/Simulator.cpp 
     src/BranchPredictor.cpp 
@@ -17,8 +17,8 @@ add_executable(
 )
 
 # add_executable(
-#     Verify_Simulator 
-#     src/VerifyCPU.cpp 
+#     Verify_model 
+#     src/Verifymain.cpp 
 #     src/MemoryManager.cpp 
 #     src/Simulator.cpp 
 #     src/BranchPredictor.cpp 

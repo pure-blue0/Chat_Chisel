@@ -1,5 +1,4 @@
 #include "MemoryManager.h"
-#include "Debug.h"
 
 #include <cstdio>
 #include <string>
@@ -38,7 +37,7 @@ bool MemoryManager::addPage(uint32_t addr) {
     this->memory[i][j] = new uint8_t[4096];
     memset(this->memory[i][j], 0, 4096);
   } else {
-    dbgprintf("Addr 0x%x already exists and do not need an addPage()!\n", addr);
+    printf("Addr 0x%x already exists and do not need an addPage()!\n", addr);
     return false;
   }
   return true;
@@ -51,7 +50,7 @@ bool MemoryManager::isPageExist(uint32_t addr) {
 bool MemoryManager::copyFrom(const void *src, uint32_t dest, uint32_t len) {
   for (uint32_t i = 0; i < len; ++i) {
     if (!this->isAddrExist(dest + i)) {
-      dbgprintf("Data copy to invalid addr 0x%x!\n", dest + i);
+      printf("Data copy to invalid addr 0x%x!\n", dest + i);
       return false;
     }
     this->setByte(dest + i, ((uint8_t *)src)[i]);
@@ -61,7 +60,7 @@ bool MemoryManager::copyFrom(const void *src, uint32_t dest, uint32_t len) {
 
 bool MemoryManager::setByte(uint32_t addr, uint8_t val, uint32_t *cycles) {
   if (!this->isAddrExist(addr)) {
-    dbgprintf("Byte write to invalid addr 0x%x!\n", addr);
+    printf("Byte write to invalid addr 0x%x!\n", addr);
     return false;
   }
   if (this->dcache != nullptr) {
@@ -77,7 +76,7 @@ bool MemoryManager::setByte(uint32_t addr, uint8_t val, uint32_t *cycles) {
 }
 bool MemoryManager::set_iByte(uint32_t addr, uint8_t val, uint32_t *cycles) {
   if (!this->isAddrExist(addr)) {
-    dbgprintf("Byte write to invalid addr 0x%x!\n", addr);
+    printf("Byte write to invalid addr 0x%x!\n", addr);
     return false;
   }
   if (this->icache != nullptr) {
@@ -93,7 +92,7 @@ bool MemoryManager::set_iByte(uint32_t addr, uint8_t val, uint32_t *cycles) {
 }
 bool MemoryManager::setByteNoCache(uint32_t addr, uint8_t val) {
   if (!this->isAddrExist(addr)) {
-    dbgprintf("Byte write to invalid addr 0x%x!\n", addr);
+    printf("Byte write to invalid addr 0x%x!\n", addr);
     return false;
   }
 
@@ -106,7 +105,7 @@ bool MemoryManager::setByteNoCache(uint32_t addr, uint8_t val) {
 
 uint8_t MemoryManager::getByte(uint32_t addr, uint32_t *cycles) {
   if (!this->isAddrExist(addr)) {
-    dbgprintf("Byte read to invalid addr 0x%x!\n", addr);
+    printf("Byte read to invalid addr 0x%x!\n", addr);
     return false;
   }
   if (this->dcache != nullptr) {
@@ -119,7 +118,7 @@ uint8_t MemoryManager::getByte(uint32_t addr, uint32_t *cycles) {
 }
 uint8_t MemoryManager::get_iByte(uint32_t addr, uint32_t *cycles) {
   if (!this->isAddrExist(addr)) {
-    dbgprintf("Byte read to invalid addr 0x%x!\n", addr);
+    printf("Byte read to invalid addr 0x%x!\n", addr);
     return false;
   }
   if (this->icache != nullptr) {
@@ -132,7 +131,7 @@ uint8_t MemoryManager::get_iByte(uint32_t addr, uint32_t *cycles) {
 }
 uint8_t MemoryManager::getByteNoCache(uint32_t addr) {
   if (!this->isAddrExist(addr)) {
-    dbgprintf("Byte read to invalid addr 0x%x!\n", addr);
+    printf("Byte read to invalid addr 0x%x!\n", addr);
     return false;
   }
   uint32_t i = this->getFirstEntryId(addr);
@@ -143,7 +142,7 @@ uint8_t MemoryManager::getByteNoCache(uint32_t addr) {
 
 bool MemoryManager::setShort(uint32_t addr, uint16_t val, uint32_t *cycles) {
   if (!this->isAddrExist(addr)) {
-    dbgprintf("Short write to invalid addr 0x%x!\n", addr);
+    printf("Short write to invalid addr 0x%x!\n", addr);
     return false;
   }
   this->setByte(addr, val & 0xFF, cycles);
@@ -159,7 +158,7 @@ uint16_t MemoryManager::getShort(uint32_t addr, uint32_t *cycles) {
 
 bool MemoryManager::setInt(uint32_t addr, uint32_t val, uint32_t *cycles) {
   if (!this->isAddrExist(addr)) {
-    dbgprintf("Int write to invalid addr 0x%x!\n", addr);
+    printf("Int write to invalid addr 0x%x!\n", addr);
     return false;
   }
   this->set_iByte(addr, val & 0xFF, cycles);

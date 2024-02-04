@@ -3,7 +3,6 @@
 #include <sstream>
 #include <string>
 
-#include "Debug.h"
 #include "Simulator.h"
 
 namespace RISCV {
@@ -131,8 +130,6 @@ void Simulator::simulate() {
     }
     CYCLE++;
 
-    
-
     this->fetch();
     this->decode();
     this->execute();
@@ -150,26 +147,14 @@ void Simulator::simulate() {
     memset(&this->EX_MEMRegNew,0, sizeof(this->EX_MEMRegNew));
     memset(&this->MEM_WBNew,   0, sizeof(this->MEM_WBNew));
     if(!this->IF_IDReg.stall)this->pcWrite=true;
-
-    
-    
-    
-
     this->history.cycleCount++;
-    this->history.regRecord.push_back(this->getRegInfoStr());
-    if (this->history.regRecord.size() >= 100000) { //Avoid using too much memory
-      this->history.regRecord.clear();
-      this->history.instRecord.clear();
-    }
 
     if (verbose) this->printInfo();
 
     if (this->isSingleStep) {
       printf("Type d to dump memory in dump.txt, press ENTER to continue: ");
       char ch;
-      while ((ch = getchar()) != '\n') {
-        if (ch == 'd') this->dumpHistory();
-      }
+      while ((ch = getchar()) != '\n') ;
     }
   }
 }
@@ -201,7 +186,6 @@ void Simulator::fetch() {
   }
 
   if(this->BHT_verify)printf("Module:BHT  match %d, valid %d ,bht_pred_pc 0x%.8x\n",BHT_match,BHT_valid,BHT_target_pc);
-  
   if (this->verbose) printf("Fetched instruction 0x%.8x at address 0x%x\n", inst, this->pc);
   
   this->IF_IDRegNew.bubble = false;
@@ -860,10 +844,6 @@ int32_t Simulator::handleSystemCall(int32_t op1, int32_t op2) {
   case 3:
   case 93: // exit
     printf("Program exit from an exit() system call\n");
-    if (shouldDumpHistory) {
-      printf("Dumping history to dump.txt...");
-      this->dumpHistory();
-    }
     this->printStatistics();
     exit(0);
   case 4: // read char
@@ -927,27 +907,6 @@ std::string Simulator::getRegInfoStr() {
   return str;
 }
 
-void Simulator::dumpHistory() {
-  std::ofstream ofile("dump.txt");
-  ofile << "================== Excecution History =================="
-        << std::endl;
-  for (uint32_t i = 0; i < this->history.instRecord.size(); ++i) {
-    ofile << this->history.instRecord[i];
-    ofile << this->history.regRecord[i];
-  }
-  ofile << "========================================================"
-        << std::endl;
-  ofile << std::endl;
-
-  ofile << "====================== Memory Dump ======================"
-        << std::endl;
-  ofile << this->memory->dumpMemory();
-  ofile << "========================================================="
-        << std::endl;
-  ofile << std::endl;
-
-  ofile.close();
-}
 
 //decode module
 uint32_t Simulator::imm_gen(uint32_t inst){
@@ -1270,7 +1229,6 @@ void Simulator::panic(const char *format, ...) {
   vsprintf(buf, format, args);
   fprintf(stderr, "%s", buf);
   va_end(args);
-  this->dumpHistory();
   fprintf(stderr, "Execution history and memory dump in dump.txt\n");
   exit(-1);
 }
