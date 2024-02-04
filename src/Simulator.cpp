@@ -107,6 +107,7 @@ void Simulator::simulate() {
   EX_MEMReg.bubble = true;
   MEM_WBReg.bubble = true;
   int CYCLE=0;
+  
   // Main Simulation Loop
   while (true) {
     if (this->reg[0] != 0) {

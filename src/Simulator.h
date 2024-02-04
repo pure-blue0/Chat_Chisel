@@ -49,6 +49,29 @@ enum Reg {
   REG_T6 = 31,
 };
 
+enum CSR_REG{
+  Mstatus = 0X300,
+  Misa    = 0X301,
+  Mie     = 0X304,
+  Mtvec   = 0X305,
+  Mscratch= 0X340,
+  Mepc    = 0X341,
+  Mcause  = 0X342,
+  Mtval   = 0X343,
+  Mip     = 0X344,
+  Mcycle  = 0XB00,
+  Mtime   = 0XC00,//DIFF
+  Minstret= 0XB02,
+
+  Cycle   = 0X100,//DIFF
+  Time    = 0XC01,//DIFF
+  Instret = 0XC02,//DIFF
+  Mvendorid= 0XF11,
+  Marchid  = 0XF12,
+  Mimpid   = 0XF13,
+  Mhartid  = 0XF14,
+};
+
 enum InstType {
   R_TYPE,
   I_TYPE,
