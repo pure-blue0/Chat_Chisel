@@ -17,7 +17,7 @@ public:
   BranchPredictor();
   ~BranchPredictor();
 
-  bool predict(uint32_t pc);
+  bool BTB_Predict(uint32_t pc);
   void update(uint32_t pc, bool branch);
 
   bool bht_match(uint32_t pc);

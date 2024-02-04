@@ -16,3 +16,12 @@ add_executable(
     src/Cache.cpp
 )
 
+# add_executable(
+#     Verify_Simulator 
+#     src/VerifyCPU.cpp 
+#     src/MemoryManager.cpp 
+#     src/Simulator.cpp 
+#     src/BranchPredictor.cpp 
+#     src/Cache.cpp
+# )
+

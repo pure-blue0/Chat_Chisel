@@ -14,7 +14,7 @@ BranchPredictor::BranchPredictor() {
 
 BranchPredictor::~BranchPredictor() {}
 
-bool BranchPredictor::predict(uint32_t pc) {
+bool BranchPredictor::BTB_Predict(uint32_t pc) {
   PredictorState state = this->predbuf[pc % PRED_BUF_SIZE];
   if (state == STRONG_TAKEN || state == WEAK_TAKEN) {
     return true;

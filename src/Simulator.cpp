@@ -151,10 +151,7 @@ void Simulator::simulate() {
     memset(&this->MEM_WBNew,   0, sizeof(this->MEM_WBNew));
     if(!this->IF_IDReg.stall)this->pcWrite=true;
 
-    //The back-end redirection is performed at the end
-    if (!this->ID_EXReg.bubble && !this->ID_EXReg.stall && !this->IF_IDReg.stall && this->ID_EXReg.predictedBranch) {
-    this->pcNew = this->predictedPC;
-    }
+    
     
     
 
@@ -185,29 +182,33 @@ void Simulator::fetch() {
   if (this->pc % 2 != 0) this->panic("Illegal PC 0x%x!\n", this->pc);
   //get fetch(The process of getting the finger from the Icache is also in the function)
   uint32_t inst = this->memory->getInt(this->pc);
-  
-  bool predictedBranch = false;
-  bool BP_mux=false;
-  predictedBranch = this->branchPredictor->predict(this->pc);
-  /*
+  //Prediction Next PC
+  bool predictedBranch = this->branchPredictor->BTB_Predict(this->pc);
+  //BHT
   bool BHT_match=this->branchPredictor->bht_match(this->pc);
   bool BHT_valid=this->branchPredictor->get_bht_valid(this->pc);
   uint32_t BHT_target_pc=this->branchPredictor->get_bht_address(this->pc);
-  BP_mux=predictedBranch&&BHT_match&&BHT_valid;
+  //Select PC
+  this->BP_mux=predictedBranch&&BHT_match&&BHT_valid;
   if (BP_mux) {
     this->pcNew = BHT_target_pc;
-    this->IF_IDRegNew.bubble = true;
+    this->IF_IDRegNew.prediction_jump=true;
   } 
-  else this->pcNew = this->pc + 4; 
+  else 
+  {
+    this->pcNew = this->pc + 4; 
+    this->IF_IDRegNew.prediction_jump=false;
+  }
+
   if(this->BHT_verify)printf("Module:BHT  match %d, valid %d ,bht_pred_pc 0x%.8x\n",BHT_match,BHT_valid,BHT_target_pc);
-  */
+  
   if (this->verbose) printf("Fetched instruction 0x%.8x at address 0x%x\n", inst, this->pc);
   
   this->IF_IDRegNew.bubble = false;
   this->IF_IDRegNew.stall = false;
   this->IF_IDRegNew.inst = inst;
   this->IF_IDRegNew.id_pc = this->pc;
-  this->pcNew = this->pc + 4; 
+  
 }
 
 
@@ -511,29 +512,6 @@ void Simulator::decode() {
     
   if (instname != INSTNAME[insttype]) this->panic("Unmatch instname %s with insttype %d\n", instname.c_str(), insttype);
   //calculate branch address and save the back-end redirection address
-  bool predictedBranch = false;
-  if (this->ID_EXRegNew.isBranch) {
-
-    predictedBranch = this->branchPredictor->predict(this->IF_IDReg.id_pc);
-    if (predictedBranch) {
-      //BHT
-      bool BHT_match=this->branchPredictor->bht_match(this->IF_IDReg.id_pc);
-      uint32_t BHT_target_pc=this->branchPredictor->get_bht_address(this->IF_IDReg.id_pc);
-      bool BHT_valid=this->branchPredictor->get_bht_valid(this->IF_IDReg.id_pc);
-      if(BHT_match&&BHT_valid){
-        if(verbose)printf("the inst is hit bht_entry\n");
-        this->predictedPC = BHT_target_pc;
-      }
-      else 
-      {
-        if(verbose)printf("the inst is not bht_entry\n");
-        this->predictedPC = this->IF_IDReg.id_pc + imm;//当前指令的地址+偏移
-      }
-
-      this->IF_IDRegNew.bubble = true;
-      if(this->BHT_verify)printf("Module:BHT  match %d, valid %d ,bht_pred_pc 0x%.8x\n",BHT_match,BHT_valid,BHT_target_pc);
-    } 
-  }
 
   this->ID_EXRegNew.stall =  false;
   this->ID_EXRegNew.bubble = false;
@@ -549,8 +527,7 @@ void Simulator::decode() {
   this->ID_EXRegNew.funct3   =funct3;
 
   this->ID_EXRegNew.ex_pc = this->IF_IDReg.id_pc;
-  this->ID_EXRegNew.predictedBranch = predictedBranch;
-  
+  this->ID_EXRegNew.prediction_jump=this->IF_IDReg.prediction_jump;
 }
 //The reason for [logic module]  executing in execute is the program is order running,
 //But the real RISCV CPU running is parallel,so these data must be prepared One cycle ahead
@@ -578,13 +555,9 @@ void Simulator::execute() {
   uint32_t target_pc = 0;
   RegId ex_rd   = this->ID_EXReg.rd;
   int32_t result  = 0;
-
   bool branch = false;
-  
-  
-
   switch (insttype) {
-  case LUI: result = offset;break;
+  case LUI:  result = offset;break;
   case AUIPC:result = ex_pc + offset; break;
   case JAL:  branch = true; break;
   case JALR:      
@@ -607,7 +580,7 @@ void Simulator::execute() {
   case SB: result = Rs1_op + offset; break;
   case SH: result = Rs1_op + offset; break;
   case SW: result = Rs1_op + offset; break;
-  
+
   case ADD:   result = Rs1_op + Rs2_op;  break;
   case ADDI:  result = Rs1_op + offset;  break;
   case SUB:   result = Rs1_op - Rs2_op;  break;
@@ -660,16 +633,14 @@ void Simulator::execute() {
     printf("OutPUT:Reg_PC:0x%.5x \n",this->EX_MEMRegNew.reg_pc);
   }
 
-  // branch Related Code
+  // Control Hazard 
   if (this->ID_EXReg.isBranch) {
-    //Calculate the back-end redirection address
-    if (this->ID_EXReg.predictedBranch == branch) {
+    if (this->ID_EXReg.prediction_jump == branch) {
       this->history.predictedBranch++;
     } 
     else {
-      //Branch prediction error, Control Hazard 
+      //Branch prediction error, 
       this->pcNew = target_pc;//可以理解为后端重定向的那个mux
-      this->EX_MEMRegNew.target_pc=target_pc;
 
       this->IF_IDRegNew.bubble = true;
       this->ID_EXRegNew.bubble = true;
@@ -682,7 +653,6 @@ void Simulator::execute() {
   if (this->ID_EXReg.isJump) {
     // Control hazard here
     this->pcNew = target_pc; //可以理解为后端重定向的那个mux
-    this->EX_MEMRegNew.target_pc=target_pc;
     this->IF_IDRegNew.bubble = true;
     this->ID_EXRegNew.bubble = true;
     this->history.controlHazardCount++;
@@ -1215,6 +1185,25 @@ void Simulator::DataHazard(uint32_t memRead,RISCV::RegId id_rs1,RISCV::RegId id_
     printf("-->DataHazard\n");
     printf("Input :MemRead :%d ,ID_RS1:%s ,ID_RS2:%s ,EX_RD:%s \n",memRead,REGNAME[id_rs1],REGNAME[id_rs2],REGNAME[ex_rd]);
     printf("Output:PC_Stall:%d ,IF_ID_Stall:%d ,ID_EX_Flush:%d \n",this->pcWrite,this->IF_IDRegNew.stall,this->ID_EXRegNew.stall);
+  }
+}
+
+void Simulator::ForwardData(){
+  if (this->ID_EXReg.RegWrite && this->ID_EXReg.rd != 0 && !this->ID_EXReg.MemRead) {
+    if (this->ID_EXRegNew.rs1 == this->ID_EXReg.rd) {
+      this->ID_EXRegNew.Rs1_op = this->EX_MEMRegNew.AluResult;//Current cycle EXE stage ALU calculation result
+      this->executeWBReg = this->ID_EXReg.rd;
+      this->executeWriteBack = true;
+      this->history.dataHazardCount++;
+      if (verbose) printf("  Forward Data %s to Decode op1\n", REGNAME[this->ID_EXReg.rd]);
+    }
+    if (this->ID_EXRegNew.rs2 == this->ID_EXReg.rd) {
+      this->ID_EXRegNew.Rs2_op = this->EX_MEMRegNew.AluResult;//Current cycle EXE stage ALU calculation result;
+      this->executeWBReg = this->ID_EXReg.rd;
+      this->executeWriteBack = true;
+      this->history.dataHazardCount++;
+      if (verbose) printf("  Forward Data %s to Decode op2\n", REGNAME[this->ID_EXReg.rd]);
+    }
   }
 }
 //MEM

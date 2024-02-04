@@ -173,6 +173,7 @@ public:
   bool targetGen_verify;
 
   bool shouldDumpHistory;
+  
   uint32_t pcNew;
   uint32_t pc;
   uint32_t pcWrite;
@@ -195,7 +196,7 @@ public:
   void printInfo();
 
   void printStatistics();
-  void print_BHT_Info();
+  //void print_BHT_Info();
 
 private:
   struct FReg {
@@ -205,6 +206,8 @@ private:
 
     uint32_t id_pc;
     uint32_t inst;
+
+    bool prediction_jump;
   } IF_IDReg, IF_IDRegNew;
   struct DReg {
     // Control Signals
@@ -217,7 +220,7 @@ private:
     uint32_t op1;
     uint32_t op2;
     RISCV::RegId dest;
-    bool predictedBranch;
+    bool prediction_jump;
 
     //new control
     uint32_t ALUOp;     //4bit
@@ -328,6 +331,7 @@ private:
   void control(uint32_t opcode,uint32_t funct3,uint32_t funct7);
   //hazard
   void DataHazard(uint32_t memRead,RISCV::RegId id_rs1,RISCV::RegId id_rs2,RISCV::RegId ex_rd);
+  void ForwardData();
   //mem
   int32_t Dcache_Read(uint32_t mem_read,int32_t funct3,int32_t AluResult,uint32_t *cycles);
   bool Dcache_Write(uint32_t mem_write, int32_t funct3,int32_t AluResult,int32_t RS2_op,uint32_t *cycles);
