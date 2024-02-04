@@ -2,32 +2,43 @@ import chisel3._
 import chisel3.util._
 class Hazard extends Module {
   val io = IO(new Bundle {
-    val ex_use_rs1 = Input(UInt(1.W))
-    val ex_use_rs2 = Input(UInt(1.W))
-    val ex_rs1 = Input(UInt(5.W))
-    val ex_rs2 = Input(UInt(5.W))
-    val mem_rd = Input(UInt(5.W))
-    val mem_regwrite = Input(UInt(1.W))
-    val wb_rd = Input(UInt(5.W))
-    val wb_regwrite = Input(UInt(1.W))
-    val forward1 = Output(UInt(2.W))
-    val forward2 = Output(UInt(2.W))
+    //to fetch
+    val predict = Output(UInt(1.W))
     val pc_stall = Output(UInt(1.W))
     val if_id_stall = Output(UInt(1.W))
+    val if_id_flush = Output(UInt(1.W))
+    //from decode
     val memread = Input(UInt(1.W))
     val use_rs1 = Input(UInt(1.W))
     val use_rs2 = Input(UInt(1.W))
     val id_rs1 = Input(UInt(5.W))
     val id_rs2 = Input(UInt(5.W))
     val ex_rd = Input(UInt(5.W))
-    val id_ex_flush = Output(UInt(1.W))
-    val predict = Output(UInt(1.W))
+    val ex_use_rs1 = Input(UInt(1.W))
+    val ex_use_rs2 = Input(UInt(1.W))
+    val ex_rs1 = Input(UInt(5.W))
+    val ex_rs2 = Input(UInt(5.W))
     val ex_pc = Input(UInt(32.W))
+    //to decode
+    val id_ex_flush = Output(UInt(1.W))
+    //from execute
+    val mem_rd = Input(UInt(5.W))
+    val mem_regwrite = Input(UInt(1.W))
     val mem_pc = Input(UInt(32.W))
     val target_pc = Input(UInt(32.W))
-    val pcsrc = Input(UInt(1.W))
-    val if_id_flush = Output(UInt(1.W))
+    //to execute
+    val forward1 = Output(UInt(2.W))
+    val forward2 = Output(UInt(2.W))
     val ex_mem_flush = Output(UInt(1.W))
+    //from memory
+    val wb_rd = Input(UInt(5.W))
+    val wb_regwrite = Input(UInt(1.W))
+    val pcsrc = Input(UInt(1.W))
+    val trapped = Input(UInt(1.W))
+    val mret = Input(UInt(1.W))
+    //to memory
+    val mem_wb_flush = Output(UInt(1.W))
+    
   })
 
   // Check if data hazard occurs and determine the forward values
@@ -76,11 +87,13 @@ class Hazard extends Module {
   when(io.pcsrc === 1.U && io.target_pc === io.ex_pc) {
     predict := true.B
   }
-  // Output control signals for flushing instructions
-  io.if_id_flush := controlHazard
-  io.ex_mem_flush := controlHazard
+  // Output control signals for flushing instruct
+
+  io.if_id_flush := controlHazard || io.trapped === 1.U || io.mret === 1.U
+  io.ex_mem_flush := controlHazard || io.trapped === 1.U || io.mret === 1.U
   // Set id_ex_flush when either data hazard or control hazard occurs
-  io.id_ex_flush := hazard || controlHazard
+  io.id_ex_flush := hazard || controlHazard || io.trapped === 1.U || io.mret === 1.U
+  io.mem_wb_flush := io.trapped === 1.U || io.mret === 1.U
 
   io.predict := predict
 }

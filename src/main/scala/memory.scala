@@ -10,7 +10,7 @@ class Memory extends Module {
     val csr_write_data_in = Input(UInt(32.W))
     val ecause_in = Input(UInt(4.W))
     val exception_in = Input(Bool())
-    val mert_in = Input(Bool())
+    val mret_in = Input(Bool())
     val wfi_in = Input(Bool())
     val reg_pc = Input(UInt(32.W))
     val mem_isbranch = Input(Bool())
@@ -36,7 +36,7 @@ class Memory extends Module {
     val trapped = Output(Bool())
     val interrupt = Output(Bool())
     val inst_retired = Output(Bool())
-    val mert_out = Output(Bool())
+    val mret_out = Output(Bool())
     // Outputs to Writeback stage
     val csr_read_data_out = Output(UInt(32.W))
     val wfi_out = Output(Bool())
@@ -114,7 +114,7 @@ class Memory extends Module {
   val interrupt_reg = RegInit(false.B)
   val inst_retired_reg = RegInit(false.B)
   val csr_read_data_out_reg = RegInit(0.U(32.W))
-  val mert_out_reg = RegInit(false.B)
+  val mret_out_reg = RegInit(false.B)
   val wfi_out_reg = RegInit(false.B)
   val wb_reg_pc_reg = RegInit(0.U(32.W))
   val wb_readdata_reg = RegInit(0.U(32.W))
@@ -135,7 +135,7 @@ class Memory extends Module {
     trapped_reg := trapped
     interrupt_reg := interrupt
     inst_retired_reg := retired
-    mert_out_reg := io.mert_in
+    mret_out_reg := io.mret_in
   } .otherwise {
     csr_write_enable_out_reg := false.B
     csr_write_address_out_reg := 0.U
@@ -144,7 +144,7 @@ class Memory extends Module {
     trapped_reg := false.B
     interrupt_reg := false.B
     inst_retired_reg := false.B
-    mert_out_reg := false.B
+    mret_out_reg := false.B
   }
 
   // Connect the outputs to the Writeback stage registers
@@ -186,7 +186,7 @@ class Memory extends Module {
   io.interrupt := interrupt_reg
   io.inst_retired := inst_retired_reg
   io.csr_read_data_out := csr_read_data_out_reg
-  io.mert_out := mert_out_reg
+  io.mret_out := mret_out_reg
   io.wfi_out := wfi_out_reg
   io.wb_reg_pc := wb_reg_pc_reg
   io.wb_readdata := wb_readdata_reg
@@ -197,5 +197,10 @@ class Memory extends Module {
   io.pcsrc := pcsrc_reg
   io.branch := branch_reg
 }
+
+// object memorystage extends App {
+//   //println(getVerilogString(new Execute))
+//   println((new chisel3.stage.ChiselStage).emitVerilog(new Memory))
+// }
 
 

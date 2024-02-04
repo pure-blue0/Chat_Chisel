@@ -1,0 +1,4 @@
+[0m[[0m[0mdebug[0m] [0m[0m[chisel_gen-build] Classpath dependencies List()[0m
+[0m[[0m[0mdebug[0m] [0m[0m[chisel_gen-build] Dependencies from configurations List()[0m
+[0m[[0m[0mdebug[0m] [0m[0mBloop wrote the configuration of project 'chisel_gen-build' to '/home/ysyx/Project/chisel_gen/project/.bloop/chisel_gen-build.json'[0m
+[0m[[0m[32msuccess[0m] [0m[0mGenerated .bloop/chisel_gen-build.json[0m

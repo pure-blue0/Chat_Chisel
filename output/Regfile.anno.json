@@ -1,0 +1,24 @@
+[
+  {
+    "class":"firrtl.EmitCircuitAnnotation",
+    "emitter":"firrtl.VerilogEmitter"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxTargetDirAnno",
+    "targetDir":"."
+  },
+  {
+    "class":"firrtl.transforms.CombinationalPath",
+    "sink":"~Regfile|Regfile>io_rs2_data",
+    "sources":[
+      "~Regfile|Regfile>io_id_rs2"
+    ]
+  },
+  {
+    "class":"firrtl.transforms.CombinationalPath",
+    "sink":"~Regfile|Regfile>io_rs1_data",
+    "sources":[
+      "~Regfile|Regfile>io_id_rs1"
+    ]
+  }
+]

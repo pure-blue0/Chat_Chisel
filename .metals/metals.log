@@ -1203,3 +1203,169 @@ scala.meta.tokenizers.TokenizeException: <input>:99: error: empty quoted identif
 2024.02.03 13:09:53 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/hazard.scala
 Feb 03, 2024 3:04:46 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFO: Unsupported notification method: $/setTrace
+Feb 03, 2024 3:29:50 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1190
+Feb 03, 2024 4:08:52 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1225
+Exception in thread "pool-3-thread-1" java.lang.Error: java.lang.InterruptedException
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1155)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.InterruptedException
+	at scala.meta.internal.metals.FutureCancelToken.checkCanceled(FutureCancelToken.scala:29)
+	at scala.meta.internal.pc.CompilerAccess.onCompilerJobQueue$$anonfun$1(CompilerAccess.scala:230)
+	at scala.meta.internal.pc.CompilerJobQueue$Job.run(CompilerJobQueue.scala:152)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	... 2 more
+2024.02.03 16:31:55 WARN  Using indexes to guess the definition of trapped
+2024.02.03 16:31:55 WARN  Using indexes to guess the definition of trapped
+2024.02.03 16:31:58 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/hazard.scala
+2024.02.03 17:00:11 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/hazard.scala
+2024.02.03 18:16:56 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/btb.scala
+Feb 03, 2024 6:16:56 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1581
+2024.02.03 22:20:52 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/fetch.scala
+Feb 03, 2024 10:53:07 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1651
+2024.02.03 23:13:15 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/hazard.scala
+2024.02.04 00:11:02 INFO  Shutting down server
+2024.02.04 00:11:02 INFO  shutting down Metals
+2024.02.04 00:11:02 INFO  Exiting server
+2024.02.04 10:32:41 INFO  Started: Metals version 1.2.0 in folders '/home/ysyx/Project/chisel_gen' for client Visual Studio Code 1.81.1.
+2024.02.04 10:32:43 WARN  Build server is not auto-connectable.
+2024.02.04 10:32:43 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/fetch.scala
+2024.02.04 10:32:50 INFO  no build target found for /home/ysyx/Project/chisel_gen/src/main/scala/fetch.scala. Using presentation compiler with project's scala-library version: 3.3.1
+Feb 04, 2024 10:32:51 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 2
+Feb 04, 2024 10:32:51 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Feb 04, 2024 10:32:51 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 8
+2024.02.04 10:32:55 INFO  time: code lens generation in 4.48s
+2024.02.04 10:42:35 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/decode.scala
+2024.02.04 10:48:36 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/excute.scala
+2024.02.04 10:48:56 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/execute.scala
+2024.02.04 10:55:53 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/datacache.scala
+2024.02.04 10:55:55 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/memory.scala
+2024.02.04 10:58:38 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/writeback.scala
+2024.02.04 11:13:02 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/csr.scala
+2024.02.04 11:13:02 WARN  Could not find semantic tokens for: file:///home/ysyx/Project/chisel_gen/src/main/scala/csr.scala
+2024.02.04 11:13:02 WARN  Could not find semantic tokens for: file:///home/ysyx/Project/chisel_gen/src/main/scala/csr.scala
+2024.02.04 11:13:38 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/aluselect.scala
+2024.02.04 11:16:38 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/csr.scala
+2024.02.04 11:17:11 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/hazard.scala
+2024.02.04 11:34:20 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/hazard.scala
+Feb 04, 2024 11:53:30 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1295
+2024.02.04 11:54:11 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/hazard.scala
+2024.02.04 12:00:34 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/core.scala
+2024.02.04 12:00:34 WARN  Could not find semantic tokens for: file:///home/ysyx/Project/chisel_gen/src/main/scala/core.scala
+2024.02.04 12:00:34 WARN  Could not find semantic tokens for: file:///home/ysyx/Project/chisel_gen/src/main/scala/core.scala
+2024.02.04 12:00:37 WARN  Could not find semantic tokens for: file:///home/ysyx/Project/chisel_gen/src/main/scala/core.scala
+2024.02.04 12:01:58 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/core.scala
+2024.02.04 12:01:58 WARN  Could not find semantic tokens for: file:///home/ysyx/Project/chisel_gen/src/main/scala/core.scala
+2024.02.04 12:02:08 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/bht.scala
+2024.02.04 12:02:11 WARN  Could not find semantic tokens for: file:///home/ysyx/Project/chisel_gen/src/main/scala/core.scala
+2024.02.04 12:02:14 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/core.scala
+2024.02.04 12:15:20 WARN  Using indexes to guess the definition of execute
+2024.02.04 12:19:50 WARN  Using indexes to guess the definition of writeback
+Feb 04, 2024 12:20:51 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1803
+2024.02.04 12:22:49 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/core.scala
+2024.02.04 12:25:51 WARN  Using indexes to guess the definition of writeback
+2024.02.04 12:28:39 WARN  Using indexes to guess the definition of memory
+2024.02.04 12:29:17 WARN  Using indexes to guess the definition of execute
+2024.02.04 12:29:26 WARN  Using indexes to guess the definition of memory
+2024.02.04 12:40:03 WARN  Using indexes to guess the definition of execute
+2024.02.04 12:40:13 WARN  Using indexes to guess the definition of memory
+2024.02.04 12:40:19 WARN  Using indexes to guess the definition of memory
+2024.02.04 12:40:31 WARN  Using indexes to guess the definition of io
+2024.02.04 12:40:31 WARN  Using indexes to guess the definition of forward2
+2024.02.04 12:40:31 WARN  Using indexes to guess the definition of io
+2024.02.04 12:40:31 WARN  Using indexes to guess the definition of execute
+2024.02.04 12:43:20 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/core.scala
+2024.02.04 12:46:23 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/csr.scala
+2024.02.04 12:48:32 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/csr.scala
+2024.02.04 12:48:33 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/csr.scala
+2024.02.04 12:51:14 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/hazard.scala
+2024.02.04 13:28:52 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/csr.scala
+Feb 04, 2024 2:08:40 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2024.02.04 14:08:48 WARN  no build target for: /home/ysyx/Project/chisel_gen/build.sbt
+2024.02.04 14:08:48 WARN  Could not find semantic tokens for: file:///home/ysyx/Project/chisel_gen/build.sbt
+2024.02.04 14:08:48 WARN  Could not find semantic tokens for: file:///home/ysyx/Project/chisel_gen/build.sbt
+2024.02.04 14:10:17 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/excute.scala
+2024.02.04 14:11:03 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/core.scala
+2024.02.04 14:12:02 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/core.scala
+2024.02.04 14:13:56 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/core.scala
+2024.02.04 14:14:20 WARN  no build target for: /home/ysyx/Project/chisel_gen/build.sbt
+2024.02.04 14:14:20 WARN  Could not find semantic tokens for: file:///home/ysyx/Project/chisel_gen/build.sbt
+2024.02.04 14:14:21 WARN  Could not find semantic tokens for: file:///home/ysyx/Project/chisel_gen/build.sbt
+2024.02.04 14:15:10 WARN  no build target for: /home/ysyx/Project/chisel_gen/build.sbt
+2024.02.04 14:15:10 WARN  Could not find semantic tokens for: file:///home/ysyx/Project/chisel_gen/build.sbt
+2024.02.04 14:15:10 WARN  Could not find semantic tokens for: file:///home/ysyx/Project/chisel_gen/build.sbt
+2024.02.04 14:15:20 INFO  running '/opt/jdk/jdk1.8.0_181/bin/java -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -Dsbt.version=1.9.7 -jar /tmp/metals7765489871224848552/sbt-launch.jar -Dbloop.export-jar-classifiers=sources bloopInstall'
+2024.02.04 14:15:21 ERROR [info] [launcher] getting org.scala-sbt sbt 1.9.7  (this may take some time)...
+2024.02.04 14:15:30 INFO  [info] Updated file /home/ysyx/Project/chisel_gen/project/build.properties: set sbt.version to 1.9.7
+2024.02.04 14:15:30 INFO  [info] welcome to sbt 1.9.7 (Oracle Corporation Java 1.8.0_181)
+2024.02.04 14:15:30 WARN  Could not find semantic tokens for: file:///home/ysyx/Project/chisel_gen/build.sbt
+2024.02.04 14:15:31 INFO  [info] loading settings for project chisel_gen-build-build from metals.sbt ...
+2024.02.04 14:15:31 INFO  [info] loading project definition from /home/ysyx/Project/chisel_gen/project/project
+2024.02.04 14:15:33 INFO  [info] loading settings for project chisel_gen-build from metals.sbt ...
+2024.02.04 14:15:33 INFO  [info] loading project definition from /home/ysyx/Project/chisel_gen/project
+2024.02.04 14:17:37 INFO  [success] Generated .bloop/chisel_gen-build.json
+2024.02.04 14:17:37 INFO  [success] Total time: 124 s (02:04), completed Feb 4, 2024 2:17:37 PM
+2024.02.04 14:17:40 ERROR /home/ysyx/Project/chisel_gen/build.sbt:9: warning: method sonatypeRepo in class ResolverFunctions is deprecated (since 1.7.0): Use sonatypeOssRepos instead e.g. `resolvers ++= Resolver.sonatypeOssRepos("snapshots")`
+2024.02.04 14:17:40 ERROR   Resolver.sonatypeRepo("releases")
+2024.02.04 14:17:40 ERROR            ^
+2024.02.04 14:17:40 INFO  [info] loading settings for project chisel_gen from build.sbt ...
+2024.02.04 14:17:40 INFO  [info] set current project to chisel_gen (in build file:/home/ysyx/Project/chisel_gen/)
+2024.02.04 14:17:43 INFO  [success] Generated .bloop/chisel_gen.json
+2024.02.04 14:17:43 INFO  [success] Generated .bloop/chisel_gen-test.json
+2024.02.04 14:17:43 INFO  [success] Total time: 2 s, completed Feb 4, 2024 2:17:44 PM
+2024.02.04 14:17:44 INFO  time: ran 'sbt bloopInstall' in 2m23s
+2024.02.04 14:17:44 INFO  Attempting to connect to the build server...
+2024.02.04 14:17:44 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.04 14:17:48 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+2024.02.04 14:18:04 WARN  Stopped configuration of Scala SemanticDB in 2.12.13 projects: Error downloading org.scalameta:semanticdb-scalac_2.12.13:4.8.14
+  not found: /home/ysyx/.ivy2/local/org.scalameta/semanticdb-scalac_2.12.13/4.8.14/ivys/ivy.xml
+  not found: https://repo1.maven.org/maven2/org/scalameta/semanticdb-scalac_2.12.13/4.8.14/semanticdb-scalac_2.12.13-4.8.14.pom
+After retry no existing semanticdb version found for scala version 2.12.13
+2024.02.04 14:18:04 INFO  Attempting to connect to the build server...
+2024.02.04 14:18:04 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.04 14:18:04 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/project/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+2024.02.04 14:18:04 INFO  time: Connected to build server in 19s
+2024.02.04 14:18:04 INFO  Connected to Build server: Bloop v1.5.13
+2024.02.04 14:18:04 INFO  time: Imported build in 0.17s
+2024.02.04 14:18:10 INFO  time: indexed workspace in 5.53s
+2024.02.04 14:18:10 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.04 14:18:10 INFO  compiling chisel_gen (20 scala sources)
+2024.02.04 14:18:12 INFO  time: compiled chisel_gen in 1.47s
+Feb 04, 2024 2:18:15 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 3251
+2024.02.04 14:18:25 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.04 14:18:25 INFO  compiling chisel_gen (20 scala sources)
+Feb 04, 2024 2:18:25 PM scala.meta.internal.pc.CompilerAccess retryWithCleanCompiler
+INFO: compiler crashed due to an error in the Scala compiler, retrying with new compiler instance.
+2024.02.04 14:18:25 INFO  time: compiled chisel_gen in 0.2s
+2024.02.04 14:18:49 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.04 14:18:49 INFO  compiling chisel_gen (19 scala sources)
+2024.02.04 14:18:52 INFO  time: compiled chisel_gen in 2.74s
+2024.02.04 14:18:52 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.04 14:18:52 INFO  compiling chisel_gen (19 scala sources)
+2024.02.04 14:18:53 INFO  time: compiled chisel_gen in 1.15s
+Exception in thread "pool-6-thread-1" java.lang.Error: java.lang.InterruptedException
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1155)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.InterruptedException
+	at scala.meta.internal.metals.FutureCancelToken.checkCanceled(FutureCancelToken.scala:29)
+	at scala.meta.internal.pc.CompilerAccess.$anonfun$onCompilerJobQueue$1(CompilerAccess.scala:230)
+	at scala.meta.internal.pc.CompilerJobQueue$Job.run(CompilerJobQueue.scala:152)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	... 2 more
+2024.02.04 14:20:36 WARN  Using indexes to guess the definition of Bool
+2024.02.04 14:20:37 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.04 14:20:37 INFO  compiling chisel_gen (19 scala sources)
+2024.02.04 14:20:42 INFO  time: compiled chisel_gen in 4.91s
+2024.02.04 14:23:55 INFO  skipping build import with status 'Installed'

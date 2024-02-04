@@ -12,7 +12,7 @@ class Decode extends Module {
     val csr_address = Output(UInt(12.W))
     val ecause_out = Output(UInt(4.W))
     val exception_out = Output(Bool())
-    val mert_out = Output(Bool())
+    val mret_out = Output(Bool())
     val wfi_out = Output(Bool())
     val ex_pc = Output(UInt(32.W))
     val aluop = Output(UInt(4.W))
@@ -59,7 +59,7 @@ class Decode extends Module {
   val csr_address_reg = RegInit(0.U(12.W))
   val ecause_out_reg = RegInit(0.U(4.W))
   val exception_out_reg = RegInit(false.B)
-  val mert_out_reg = RegInit(false.B)
+  val mret_out_reg = RegInit(false.B)
   val wfi_out_reg = RegInit(false.B)
   val id_ex_pc_reg = RegInit(0.U(32.W))
   val id_ex_aluop_reg = RegInit(0.U(4.W))
@@ -115,7 +115,7 @@ when((csrrsInst || csrrcInst || csrrsiInst || csrrciInst) && io.inst(19, 15).asU
   csr_write := false.B
 }
 
-  val mert_out = io.inst === "b00110000001000000000000001110011".U //Control.MERT_INSTRUCTION
+  val mret_out = io.inst === "b00110000001000000000000001110011".U //Control.mret_INSTRUCTION
   val wfi_out = io.inst ===  "b00010000010100000000000001110011".U //Control.WFI_INSTRUCTION
   val ecause_out = 0.U                             
   val exception_out = 0.U 
@@ -147,7 +147,7 @@ when((csrrsInst || csrrcInst || csrrsiInst || csrrciInst) && io.inst(19, 15).asU
     csr_address_reg := 0.U
     ecause_out_reg := 0.U
     exception_out_reg := false.B
-    mert_out_reg := false.B
+    mret_out_reg := false.B
     wfi_out_reg := false.B
   }.otherwise {
     csr_read_reg := csr_read
@@ -155,7 +155,7 @@ when((csrrsInst || csrrcInst || csrrsiInst || csrrciInst) && io.inst(19, 15).asU
     csr_address_reg := io.inst(31, 20)
     ecause_out_reg := ecause_out
     exception_out_reg := exception_out
-    mert_out_reg := mert_out
+    mret_out_reg := mret_out
     wfi_out_reg := wfi_out
     id_ex_pc_reg := io.id_pc
     id_ex_aluop_reg := control.io.aluop
@@ -189,7 +189,7 @@ when((csrrsInst || csrrcInst || csrrsiInst || csrrciInst) && io.inst(19, 15).asU
   io.csr_address := csr_address_reg
   io.ecause_out := ecause_out_reg
   io.exception_out := exception_out_reg
-  io.mert_out := mert_out_reg
+  io.mret_out := mret_out_reg
   io.wfi_out := wfi_out_reg
   io.ex_pc := id_ex_pc_reg
   io.aluop := id_ex_aluop_reg
@@ -220,3 +220,7 @@ when((csrrsInst || csrrcInst || csrrsiInst || csrrciInst) && io.inst(19, 15).asU
   io.use_rs2 := control.io.use_rs2
 }
 
+// object decodestage extends App {
+//   //println(getVerilogString(new Decode))
+//   println((new chisel3.stage.ChiselStage).emitVerilog(new Decode))
+// }

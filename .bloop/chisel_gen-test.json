@@ -1,0 +1,1071 @@
+{
+    "version": "1.4.0",
+    "project": {
+        "name": "chisel_gen-test",
+        "directory": "/home/ysyx/Project/chisel_gen",
+        "workspaceDir": "/home/ysyx/Project/chisel_gen",
+        "sources": [
+            "/home/ysyx/Project/chisel_gen/src/test/scala",
+            "/home/ysyx/Project/chisel_gen/src/test/scala-2.12",
+            "/home/ysyx/Project/chisel_gen/src/test/scala-2",
+            "/home/ysyx/Project/chisel_gen/src/test/java",
+            "/home/ysyx/Project/chisel_gen/target/scala-2.12/src_managed/test"
+        ],
+        "dependencies": [
+            "chisel_gen"
+        ],
+        "classpath": [
+            "/home/ysyx/Project/chisel_gen/.bloop/chisel_gen/scala-2.12/classes",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/scala-library/2.12.13/scala-library-2.12.13.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/chisel3_2.12/3.5.0/chisel3_2.12-3.5.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/chiseltest_2.12/0.5.0/chiseltest_2.12-0.5.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/chisel3-macros_2.12/3.5.0/chisel3-macros_2.12-3.5.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/chisel3-core_2.12/3.5.0/chisel3-core_2.12-3.5.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/scala-reflect/2.12.13/scala-reflect-2.12.13.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/lihaoyi/os-lib_2.12/0.8.0/os-lib_2.12-0.8.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/treadle_2.12/1.5.0/treadle_2.12-1.5.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scalatest/scalatest_2.12/3.1.4/scalatest_2.12-3.1.4.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/lihaoyi/utest_2.12/0.7.9/utest_2.12-0.7.9.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/net/java/dev/jna/jna/5.10.0/jna-5.10.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/firrtl_2.12/1.5.0/firrtl_2.12-1.5.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/lihaoyi/geny_2.12/0.7.0/geny_2.12-0.7.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/modules/scala-jline/2.12.1/scala-jline-2.12.1.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scalactic/scalactic_2.12/3.1.4/scalactic_2.12-3.1.4.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/modules/scala-xml_2.12/1.2.0/scala-xml_2.12-1.2.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/test-interface/1.0/test-interface-1.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/portable-scala/portable-scala-reflect_2.12/0.1.1/portable-scala-reflect_2.12-0.1.1.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/antlr/antlr4-runtime/4.9.3/antlr4-runtime-4.9.3.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/google/protobuf/protobuf-java/3.18.0/protobuf-java-3.18.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/github/scopt/scopt_2.12/3.7.1/scopt_2.12-3.7.1.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/net/jcazevedo/moultingyaml_2.12/0.4.2/moultingyaml_2.12-0.4.2.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/json4s/json4s-native_2.12/3.6.12/json4s-native_2.12-3.6.12.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/apache/commons/commons-text/1.9/commons-text-1.9.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/io/github/alexarchambault/data-class_2.12/0.2.5/data-class_2.12-0.2.5.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/fusesource/jansi/jansi/1.11/jansi-1.11.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/github/nscala-time/nscala-time_2.12/2.22.0/nscala-time_2.12-2.22.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/yaml/snakeyaml/1.26/snakeyaml-1.26.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/json4s/json4s-core_2.12/3.6.12/json4s-core_2.12-3.6.12.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/apache/commons/commons-lang3/3.11/commons-lang3-3.11.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/joda-time/joda-time/2.10.1/joda-time-2.10.1.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/joda/joda-convert/2.2.0/joda-convert-2.2.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/json4s/json4s-ast_2.12/3.6.12/json4s-ast_2.12-3.6.12.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/json4s/json4s-scalap_2.12/3.6.12/json4s-scalap_2.12-3.6.12.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/thoughtworks/paranamer/paranamer/2.8/paranamer-2.8.jar"
+        ],
+        "out": "/home/ysyx/Project/chisel_gen/.bloop/chisel_gen",
+        "classesDir": "/home/ysyx/Project/chisel_gen/.bloop/chisel_gen/scala-2.12/test-classes",
+        "resources": [
+            "/home/ysyx/Project/chisel_gen/src/test/resources",
+            "/home/ysyx/Project/chisel_gen/target/scala-2.12/resource_managed/test"
+        ],
+        "scala": {
+            "organization": "org.scala-lang",
+            "name": "scala-compiler",
+            "version": "2.12.13",
+            "options": [
+                "-feature",
+                "-language:reflectiveCalls",
+                "-Xplugin:/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/chisel3-plugin_2.12.13/3.5.0/chisel3-plugin_2.12.13-3.5.0.jar"
+            ],
+            "jars": [
+                "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/scala-library/2.12.13/scala-library-2.12.13.jar",
+                "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/scala-compiler/2.12.13/scala-compiler-2.12.13.jar",
+                "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/scala-reflect/2.12.13/scala-reflect-2.12.13.jar",
+                "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/modules/scala-xml_2.12/1.0.6/scala-xml_2.12-1.0.6.jar",
+                "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/jline/jline/2.14.6/jline-2.14.6.jar",
+                "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/fusesource/jansi/jansi/1.12/jansi-1.12.jar"
+            ],
+            "setup": {
+                "order": "mixed",
+                "addLibraryToBootClasspath": true,
+                "addCompilerToClasspath": false,
+                "addExtraJarsToClasspath": false,
+                "manageBootClasspath": true,
+                "filterLibraryFromClasspath": true
+            }
+        },
+        "java": {
+            "options": [
+                
+            ]
+        },
+        "test": {
+            "frameworks": [
+                {
+                    "names": [
+                        "org.scalacheck.ScalaCheckFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs2.runner.Specs2Framework",
+                        "org.specs2.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalatest.tools.Framework",
+                        "org.scalatest.tools.ScalaTestFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "com.novocode.junit.JUnitFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "munit.Framework"
+                    ]
+                },
+                {
+                    "names": [
+                        "zio.test.sbt.ZTestFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "weaver.framework.CatsEffect"
+                    ]
+                },
+                {
+                    "names": [
+                        "hedgehog.sbt.Framework"
+                    ]
+                }
+            ],
+            "options": {
+                "excludes": [
+                    
+                ],
+                "arguments": [
+                    
+                ]
+            }
+        },
+        "platform": {
+            "name": "jvm",
+            "config": {
+                "home": "/opt/jdk/jdk1.8.0_181/jre",
+                "options": [
+                    "-Duser.dir=/home/ysyx/Project/chisel_gen"
+                ]
+            },
+            "mainClass": [
+                
+            ]
+        },
+        "resolution": {
+            "modules": [
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-library",
+                    "version": "2.12.13",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-library",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "c4a2c5f551238795136cb583feef73ae78651e07"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/scala-library/2.12.13/scala-library-2.12.13.jar"
+                        },
+                        {
+                            "name": "scala-library",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "6c0e8771af95c1659a3bc894a8feb1f9757986f2"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/scala-library/2.12.13/scala-library-2.12.13-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "edu.berkeley.cs",
+                    "name": "chisel3_2.12",
+                    "version": "3.5.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "chisel3_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "d51dd8d7307c02dcd5968ebd79425827097b0689"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/chisel3_2.12/3.5.0/chisel3_2.12-3.5.0.jar"
+                        },
+                        {
+                            "name": "chisel3_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "fa98d7285b20b2476a834d51df7b328225432ce9"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/chisel3_2.12/3.5.0/chisel3_2.12-3.5.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "edu.berkeley.cs",
+                    "name": "chiseltest_2.12",
+                    "version": "0.5.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "chiseltest_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "1a552c799fa0bce8a0544a58272fc564e6adca4a"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/chiseltest_2.12/0.5.0/chiseltest_2.12-0.5.0.jar"
+                        },
+                        {
+                            "name": "chiseltest_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "a0a8817806a1265e19105e2debacb5b4e7ab0ef8"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/chiseltest_2.12/0.5.0/chiseltest_2.12-0.5.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "edu.berkeley.cs",
+                    "name": "chisel3-macros_2.12",
+                    "version": "3.5.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "chisel3-macros_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "6fc4826ed8c3213ee74c9d46521fb3bb97f67b03"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/chisel3-macros_2.12/3.5.0/chisel3-macros_2.12-3.5.0.jar"
+                        },
+                        {
+                            "name": "chisel3-macros_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "f41241a5d5e53cdbd0be59cb626e40f40700342d"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/chisel3-macros_2.12/3.5.0/chisel3-macros_2.12-3.5.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "edu.berkeley.cs",
+                    "name": "chisel3-core_2.12",
+                    "version": "3.5.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "chisel3-core_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "d425d0749666e6b4bbfce3d87b9c5487aa3ff97c"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/chisel3-core_2.12/3.5.0/chisel3-core_2.12-3.5.0.jar"
+                        },
+                        {
+                            "name": "chisel3-core_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "797ddc515e10cc6c8db1146d5c7b0a2c03ac4614"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/chisel3-core_2.12/3.5.0/chisel3-core_2.12-3.5.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-reflect",
+                    "version": "2.12.13",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-reflect",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "9f044e6610b4f6a875fd8f055687d604040b424b"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/scala-reflect/2.12.13/scala-reflect-2.12.13.jar"
+                        },
+                        {
+                            "name": "scala-reflect",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "50aed5e9cea87d0040e1a2ad7eb8e76b701a574d"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/scala-reflect/2.12.13/scala-reflect-2.12.13-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.lihaoyi",
+                    "name": "os-lib_2.12",
+                    "version": "0.8.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "os-lib_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "259960f2ed0a39d603a5a851ca54bfa1e0e86158"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/lihaoyi/os-lib_2.12/0.8.0/os-lib_2.12-0.8.0.jar"
+                        },
+                        {
+                            "name": "os-lib_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "2f1ac62156675d5c17061411c8325006fceac183"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/lihaoyi/os-lib_2.12/0.8.0/os-lib_2.12-0.8.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "edu.berkeley.cs",
+                    "name": "treadle_2.12",
+                    "version": "1.5.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "treadle_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "c16835c44be49ca00c3590d5b7f19d69da3bce80"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/treadle_2.12/1.5.0/treadle_2.12-1.5.0.jar"
+                        },
+                        {
+                            "name": "treadle_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "649cf8814404bf0c7ee85417e1ab6707e93d061b"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/treadle_2.12/1.5.0/treadle_2.12-1.5.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scalatest",
+                    "name": "scalatest_2.12",
+                    "version": "3.1.4",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scalatest_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "93f2de25d1ddd89ad205ef1376aebc29cf85d7c8"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scalatest/scalatest_2.12/3.1.4/scalatest_2.12-3.1.4.jar"
+                        },
+                        {
+                            "name": "scalatest_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "4f53466724426063e220d398823bf9e94c7d5d74"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scalatest/scalatest_2.12/3.1.4/scalatest_2.12-3.1.4-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.lihaoyi",
+                    "name": "utest_2.12",
+                    "version": "0.7.9",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "utest_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "3454af1d0d177de0c45321b1ad1483c8e631947d"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/lihaoyi/utest_2.12/0.7.9/utest_2.12-0.7.9.jar"
+                        },
+                        {
+                            "name": "utest_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "f9971a8c1af0c681e4d09e19b80526e6464ae40d"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/lihaoyi/utest_2.12/0.7.9/utest_2.12-0.7.9-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.java.dev.jna",
+                    "name": "jna",
+                    "version": "5.10.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jna",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "7cf4c87dd802db50721db66947aa237d7ad09418"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/net/java/dev/jna/jna/5.10.0/jna-5.10.0.jar"
+                        },
+                        {
+                            "name": "jna",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "0ff0287cd964354b358d49ad41e5bae9c7d1b4ae"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/net/java/dev/jna/jna/5.10.0/jna-5.10.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "edu.berkeley.cs",
+                    "name": "firrtl_2.12",
+                    "version": "1.5.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "firrtl_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "7541884d232d34fe294b441b030ca7f50f34b9ed"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/firrtl_2.12/1.5.0/firrtl_2.12-1.5.0.jar"
+                        },
+                        {
+                            "name": "firrtl_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "cefba64fb38269f10b969fa3cd89f1c2eafd03b6"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/edu/berkeley/cs/firrtl_2.12/1.5.0/firrtl_2.12-1.5.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.lihaoyi",
+                    "name": "geny_2.12",
+                    "version": "0.7.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "geny_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "33dc7bc6cf2e740b2570f7a8b483fc5cad7931da"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/lihaoyi/geny_2.12/0.7.0/geny_2.12-0.7.0.jar"
+                        },
+                        {
+                            "name": "geny_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "38b84bf128210957c6757a0cd231ab5edb6b0143"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/lihaoyi/geny_2.12/0.7.0/geny_2.12-0.7.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang.modules",
+                    "name": "scala-jline",
+                    "version": "2.12.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-jline",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "25c89a078e70c41876c5031f452a611a99950080"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/modules/scala-jline/2.12.1/scala-jline-2.12.1.jar"
+                        },
+                        {
+                            "name": "scala-jline",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "b914b82b32765c7feec9d579f6d54af9350d7f6c"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/modules/scala-jline/2.12.1/scala-jline-2.12.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scalactic",
+                    "name": "scalactic_2.12",
+                    "version": "3.1.4",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scalactic_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "de49b56155986bcbd17781615a247661e7b00c28"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scalactic/scalactic_2.12/3.1.4/scalactic_2.12-3.1.4.jar"
+                        },
+                        {
+                            "name": "scalactic_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "e5aa15a7e23c539d8cdaf15827d00877383a8b8e"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scalactic/scalactic_2.12/3.1.4/scalactic_2.12-3.1.4-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang.modules",
+                    "name": "scala-xml_2.12",
+                    "version": "1.2.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-xml_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "5d38ac30beb8420dd395c0af447ba412158965e6"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/modules/scala-xml_2.12/1.2.0/scala-xml_2.12-1.2.0.jar"
+                        },
+                        {
+                            "name": "scala-xml_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "97b3021c2ceef1170ff2f0e8a12a1cb5dfc9bfd3"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/modules/scala-xml_2.12/1.2.0/scala-xml_2.12-1.2.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "test-interface",
+                    "version": "1.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "test-interface",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "0a3f14d010c4cb32071f863d97291df31603b521"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/test-interface/1.0/test-interface-1.0.jar"
+                        },
+                        {
+                            "name": "test-interface",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "d44b23e9e3419ad0e00b91bba764a48d43075000"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/test-interface/1.0/test-interface-1.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.portable-scala",
+                    "name": "portable-scala-reflect_2.12",
+                    "version": "0.1.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "portable-scala-reflect_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "9fd361d999774b7b5fb14a9135a4fb71375a835a"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/portable-scala/portable-scala-reflect_2.12/0.1.1/portable-scala-reflect_2.12-0.1.1.jar"
+                        },
+                        {
+                            "name": "portable-scala-reflect_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "79b5360f6362aee167d669cbec53455b09fd97e0"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/portable-scala/portable-scala-reflect_2.12/0.1.1/portable-scala-reflect_2.12-0.1.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.antlr",
+                    "name": "antlr4-runtime",
+                    "version": "4.9.3",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "antlr4-runtime",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "81befc16ebedb8b8aea3e4c0835dd5ca7e8523a8"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/antlr/antlr4-runtime/4.9.3/antlr4-runtime-4.9.3.jar"
+                        },
+                        {
+                            "name": "antlr4-runtime",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "69de5778d09b719b362230212fc9dbdfcbf3ebd1"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/antlr/antlr4-runtime/4.9.3/antlr4-runtime-4.9.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.protobuf",
+                    "name": "protobuf-java",
+                    "version": "3.18.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "protobuf-java",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "5637701f704eea96651904b2db8fce759c17d853"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/google/protobuf/protobuf-java/3.18.0/protobuf-java-3.18.0.jar"
+                        },
+                        {
+                            "name": "protobuf-java",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "d5856bf4aff10668b796fcda845609b4bc938e9e"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/google/protobuf/protobuf-java/3.18.0/protobuf-java-3.18.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.github.scopt",
+                    "name": "scopt_2.12",
+                    "version": "3.7.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scopt_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "ad93d8232ddc76fc8ee99b8a3e0939dad9d469bd"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/github/scopt/scopt_2.12/3.7.1/scopt_2.12-3.7.1.jar"
+                        },
+                        {
+                            "name": "scopt_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "b5ea85b941c04034688d0a866bcfd7feb9740a92"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/github/scopt/scopt_2.12/3.7.1/scopt_2.12-3.7.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.jcazevedo",
+                    "name": "moultingyaml_2.12",
+                    "version": "0.4.2",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "moultingyaml_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "c6cf6fee66e2f48340d6dff798215d0ee1d4f162"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/net/jcazevedo/moultingyaml_2.12/0.4.2/moultingyaml_2.12-0.4.2.jar"
+                        },
+                        {
+                            "name": "moultingyaml_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "ab58287c0ab84b10d7e93d6dfd5c2f78a7494855"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/net/jcazevedo/moultingyaml_2.12/0.4.2/moultingyaml_2.12-0.4.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.json4s",
+                    "name": "json4s-native_2.12",
+                    "version": "3.6.12",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "json4s-native_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "8ed0b8f93ed2cbc4eaa55c1abaf2f3d506b61ba9"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/json4s/json4s-native_2.12/3.6.12/json4s-native_2.12-3.6.12.jar"
+                        },
+                        {
+                            "name": "json4s-native_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "35e3eaaded558a9fd4562d452a06ead964b12480"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/json4s/json4s-native_2.12/3.6.12/json4s-native_2.12-3.6.12-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.apache.commons",
+                    "name": "commons-text",
+                    "version": "1.9",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "commons-text",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "ba6ac8c2807490944a0a27f6f8e68fb5ed2e80e2"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/apache/commons/commons-text/1.9/commons-text-1.9.jar"
+                        },
+                        {
+                            "name": "commons-text",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "ae5c56310246339ac93e96c576243689173142d4"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/apache/commons/commons-text/1.9/commons-text-1.9-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "io.github.alexarchambault",
+                    "name": "data-class_2.12",
+                    "version": "0.2.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "data-class_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "22d79b890bf3effefc51a6d3cfb8a4b291ae4609"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/io/github/alexarchambault/data-class_2.12/0.2.5/data-class_2.12-0.2.5.jar"
+                        },
+                        {
+                            "name": "data-class_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "0a1f53daf3db529a2884ed5964c71b249636a5a9"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/io/github/alexarchambault/data-class_2.12/0.2.5/data-class_2.12-0.2.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.fusesource.jansi",
+                    "name": "jansi",
+                    "version": "1.11",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jansi",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "655c643309c2f45a56a747fda70e3fadf57e9f11"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/fusesource/jansi/jansi/1.11/jansi-1.11.jar"
+                        },
+                        {
+                            "name": "jansi",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "2f0e4b53b6b0eec426dad7118bf54b3deb58000b"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/fusesource/jansi/jansi/1.11/jansi-1.11-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.github.nscala-time",
+                    "name": "nscala-time_2.12",
+                    "version": "2.22.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "nscala-time_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "ff821e7fb858081c872937c5064aaf734a3dc142"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/github/nscala-time/nscala-time_2.12/2.22.0/nscala-time_2.12-2.22.0.jar"
+                        },
+                        {
+                            "name": "nscala-time_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "1bcc1194b021b1c6b513fa9e0a653ce5a4a0cc14"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/github/nscala-time/nscala-time_2.12/2.22.0/nscala-time_2.12-2.22.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.yaml",
+                    "name": "snakeyaml",
+                    "version": "1.26",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "snakeyaml",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "a78a8747147d2c5807683e76ec2b633e95c14fe9"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/yaml/snakeyaml/1.26/snakeyaml-1.26.jar"
+                        },
+                        {
+                            "name": "snakeyaml",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "1f369166f21abc8c07e618c2b9c0897f405d0999"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/yaml/snakeyaml/1.26/snakeyaml-1.26-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.json4s",
+                    "name": "json4s-core_2.12",
+                    "version": "3.6.12",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "json4s-core_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "e146a16661083f90dbe0793e72ce7efe3c3cc35b"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/json4s/json4s-core_2.12/3.6.12/json4s-core_2.12-3.6.12.jar"
+                        },
+                        {
+                            "name": "json4s-core_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "f687c9c9dabbae23ab499917cf0362ed0db0a7c6"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/json4s/json4s-core_2.12/3.6.12/json4s-core_2.12-3.6.12-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.apache.commons",
+                    "name": "commons-lang3",
+                    "version": "3.11",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "commons-lang3",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "68e9a6adf7cf8eb7e9d31bbc554c7c75eeaac568"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/apache/commons/commons-lang3/3.11/commons-lang3-3.11.jar"
+                        },
+                        {
+                            "name": "commons-lang3",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "24014867e470db3942db53b17a4902f4215d5ea8"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/apache/commons/commons-lang3/3.11/commons-lang3-3.11-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "joda-time",
+                    "name": "joda-time",
+                    "version": "2.10.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "joda-time",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "9ac3dbf89dbf2ee385185dd0cd3064fe789efee0"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/joda-time/joda-time/2.10.1/joda-time-2.10.1.jar"
+                        },
+                        {
+                            "name": "joda-time",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "31b91b963228648fd1899fc7bbc18bdfa7ce45d1"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/joda-time/joda-time/2.10.1/joda-time-2.10.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.joda",
+                    "name": "joda-convert",
+                    "version": "2.2.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "joda-convert",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "dbdb0135bade3d3daf11f203c45a48a2a8f41dd5"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/joda/joda-convert/2.2.0/joda-convert-2.2.0.jar"
+                        },
+                        {
+                            "name": "joda-convert",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "a1195fa681e660d9e38cf04912c5ce6a76dc96c2"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/joda/joda-convert/2.2.0/joda-convert-2.2.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.json4s",
+                    "name": "json4s-ast_2.12",
+                    "version": "3.6.12",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "json4s-ast_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "09b2eda6ed4abb51fe3eb5935305bd54e58d7128"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/json4s/json4s-ast_2.12/3.6.12/json4s-ast_2.12-3.6.12.jar"
+                        },
+                        {
+                            "name": "json4s-ast_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "b6e1cf75fb5950297be28a75e0b0905e893e5f14"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/json4s/json4s-ast_2.12/3.6.12/json4s-ast_2.12-3.6.12-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.json4s",
+                    "name": "json4s-scalap_2.12",
+                    "version": "3.6.12",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "json4s-scalap_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "e6993804d4669431310c83981e5000a9fd8cfc92"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/json4s/json4s-scalap_2.12/3.6.12/json4s-scalap_2.12-3.6.12.jar"
+                        },
+                        {
+                            "name": "json4s-scalap_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "356bb19854890cd8550b00f9c1e8bc566c748a27"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/json4s/json4s-scalap_2.12/3.6.12/json4s-scalap_2.12-3.6.12-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.thoughtworks.paranamer",
+                    "name": "paranamer",
+                    "version": "2.8",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "paranamer",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "619eba74c19ccf1da8ebec97a2d7f8ba05773dd6"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/thoughtworks/paranamer/paranamer/2.8/paranamer-2.8.jar"
+                        },
+                        {
+                            "name": "paranamer",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "8f3421a8203053a6ab4b74f76a0550d21eee8cfe"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/thoughtworks/paranamer/paranamer/2.8/paranamer-2.8-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-library",
+                    "version": "2.12.13",
+                    "configurations": "optional",
+                    "artifacts": [
+                        {
+                            "name": "scala-library",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "c4a2c5f551238795136cb583feef73ae78651e07"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/scala-library/2.12.13/scala-library-2.12.13.jar"
+                        },
+                        {
+                            "name": "scala-library",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "6c0e8771af95c1659a3bc894a8feb1f9757986f2"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/scala-library/2.12.13/scala-library-2.12.13-sources.jar"
+                        }
+                    ]
+                }
+            ]
+        },
+        "tags": [
+            "test"
+        ]
+    }
+}

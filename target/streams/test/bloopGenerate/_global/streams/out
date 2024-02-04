@@ -1,0 +1,4 @@
+[debug] [chisel_gen-test] Classpath dependencies List()
+[debug] [chisel_gen-test] Dependencies from configurations List(chisel_gen)
+[debug] Bloop wrote the configuration of project 'chisel_gen-test' to '/home/ysyx/Project/chisel_gen/.bloop/chisel_gen-test.json'
+[success] Generated .bloop/chisel_gen-test.json

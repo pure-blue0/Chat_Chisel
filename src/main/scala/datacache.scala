@@ -10,9 +10,9 @@ class DataCache extends Module {
     val read_data = Output(UInt(32.W)) // read data
   })
 
-  val mem = Mem(1024, UInt(32.W)) // Data cache memory with 1024 entries, each entry is 32 bits wide
+  val mem = Mem(1048576, UInt(32.W)) // Data cache memory with 1M entries, each entry is 32 bits wide
 
-  val address = io.mem_aluresult(9, 2) // Extract bits 9 to 2 from the address for indexing the cache
+  val address = io.mem_aluresult(17, 2) // Extract bits 17 to 2 from the address for indexing the cache
 
   when(io.mem_memread === 1.U) {
     // Load operations

@@ -1,4 +1,5 @@
 import chisel3._
+import chisel3.util._
 
 class Writeback extends Module {
   val io = IO(new Bundle {
@@ -19,4 +20,6 @@ class Writeback extends Module {
   ))
 }
 
-
+// object writebackstage extends App {
+//   println((new chisel3.stage.ChiselStage).emitVerilog(new Writeback))
+// }

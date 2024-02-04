@@ -4,7 +4,7 @@ class Fetch extends Module {
   val io = IO(new Bundle {
     // from csr
     val trap_vector = Input(UInt(32.W))
-    val mert_vector = Input(UInt(32.W))
+    val mret_vector = Input(UInt(32.W))
     // from execute
     val target_pc = Input(UInt(32.W))
     // from memory
@@ -13,7 +13,7 @@ class Fetch extends Module {
     val branch = Input(Bool())
     // from writeback
     val trap = Input(Bool())
-    val mert = Input(Bool())
+    val mret = Input(Bool())
     // from hazard
     val pc_stall = Input(Bool())
     val if_id_stall = Input(Bool())
@@ -50,8 +50,8 @@ class Fetch extends Module {
   // Fetch stage logic
   when(io.trap) {
     pcReg := io.trap_vector
-  }.elsewhen(io.mert) {
-    pcReg := io.mert_vector
+  }.elsewhen(io.mret) {
+    pcReg := io.mret_vector
   }.elsewhen(io.pcsrc && !io.predict) {
     pcReg := io.target_pc
   }.elsewhen(io.pc_stall) {
@@ -83,6 +83,6 @@ class Fetch extends Module {
 
 
 // Let's now generate modules with different widths
-object fetchstage extends App {
-  println((new chisel3.stage.ChiselStage).emitVerilog(new ImmGen))
-}
+// object fetchstage extends App {
+//   println((new chisel3.stage.ChiselStage).emitVerilog(new Fetch))
+// }

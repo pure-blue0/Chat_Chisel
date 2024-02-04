@@ -1,0 +1,50 @@
+[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = /home/ysyx/Project/chisel_gen/target/scala-2.12/classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = /home/ysyx/Project/chisel_gen/target/scala-2.12/classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mRegistering generated classes:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Memory$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Icache.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	DataCache.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Control.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Hazard$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Control$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Execute.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Regfile$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BHT.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Decode$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	AluSelect.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Fetch$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ALU.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CSR.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Branch$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Execute$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	DataCache$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Decode.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Regfile.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Branch.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TargetGen$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Icache$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ChiselCore$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ChiselCore$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ALU$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ChiselCore.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TargetGen.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BTB.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	core.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Writeback$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	AluSelect$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ImmGen.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Hazard.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Memory.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	core$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BTB$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CSR$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Fetch.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ImmGen$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Writeback.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BHT$BHTEntry.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BHT$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: /home/ysyx/Project/chisel_gen/target/scala-2.12/classes.bak[0m

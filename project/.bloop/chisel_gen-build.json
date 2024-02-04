@@ -1,0 +1,2229 @@
+{
+    "version": "1.4.0",
+    "project": {
+        "name": "chisel_gen-build",
+        "directory": "/home/ysyx/Project/chisel_gen/project",
+        "workspaceDir": "/home/ysyx/Project/chisel_gen/project",
+        "sources": [
+            "/home/ysyx/Project/chisel_gen/project/src/main/scala",
+            "/home/ysyx/Project/chisel_gen/project/src/main/scala-2.12",
+            "/home/ysyx/Project/chisel_gen/project/src/main/scala-2",
+            "/home/ysyx/Project/chisel_gen/project/src/main/java",
+            "/home/ysyx/Project/chisel_gen/project/src/main/scala-sbt-1.0",
+            "/home/ysyx/Project/chisel_gen/project/target/scala-2.12/sbt-1.0/src_managed/main"
+        ],
+        "dependencies": [
+            
+        ],
+        "classpath": [
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/sbt/1.9.7/sbt-1.9.7.jar",
+            "/home/ysyx/.sbt/boot/scala-2.12.18/lib/scala-library.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/ch/epfl/scala/sbt-bloop_2.12_1.0/1.5.13/sbt-bloop_2.12_1.0-1.5.13.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/main_2.12/1.9.7/main_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/io_2.12/1.9.7/io_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/ch/epfl/scala/bloop-config_2.12/1.5.5/bloop-config_2.12-1.5.5.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/logic_2.12/1.9.7/logic_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/actions_2.12/1.9.7/actions_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/main-settings_2.12/1.9.7/main-settings_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/run_2.12/1.9.7/run_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/command_2.12/1.9.7/command_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/collections_2.12/1.9.7/collections_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/scripted-plugin_2.12/1.9.7/scripted-plugin_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/zinc-lm-integration_2.12/1.9.7/zinc-lm-integration_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-logging_2.12/1.9.7/util-logging_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.12/2.2.0/scala-xml_2.12-2.2.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/launcher-interface/1.4.2/launcher-interface-1.4.2.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/github/ben-manes/caffeine/caffeine/2.8.5/caffeine-2.8.5.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/io/get-coursier/lm-coursier-shaded_2.12/2.1.2/lm-coursier-shaded_2.12-2.1.2.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/apache/logging/log4j/log4j-api/2.17.1/log4j-api-2.17.1.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/apache/logging/log4j/log4j-core/2.17.1/log4j-core-2.17.1.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/apache/logging/log4j/log4j-slf4j-impl/2.17.1/log4j-slf4j-impl-2.17.1.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/librarymanagement-core_2.12/1.9.3/librarymanagement-core_2.12-1.9.3.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/librarymanagement-ivy_2.12/1.9.3/librarymanagement-ivy_2.12-1.9.3.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/compiler-interface/1.9.5/compiler-interface-1.9.5.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/zinc-compile_2.12/1.9.5/zinc-compile_2.12-1.9.5.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/swoval/file-tree-views/2.1.12/file-tree-views-2.1.12.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/net/java/dev/jna/jna/5.13.0/jna-5.13.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/net/java/dev/jna/jna-platform/5.13.0/jna-platform-5.13.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/plokhotnyuk/jsoniter-scala/jsoniter-scala-core_2.12/2.4.0/jsoniter-scala-core_2.12-2.4.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-relation_2.12/1.9.7/util-relation_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/completion_2.12/1.9.7/completion_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/task-system_2.12/1.9.7/task-system_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/tasks_2.12/1.9.7/tasks_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/testing_2.12/1.9.7/testing_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-tracking_2.12/1.9.7/util-tracking_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/eed3si9n/sjson-new-scalajson_2.12/0.9.1/sjson-new-scalajson_2.12-0.9.1.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jline/jline-terminal/3.19.0/jline-terminal-3.19.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/zinc-classpath_2.12/1.9.5/zinc-classpath_2.12-1.9.5.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/zinc-apiinfo_2.12/1.9.5/zinc-apiinfo_2.12-1.9.5.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/zinc_2.12/1.9.5/zinc_2.12-1.9.5.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/core-macros_2.12/1.9.7/core-macros_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-cache_2.12/1.9.7/util-cache_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-control_2.12/1.9.7/util-control_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/protocol_2.12/1.9.7/protocol_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/eed3si9n/sjson-new-core_2.12/0.9.1/sjson-new-core_2.12-0.9.1.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/template-resolver/0.1/template-resolver-0.1.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-position_2.12/1.9.7/util-position_2.12-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/zinc-compile-core_2.12/1.9.5/zinc-compile-core_2.12-1.9.5.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-interface/1.9.7/util-interface-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/jline/jline/2.14.7-sbt-a1b0ffbb8f64bb820f4f84a0c07a0c0964507493/jline-2.14.7-sbt-a1b0ffbb8f64bb820f4f84a0c07a0c0964507493.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jline/jline-terminal-jna/3.19.0/jline-terminal-jna-3.19.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jline/jline-terminal-jansi/3.19.0/jline-terminal-jansi-3.19.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lmax/disruptor/3.4.2/disruptor-3.4.2.jar",
+            "/home/ysyx/.sbt/boot/scala-2.12.18/lib/scala-reflect.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/checkerframework/checker-qual/3.4.1/checker-qual-3.4.1.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/google/errorprone/error_prone_annotations/2.4.0/error_prone_annotations-2.4.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/modules/scala-collection-compat_2.12/2.10.0/scala-collection-compat_2.12-2.10.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar",
+            "/home/ysyx/.sbt/boot/scala-2.12.18/lib/scala-compiler.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/jcraft/jsch/0.1.54/jsch-0.1.54.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/eed3si9n/gigahorse-apache-http_2.12/0.7.0/gigahorse-apache-http_2.12-0.7.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/ivy/ivy/2.3.0-sbt-396a783bba347016e7fe30dacc60d355be607fe2/ivy-2.3.0-sbt-396a783bba347016e7fe30dacc60d355be607fe2.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jline/jline-reader/3.19.0/jline-reader-3.19.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/jline/jline-builtins/3.19.0/jline-builtins-3.19.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/test-agent/1.9.7/test-agent-1.9.7.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/test-interface/1.0/test-interface-1.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/eed3si9n/shaded-jawn-parser_2.12/0.9.1/shaded-jawn-parser_2.12-0.9.1.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/eed3si9n/shaded-scalajson_2.12/1.0.0-M4/shaded-scalajson_2.12-1.0.0-M4.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/compiler-bridge_2.12/1.9.5/compiler-bridge_2.12-1.9.5.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/zinc-classfile_2.12/1.9.5/zinc-classfile_2.12-1.9.5.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/zinc-core_2.12/1.9.5/zinc-core_2.12-1.9.5.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/zinc-persist_2.12/1.9.5/zinc-persist_2.12-1.9.5.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/eed3si9n/sjson-new-murmurhash_2.12/0.9.1/sjson-new-murmurhash_2.12-0.9.1.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/ipcsocket/ipcsocket/1.6.2/ipcsocket-1.6.2.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/modules/scala-parser-combinators_2.12/1.1.2/scala-parser-combinators_2.12-1.1.2.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/net/openhft/zero-allocation-hashing/0.10.1/zero-allocation-hashing-0.10.1.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/fusesource/jansi/jansi/2.1.0/jansi-2.1.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/eed3si9n/gigahorse-core_2.12/0.7.0/gigahorse-core_2.12-0.7.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/eed3si9n/shaded-apache-httpasyncclient/0.7.0/shaded-apache-httpasyncclient-0.7.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/jline/jline-style/3.19.0/jline-style-3.19.0.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/zinc-persist-core-assembly/1.9.5/zinc-persist-core-assembly-1.9.5.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/sbinary_2.12/0.5.1/sbinary_2.12-0.5.1.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/ssl-config-core_2.12/0.6.1/ssl-config-core_2.12-0.6.1.jar",
+            "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/reactivestreams/reactive-streams/1.0.3/reactive-streams-1.0.3.jar",
+            "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/config/1.4.2/config-1.4.2.jar"
+        ],
+        "out": "/home/ysyx/Project/chisel_gen/project/.bloop/chisel_gen-build",
+        "classesDir": "/home/ysyx/Project/chisel_gen/project/.bloop/chisel_gen-build/scala-2.12/sbt-1.0/classes",
+        "resources": [
+            "/home/ysyx/Project/chisel_gen/project/src/main/resources",
+            "/home/ysyx/Project/chisel_gen/project/target/scala-2.12/sbt-1.0/resource_managed/main"
+        ],
+        "scala": {
+            "organization": "org.scala-lang",
+            "name": "scala-compiler",
+            "version": "2.12.18",
+            "options": [
+                "-deprecation",
+                "-Wconf:cat=unused-nowarn:s",
+                "-Wconf:cat=unused-nowarn:s",
+                "-Xsource:3"
+            ],
+            "jars": [
+                "/home/ysyx/.sbt/boot/scala-2.12.18/lib/scala-library.jar",
+                "/home/ysyx/.sbt/boot/scala-2.12.18/lib/scala-reflect.jar",
+                "/home/ysyx/.sbt/boot/scala-2.12.18/lib/scala-compiler.jar",
+                "/home/ysyx/.sbt/boot/scala-2.12.18/lib/scala-xml_2.12-2.1.0.jar"
+            ],
+            "setup": {
+                "order": "mixed",
+                "addLibraryToBootClasspath": true,
+                "addCompilerToClasspath": false,
+                "addExtraJarsToClasspath": false,
+                "manageBootClasspath": true,
+                "filterLibraryFromClasspath": true
+            }
+        },
+        "java": {
+            "options": [
+                
+            ]
+        },
+        "sbt": {
+            "sbtVersion": "1.9.7",
+            "autoImports": [
+                "import _root_.scala.xml.{TopScope=>$scope}",
+                "import _root_.sbt._",
+                "import _root_.sbt.Keys._",
+                "import _root_.sbt.nio.Keys._",
+                "import _root_.sbt.ScriptedPlugin.autoImport._, _root_.sbt.plugins.JUnitXmlReportPlugin.autoImport._, _root_.sbt.plugins.MiniDependencyTreePlugin.autoImport._, _root_.bloop.integrations.sbt.BloopPlugin.autoImport._",
+                "import _root_.sbt.plugins.IvyPlugin, _root_.sbt.plugins.JvmPlugin, _root_.sbt.plugins.CorePlugin, _root_.sbt.ScriptedPlugin, _root_.sbt.plugins.SbtPlugin, _root_.sbt.plugins.SemanticdbPlugin, _root_.sbt.plugins.JUnitXmlReportPlugin, _root_.sbt.plugins.Giter8TemplatePlugin, _root_.sbt.plugins.MiniDependencyTreePlugin, _root_.bloop.integrations.sbt.BloopPlugin"
+            ]
+        },
+        "test": {
+            "frameworks": [
+                {
+                    "names": [
+                        "org.scalacheck.ScalaCheckFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs2.runner.Specs2Framework",
+                        "org.specs2.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalatest.tools.Framework",
+                        "org.scalatest.tools.ScalaTestFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "com.novocode.junit.JUnitFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "munit.Framework"
+                    ]
+                },
+                {
+                    "names": [
+                        "zio.test.sbt.ZTestFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "weaver.framework.CatsEffect"
+                    ]
+                },
+                {
+                    "names": [
+                        "hedgehog.sbt.Framework"
+                    ]
+                }
+            ],
+            "options": {
+                "excludes": [
+                    
+                ],
+                "arguments": [
+                    
+                ]
+            }
+        },
+        "platform": {
+            "name": "jvm",
+            "config": {
+                "home": "/opt/jdk/jdk1.8.0_181/jre",
+                "options": [
+                    "-Duser.dir=/home/ysyx/Project/chisel_gen/project"
+                ]
+            },
+            "mainClass": [
+                
+            ],
+            "runtimeConfig": {
+                "home": "/opt/jdk/jdk1.8.0_181/jre",
+                "options": [
+                    "-Duser.dir=/home/ysyx/Project/chisel_gen/project"
+                ]
+            },
+            "classpath": [
+                "/home/ysyx/Project/chisel_gen/project/.bloop/chisel_gen-build/scala-2.12/sbt-1.0/classes",
+                "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/ch/epfl/scala/sbt-bloop_2.12_1.0/1.5.13/sbt-bloop_2.12_1.0-1.5.13.jar",
+                "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/ch/epfl/scala/bloop-config_2.12/1.5.5/bloop-config_2.12-1.5.5.jar",
+                "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/plokhotnyuk/jsoniter-scala/jsoniter-scala-core_2.12/2.4.0/jsoniter-scala-core_2.12-2.4.0.jar",
+                "/home/ysyx/.sbt/boot/scala-2.12.18/lib/scala-library.jar"
+            ]
+        },
+        "resolution": {
+            "modules": [
+                {
+                    "organization": "ch.epfl.scala",
+                    "name": "sbt-bloop",
+                    "version": "1.5.13",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "sbt-bloop",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/ch/epfl/scala/sbt-bloop_2.12_1.0/1.5.13/sbt-bloop_2.12_1.0-1.5.13.jar"
+                        },
+                        {
+                            "name": "sbt-bloop",
+                            "classifier": "sources",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/ch/epfl/scala/sbt-bloop_2.12_1.0/1.5.13/sbt-bloop_2.12_1.0-1.5.13-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "ch.epfl.scala",
+                    "name": "bloop-config_2.12",
+                    "version": "1.5.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "bloop-config_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/ch/epfl/scala/bloop-config_2.12/1.5.5/bloop-config_2.12-1.5.5.jar"
+                        },
+                        {
+                            "name": "bloop-config_2.12",
+                            "classifier": "sources",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/ch/epfl/scala/bloop-config_2.12/1.5.5/bloop-config_2.12-1.5.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.github.plokhotnyuk.jsoniter-scala",
+                    "name": "jsoniter-scala-core_2.12",
+                    "version": "2.4.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jsoniter-scala-core_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/plokhotnyuk/jsoniter-scala/jsoniter-scala-core_2.12/2.4.0/jsoniter-scala-core_2.12-2.4.0.jar"
+                        },
+                        {
+                            "name": "jsoniter-scala-core_2.12",
+                            "classifier": "sources",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/plokhotnyuk/jsoniter-scala/jsoniter-scala-core_2.12/2.4.0/jsoniter-scala-core_2.12-2.4.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-library",
+                    "version": "2.12.18",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-library",
+                            "path": "/home/ysyx/.sbt/boot/scala-2.12.18/lib/scala-library.jar"
+                        },
+                        {
+                            "name": "scala-library",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "da6a485d45eeebe061858d1e8ad424a300a077ac"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/scala-library/2.12.18/scala-library-2.12.18-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "sbt",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "sbt",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "0921cdfd07d89b5a179c283024ef74f5ecb29529"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/sbt/1.9.7/sbt-1.9.7.jar"
+                        },
+                        {
+                            "name": "sbt",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "b52b8f1401b42ad7fe4f8c81c548f1cc31c9cf92"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/sbt/1.9.7/sbt-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "main_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "main_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "5d82c3483cedd3db3b9f7c55e6ec4b410df8f32f"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/main_2.12/1.9.7/main_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "main_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "8d9e1b6488c753ec2e8c4dd3e2e2034f0b7195a8"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/main_2.12/1.9.7/main_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "io_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "io_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "ede3fa9e1801b2e117b0896ec7a6f6893b325fe0"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/io_2.12/1.9.7/io_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "io_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "ea405dfcf0dae5989109e41268523f91d36aaad6"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/io_2.12/1.9.7/io_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "logic_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "logic_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "cc849cfc91c61a9951f0851e1b1b51766ae87f6a"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/logic_2.12/1.9.7/logic_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "logic_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "f0a41baeee947ccf461c9535eb34c0487119b1ea"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/logic_2.12/1.9.7/logic_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "actions_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "actions_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "412a6c52acc8046fb42cba7fc735684fb9266695"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/actions_2.12/1.9.7/actions_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "actions_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "f7d2fb14ab98e8dce41a9a8bc468534df9c6ff36"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/actions_2.12/1.9.7/actions_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "main-settings_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "main-settings_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "68096c5c6e48dfa29f4ec1c891084d4f66e6690f"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/main-settings_2.12/1.9.7/main-settings_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "main-settings_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "45f95f437efc4ae22762d80102828f058aa597e7"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/main-settings_2.12/1.9.7/main-settings_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "run_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "run_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "2177018ce9c02f8b4a0df6a9adee9271f38b7ce1"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/run_2.12/1.9.7/run_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "run_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "adb9eb1938cac70c55f924cb3407f48d53d46b41"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/run_2.12/1.9.7/run_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "command_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "command_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "3abf8492a51a1c1d50efa6bf57297653045a7dad"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/command_2.12/1.9.7/command_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "command_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "8893fb75607b26c93681913c3328e517ed517bfe"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/command_2.12/1.9.7/command_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "collections_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "collections_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "9b52769a64e5461f3f66aa76d1a812e25517caf9"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/collections_2.12/1.9.7/collections_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "collections_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "46fb7aba3f90563460b34e38976ffcb4aca5b8e7"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/collections_2.12/1.9.7/collections_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "scripted-plugin_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scripted-plugin_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "046b01ed89c279ac251552f0b45152f6fa17ca54"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/scripted-plugin_2.12/1.9.7/scripted-plugin_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "scripted-plugin_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "8856d54a7266ac21db7fffc450db5c33561681df"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/scripted-plugin_2.12/1.9.7/scripted-plugin_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "zinc-lm-integration_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "zinc-lm-integration_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "cc1b0f723c77420174ae8b5d60ab313bbd38e60e"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/zinc-lm-integration_2.12/1.9.7/zinc-lm-integration_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "zinc-lm-integration_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "3a7d1feac6a535a47e27cd8649b865fc854ac7e9"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/zinc-lm-integration_2.12/1.9.7/zinc-lm-integration_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "util-logging_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "util-logging_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "eee3f37947976a4232e30fd027e0ba5fe5a03555"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-logging_2.12/1.9.7/util-logging_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "util-logging_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "fd6c318147822478fde94dbade7f22020bc4b270"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-logging_2.12/1.9.7/util-logging_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang.modules",
+                    "name": "scala-xml_2.12",
+                    "version": "2.2.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-xml_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.12/2.2.0/scala-xml_2.12-2.2.0.jar"
+                        },
+                        {
+                            "name": "scala-xml_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "d74a0c0f8988d9ce33c8d212280489c9248365eb"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/modules/scala-xml_2.12/2.2.0/scala-xml_2.12-2.2.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "launcher-interface",
+                    "version": "1.4.2",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "launcher-interface",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/launcher-interface/1.4.2/launcher-interface-1.4.2.jar"
+                        },
+                        {
+                            "name": "launcher-interface",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "1fd770d33a7190527d9426a26a848e8a5ca0549a"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/launcher-interface/1.4.2/launcher-interface-1.4.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.github.ben-manes.caffeine",
+                    "name": "caffeine",
+                    "version": "2.8.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "caffeine",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "f0eafef6e1529a44e36549cd9d1fc06d3a57f384"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/github/ben-manes/caffeine/caffeine/2.8.5/caffeine-2.8.5.jar"
+                        },
+                        {
+                            "name": "caffeine",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "46c303a188bb83edaf5563ce35b5ef1e943f16c2"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/github/ben-manes/caffeine/caffeine/2.8.5/caffeine-2.8.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "io.get-coursier",
+                    "name": "lm-coursier-shaded_2.12",
+                    "version": "2.1.2",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "lm-coursier-shaded_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "0b2d49deabdae690078e8fead30044d9437ae743"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/io/get-coursier/lm-coursier-shaded_2.12/2.1.2/lm-coursier-shaded_2.12-2.1.2.jar"
+                        },
+                        {
+                            "name": "lm-coursier-shaded_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "4bc2661c3da93390a7f6c9af92dfc8d10dbd40d9"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/io/get-coursier/lm-coursier-shaded_2.12/2.1.2/lm-coursier-shaded_2.12-2.1.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.apache.logging.log4j",
+                    "name": "log4j-api",
+                    "version": "2.17.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "log4j-api",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "d771af8e336e372fb5399c99edabe0919aeaf5b2"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/apache/logging/log4j/log4j-api/2.17.1/log4j-api-2.17.1.jar"
+                        },
+                        {
+                            "name": "log4j-api",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "d23d37cc41300a7f6eba7813855dbb224e2a3177"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/apache/logging/log4j/log4j-api/2.17.1/log4j-api-2.17.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.apache.logging.log4j",
+                    "name": "log4j-core",
+                    "version": "2.17.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "log4j-core",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "779f60f3844dadc3ef597976fcb1e5127b1f343d"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/apache/logging/log4j/log4j-core/2.17.1/log4j-core-2.17.1.jar"
+                        },
+                        {
+                            "name": "log4j-core",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "311c00d3764db7fa3ba5f26d0acb5840e52454aa"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/apache/logging/log4j/log4j-core/2.17.1/log4j-core-2.17.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.apache.logging.log4j",
+                    "name": "log4j-slf4j-impl",
+                    "version": "2.17.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "log4j-slf4j-impl",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "84692d456bcce689355d33d68167875e486954dd"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/apache/logging/log4j/log4j-slf4j-impl/2.17.1/log4j-slf4j-impl-2.17.1.jar"
+                        },
+                        {
+                            "name": "log4j-slf4j-impl",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "b077be6d7d8f4f98576b6ac870576e9a288dea7b"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/apache/logging/log4j/log4j-slf4j-impl/2.17.1/log4j-slf4j-impl-2.17.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "librarymanagement-core_2.12",
+                    "version": "1.9.3",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "librarymanagement-core_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/librarymanagement-core_2.12/1.9.3/librarymanagement-core_2.12-1.9.3.jar"
+                        },
+                        {
+                            "name": "librarymanagement-core_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "24b21e6946f11080dc688229b608045d7a0d353d"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/librarymanagement-core_2.12/1.9.3/librarymanagement-core_2.12-1.9.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "librarymanagement-ivy_2.12",
+                    "version": "1.9.3",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "librarymanagement-ivy_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/librarymanagement-ivy_2.12/1.9.3/librarymanagement-ivy_2.12-1.9.3.jar"
+                        },
+                        {
+                            "name": "librarymanagement-ivy_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "4009208651ef198046bfa2ba8fd926dc688a4663"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/librarymanagement-ivy_2.12/1.9.3/librarymanagement-ivy_2.12-1.9.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "compiler-interface",
+                    "version": "1.9.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "compiler-interface",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/compiler-interface/1.9.5/compiler-interface-1.9.5.jar"
+                        },
+                        {
+                            "name": "compiler-interface",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "94c6fc39833824aebb3f10a84b30fb99e6281ca6"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/compiler-interface/1.9.5/compiler-interface-1.9.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "zinc-compile_2.12",
+                    "version": "1.9.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "zinc-compile_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "3bac909531906c29c363928331410abc11c8c5ef"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/zinc-compile_2.12/1.9.5/zinc-compile_2.12-1.9.5.jar"
+                        },
+                        {
+                            "name": "zinc-compile_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "d4d05a95e39ac696957a2c188f276e7908a2c0da"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/zinc-compile_2.12/1.9.5/zinc-compile_2.12-1.9.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.swoval",
+                    "name": "file-tree-views",
+                    "version": "2.1.12",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "file-tree-views",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/swoval/file-tree-views/2.1.12/file-tree-views-2.1.12.jar"
+                        },
+                        {
+                            "name": "file-tree-views",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "083ad63139f8cd828181fdcea45c639fc3302bea"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/swoval/file-tree-views/2.1.12/file-tree-views-2.1.12-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.java.dev.jna",
+                    "name": "jna",
+                    "version": "5.13.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jna",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/net/java/dev/jna/jna/5.13.0/jna-5.13.0.jar"
+                        },
+                        {
+                            "name": "jna",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "e55ddc56d092866b6d59822f825c253960a6e504"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/net/java/dev/jna/jna/5.13.0/jna-5.13.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.java.dev.jna",
+                    "name": "jna-platform",
+                    "version": "5.13.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jna-platform",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/net/java/dev/jna/jna-platform/5.13.0/jna-platform-5.13.0.jar"
+                        },
+                        {
+                            "name": "jna-platform",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "e5e195977f4aad007d418a33401c43d1ae929134"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/net/java/dev/jna/jna-platform/5.13.0/jna-platform-5.13.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "util-relation_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "util-relation_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "741c64ad261f5bea5ae6587660c2e2a299a06068"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-relation_2.12/1.9.7/util-relation_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "util-relation_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "7742fd13a2b3196ab7c30597a0705bf42d11d15a"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-relation_2.12/1.9.7/util-relation_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "completion_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "completion_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "2a6f3c68b7b512df5cc38ce69f77e93abc89185c"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/completion_2.12/1.9.7/completion_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "completion_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "2607a47af186325ae2b4486bf9b4406bf3855715"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/completion_2.12/1.9.7/completion_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "task-system_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "task-system_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "646e3026006f1570e3f898926e7ad7c066399899"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/task-system_2.12/1.9.7/task-system_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "task-system_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "b7edd9e7497e5e071362f4e277f026af93c3320d"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/task-system_2.12/1.9.7/task-system_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "tasks_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "tasks_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "b6d6e4d2bda0efd8fa6ed512e3d14472617cf902"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/tasks_2.12/1.9.7/tasks_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "tasks_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "c5f56a74256fa54300d4ce7182b454a77f47b5ef"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/tasks_2.12/1.9.7/tasks_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "testing_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "testing_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "ca957a6a693dc1b0710be9b41ce43fccea1536e3"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/testing_2.12/1.9.7/testing_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "testing_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "f0c4efc39d2ceda3880709d714dcdeb30c53c4bf"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/testing_2.12/1.9.7/testing_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "util-tracking_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "util-tracking_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "c6f1eec07b5f7d554437f087648f3c382a11b198"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-tracking_2.12/1.9.7/util-tracking_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "util-tracking_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "cbfef4322ff6241018941dbdd2054e473d6d60f4"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-tracking_2.12/1.9.7/util-tracking_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.eed3si9n",
+                    "name": "sjson-new-scalajson_2.12",
+                    "version": "0.9.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "sjson-new-scalajson_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/eed3si9n/sjson-new-scalajson_2.12/0.9.1/sjson-new-scalajson_2.12-0.9.1.jar"
+                        },
+                        {
+                            "name": "sjson-new-scalajson_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "f22c82cb8e1bf8622d0b37e577b649f00d503eb3"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/eed3si9n/sjson-new-scalajson_2.12/0.9.1/sjson-new-scalajson_2.12-0.9.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.jline",
+                    "name": "jline-terminal",
+                    "version": "3.19.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jline-terminal",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jline/jline-terminal/3.19.0/jline-terminal-3.19.0.jar"
+                        },
+                        {
+                            "name": "jline-terminal",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "c23b3db5eef39bb6df37eaba98297f74ba3433c5"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/jline/jline-terminal/3.19.0/jline-terminal-3.19.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "zinc-classpath_2.12",
+                    "version": "1.9.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "zinc-classpath_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/zinc-classpath_2.12/1.9.5/zinc-classpath_2.12-1.9.5.jar"
+                        },
+                        {
+                            "name": "zinc-classpath_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "5af73ea40eb8566d4b05ca12ecbfb0ccebf3244b"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/zinc-classpath_2.12/1.9.5/zinc-classpath_2.12-1.9.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "zinc-apiinfo_2.12",
+                    "version": "1.9.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "zinc-apiinfo_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/zinc-apiinfo_2.12/1.9.5/zinc-apiinfo_2.12-1.9.5.jar"
+                        },
+                        {
+                            "name": "zinc-apiinfo_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "dfb8b6b628ff39b75e37eda3d1483368c227f168"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/zinc-apiinfo_2.12/1.9.5/zinc-apiinfo_2.12-1.9.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "zinc_2.12",
+                    "version": "1.9.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "zinc_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/zinc_2.12/1.9.5/zinc_2.12-1.9.5.jar"
+                        },
+                        {
+                            "name": "zinc_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "3f6bdaf06f57ad5adfe1c16acf6b42008b391883"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/zinc_2.12/1.9.5/zinc_2.12-1.9.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "core-macros_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "core-macros_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "d30f0b6498634082e2baceb88e3418a32d7aa275"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/core-macros_2.12/1.9.7/core-macros_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "core-macros_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "9190a66c5df40219c9fa7819f628d5a685da6210"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/core-macros_2.12/1.9.7/core-macros_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "util-cache_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "util-cache_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "bcd9385c9aa2f3e1a9e4552b20b3189574623c8a"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-cache_2.12/1.9.7/util-cache_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "util-cache_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "092139b9f4107aa5fda84168a7f71b49c4bda754"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-cache_2.12/1.9.7/util-cache_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "util-control_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "util-control_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "53d907d612ffff9013041ad966ebdb71688bd765"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-control_2.12/1.9.7/util-control_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "util-control_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "3a60d6a834ab0f6504376cd61d8801f8feba8240"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-control_2.12/1.9.7/util-control_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "protocol_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "protocol_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "31506628504b195c29dc2aae072a27b6295d3967"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/protocol_2.12/1.9.7/protocol_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "protocol_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "e40eead9109e6d71f9c2c6be8e8868f524f5455c"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/protocol_2.12/1.9.7/protocol_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.eed3si9n",
+                    "name": "sjson-new-core_2.12",
+                    "version": "0.9.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "sjson-new-core_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/eed3si9n/sjson-new-core_2.12/0.9.1/sjson-new-core_2.12-0.9.1.jar"
+                        },
+                        {
+                            "name": "sjson-new-core_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "10da2699bd9d3b68d099d0cce0204b39de5d3c04"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/eed3si9n/sjson-new-core_2.12/0.9.1/sjson-new-core_2.12-0.9.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "template-resolver",
+                    "version": "0.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "template-resolver",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "758dcd28de14b3a6eaa39d314a074d59218f4de3"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/template-resolver/0.1/template-resolver-0.1.jar"
+                        },
+                        {
+                            "name": "template-resolver",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "917e729d75d06596446a74ff217be222d1d57f28"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/template-resolver/0.1/template-resolver-0.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "util-position_2.12",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "util-position_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "b58ce80f1c23e71fc03fe460e0ea60a7670aa7e9"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-position_2.12/1.9.7/util-position_2.12-1.9.7.jar"
+                        },
+                        {
+                            "name": "util-position_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "d6065ef9b2f890310c7b0ee52c71554baf6ce161"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-position_2.12/1.9.7/util-position_2.12-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "zinc-compile-core_2.12",
+                    "version": "1.9.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "zinc-compile-core_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/zinc-compile-core_2.12/1.9.5/zinc-compile-core_2.12-1.9.5.jar"
+                        },
+                        {
+                            "name": "zinc-compile-core_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "27acc94c97cc1d51d7564c062c472ca83f23fd58"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/zinc-compile-core_2.12/1.9.5/zinc-compile-core_2.12-1.9.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "util-interface",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "util-interface",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "9a8e33b2a3d5fde9d5a91733bdb1b38b0c68b252"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-interface/1.9.7/util-interface-1.9.7.jar"
+                        },
+                        {
+                            "name": "util-interface",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "19b1648354027f2666d8cc515f564f404027990c"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/util-interface/1.9.7/util-interface-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt.jline",
+                    "name": "jline",
+                    "version": "2.14.7-sbt-a1b0ffbb8f64bb820f4f84a0c07a0c0964507493",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jline",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/jline/jline/2.14.7-sbt-a1b0ffbb8f64bb820f4f84a0c07a0c0964507493/jline-2.14.7-sbt-a1b0ffbb8f64bb820f4f84a0c07a0c0964507493.jar"
+                        },
+                        {
+                            "name": "jline",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "427c4eb095a0e228166ad02e4e306fed0a2dcba2"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/jline/jline/2.14.7-sbt-a1b0ffbb8f64bb820f4f84a0c07a0c0964507493/jline-2.14.7-sbt-a1b0ffbb8f64bb820f4f84a0c07a0c0964507493-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.jline",
+                    "name": "jline-terminal-jna",
+                    "version": "3.19.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jline-terminal-jna",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jline/jline-terminal-jna/3.19.0/jline-terminal-jna-3.19.0.jar"
+                        },
+                        {
+                            "name": "jline-terminal-jna",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "7b91b76150a9e2b9b06b5cbb56d2326d8f734f26"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/jline/jline-terminal-jna/3.19.0/jline-terminal-jna-3.19.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.jline",
+                    "name": "jline-terminal-jansi",
+                    "version": "3.19.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jline-terminal-jansi",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jline/jline-terminal-jansi/3.19.0/jline-terminal-jansi-3.19.0.jar"
+                        },
+                        {
+                            "name": "jline-terminal-jansi",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "a6d190e26e69c3ce0092e41f56385a6d9ceabcec"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/jline/jline-terminal-jansi/3.19.0/jline-terminal-jansi-3.19.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.lmax",
+                    "name": "disruptor",
+                    "version": "3.4.2",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "disruptor",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lmax/disruptor/3.4.2/disruptor-3.4.2.jar"
+                        },
+                        {
+                            "name": "disruptor",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "b5d79464398c5229fbe07e02f2fd06c9ba53be81"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/lmax/disruptor/3.4.2/disruptor-3.4.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-reflect",
+                    "version": "2.12.18",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-reflect",
+                            "path": "/home/ysyx/.sbt/boot/scala-2.12.18/lib/scala-reflect.jar"
+                        },
+                        {
+                            "name": "scala-reflect",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "1584beed9ce12883d611edd6d110cf3ed1a38a4e"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/scala-reflect/2.12.18/scala-reflect-2.12.18-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.checkerframework",
+                    "name": "checker-qual",
+                    "version": "3.4.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "checker-qual",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "b3df2bf4d7d258e5aa192c3ac6f7f84688046262"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/checkerframework/checker-qual/3.4.1/checker-qual-3.4.1.jar"
+                        },
+                        {
+                            "name": "checker-qual",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "1ccc444dc0271a148e2475f59a61fbe8587dd65f"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/checkerframework/checker-qual/3.4.1/checker-qual-3.4.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.errorprone",
+                    "name": "error_prone_annotations",
+                    "version": "2.4.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "error_prone_annotations",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "32ecccc595e4e4d813a80ee9e3ab5813d65874eb"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/google/errorprone/error_prone_annotations/2.4.0/error_prone_annotations-2.4.0.jar"
+                        },
+                        {
+                            "name": "error_prone_annotations",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "3921a2ff59cbc7ed711b7925109d1f54ec3b8a70"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/google/errorprone/error_prone_annotations/2.4.0/error_prone_annotations-2.4.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang.modules",
+                    "name": "scala-collection-compat_2.12",
+                    "version": "2.10.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-collection-compat_2.12",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "bf81785e892f4185f470bddd205b011237aab553"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/modules/scala-collection-compat_2.12/2.10.0/scala-collection-compat_2.12-2.10.0.jar"
+                        },
+                        {
+                            "name": "scala-collection-compat_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "070c65ce9fc876949582b6afef55bc9a6efc2947"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/modules/scala-collection-compat_2.12/2.10.0/scala-collection-compat_2.12-2.10.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.slf4j",
+                    "name": "slf4j-api",
+                    "version": "1.7.36",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "slf4j-api",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar"
+                        },
+                        {
+                            "name": "slf4j-api",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "ae9c1aae0033af915cfa75d850eb9d880f21a701"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-compiler",
+                    "version": "2.12.18",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-compiler",
+                            "path": "/home/ysyx/.sbt/boot/scala-2.12.18/lib/scala-compiler.jar"
+                        },
+                        {
+                            "name": "scala-compiler",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "5ed48435f6c3b40a1480fa55dd77c1c7bf47d1ba"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/scala-compiler/2.12.18/scala-compiler-2.12.18-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.jcraft",
+                    "name": "jsch",
+                    "version": "0.1.54",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jsch",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/jcraft/jsch/0.1.54/jsch-0.1.54.jar"
+                        },
+                        {
+                            "name": "jsch",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "91d6069df9be9e076bdb124e82fc2a9af9547616"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/jcraft/jsch/0.1.54/jsch-0.1.54-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.eed3si9n",
+                    "name": "gigahorse-apache-http_2.12",
+                    "version": "0.7.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "gigahorse-apache-http_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/eed3si9n/gigahorse-apache-http_2.12/0.7.0/gigahorse-apache-http_2.12-0.7.0.jar"
+                        },
+                        {
+                            "name": "gigahorse-apache-http_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "9c4958cb1573220694ec55cfec90a1a2abaa6a43"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/eed3si9n/gigahorse-apache-http_2.12/0.7.0/gigahorse-apache-http_2.12-0.7.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt.ivy",
+                    "name": "ivy",
+                    "version": "2.3.0-sbt-396a783bba347016e7fe30dacc60d355be607fe2",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "ivy",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/ivy/ivy/2.3.0-sbt-396a783bba347016e7fe30dacc60d355be607fe2/ivy-2.3.0-sbt-396a783bba347016e7fe30dacc60d355be607fe2.jar"
+                        },
+                        {
+                            "name": "ivy",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "a8d1c7f3079b9d42be292e802dd08dae314bc0de"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/ivy/ivy/2.3.0-sbt-396a783bba347016e7fe30dacc60d355be607fe2/ivy-2.3.0-sbt-396a783bba347016e7fe30dacc60d355be607fe2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.jline",
+                    "name": "jline-reader",
+                    "version": "3.19.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jline-reader",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jline/jline-reader/3.19.0/jline-reader-3.19.0.jar"
+                        },
+                        {
+                            "name": "jline-reader",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "f50fc32bf518ca12ce52a20709d9683301dabec0"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/jline/jline-reader/3.19.0/jline-reader-3.19.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.jline",
+                    "name": "jline-builtins",
+                    "version": "3.19.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jline-builtins",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "49c2c6dbd9d26de02cab6af631b293a3b3c72fd5"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/jline/jline-builtins/3.19.0/jline-builtins-3.19.0.jar"
+                        },
+                        {
+                            "name": "jline-builtins",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "9b1e5586b6a2d042b5c1e6d9c15a490c56226d05"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/jline/jline-builtins/3.19.0/jline-builtins-3.19.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "test-agent",
+                    "version": "1.9.7",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "test-agent",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/test-agent/1.9.7/test-agent-1.9.7.jar"
+                        },
+                        {
+                            "name": "test-agent",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "c27d83b3fb7d1b7d6adb656f327c7ab0e0d0e4fc"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/test-agent/1.9.7/test-agent-1.9.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "test-interface",
+                    "version": "1.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "test-interface",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/test-interface/1.0/test-interface-1.0.jar"
+                        },
+                        {
+                            "name": "test-interface",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "d44b23e9e3419ad0e00b91bba764a48d43075000"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/test-interface/1.0/test-interface-1.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.eed3si9n",
+                    "name": "shaded-jawn-parser_2.12",
+                    "version": "0.9.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "shaded-jawn-parser_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/eed3si9n/shaded-jawn-parser_2.12/0.9.1/shaded-jawn-parser_2.12-0.9.1.jar"
+                        },
+                        {
+                            "name": "shaded-jawn-parser_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "60f6cc6c4f2a0953945208317a728b17be219ddf"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/eed3si9n/shaded-jawn-parser_2.12/0.9.1/shaded-jawn-parser_2.12-0.9.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.eed3si9n",
+                    "name": "shaded-scalajson_2.12",
+                    "version": "1.0.0-M4",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "shaded-scalajson_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/eed3si9n/shaded-scalajson_2.12/1.0.0-M4/shaded-scalajson_2.12-1.0.0-M4.jar"
+                        },
+                        {
+                            "name": "shaded-scalajson_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "\r\n815c3da773917a299e10657936129df69b502d95"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/eed3si9n/shaded-scalajson_2.12/1.0.0-M4/shaded-scalajson_2.12-1.0.0-M4-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "compiler-bridge_2.12",
+                    "version": "1.9.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "compiler-bridge_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/compiler-bridge_2.12/1.9.5/compiler-bridge_2.12-1.9.5.jar"
+                        },
+                        {
+                            "name": "compiler-bridge_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "7966f76d0e410b4c0b82b710fdc834d8221438da"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/compiler-bridge_2.12/1.9.5/compiler-bridge_2.12-1.9.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "zinc-classfile_2.12",
+                    "version": "1.9.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "zinc-classfile_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/zinc-classfile_2.12/1.9.5/zinc-classfile_2.12-1.9.5.jar"
+                        },
+                        {
+                            "name": "zinc-classfile_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "bd1cab423ed11039e2048134aab23a6d15009291"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/zinc-classfile_2.12/1.9.5/zinc-classfile_2.12-1.9.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "zinc-core_2.12",
+                    "version": "1.9.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "zinc-core_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/zinc-core_2.12/1.9.5/zinc-core_2.12-1.9.5.jar"
+                        },
+                        {
+                            "name": "zinc-core_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "00a26c6d0eaff55709e0c50b124c476085f083e3"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/zinc-core_2.12/1.9.5/zinc-core_2.12-1.9.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "zinc-persist_2.12",
+                    "version": "1.9.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "zinc-persist_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/zinc-persist_2.12/1.9.5/zinc-persist_2.12-1.9.5.jar"
+                        },
+                        {
+                            "name": "zinc-persist_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "4de84f49babc52829614489375bbe4ff517e74dc"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/zinc-persist_2.12/1.9.5/zinc-persist_2.12-1.9.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.eed3si9n",
+                    "name": "sjson-new-murmurhash_2.12",
+                    "version": "0.9.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "sjson-new-murmurhash_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/eed3si9n/sjson-new-murmurhash_2.12/0.9.1/sjson-new-murmurhash_2.12-0.9.1.jar"
+                        },
+                        {
+                            "name": "sjson-new-murmurhash_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "6791e427e38b28f7ef5e7d5e56f9b379b11393ee"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/eed3si9n/sjson-new-murmurhash_2.12/0.9.1/sjson-new-murmurhash_2.12-0.9.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt.ipcsocket",
+                    "name": "ipcsocket",
+                    "version": "1.6.2",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "ipcsocket",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/ipcsocket/ipcsocket/1.6.2/ipcsocket-1.6.2.jar"
+                        },
+                        {
+                            "name": "ipcsocket",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "22e1eafcfc576b0c58369afe04170503a137fe48"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/ipcsocket/ipcsocket/1.6.2/ipcsocket-1.6.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang.modules",
+                    "name": "scala-parser-combinators_2.12",
+                    "version": "1.1.2",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-parser-combinators_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/modules/scala-parser-combinators_2.12/1.1.2/scala-parser-combinators_2.12-1.1.2.jar"
+                        },
+                        {
+                            "name": "scala-parser-combinators_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "17be9d543fa1f7f01d57722cc37d0c4024a15f69"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/modules/scala-parser-combinators_2.12/1.1.2/scala-parser-combinators_2.12-1.1.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.openhft",
+                    "name": "zero-allocation-hashing",
+                    "version": "0.10.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "zero-allocation-hashing",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/net/openhft/zero-allocation-hashing/0.10.1/zero-allocation-hashing-0.10.1.jar"
+                        },
+                        {
+                            "name": "zero-allocation-hashing",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "b869664cefaccd78f779f41200d1948a4aa35eb7"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/net/openhft/zero-allocation-hashing/0.10.1/zero-allocation-hashing-0.10.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.fusesource.jansi",
+                    "name": "jansi",
+                    "version": "2.1.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jansi",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/fusesource/jansi/jansi/2.1.0/jansi-2.1.0.jar"
+                        },
+                        {
+                            "name": "jansi",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "0855339f08996f1877f0b18d0244cbf314b730aa"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/fusesource/jansi/jansi/2.1.0/jansi-2.1.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.eed3si9n",
+                    "name": "gigahorse-core_2.12",
+                    "version": "0.7.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "gigahorse-core_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/eed3si9n/gigahorse-core_2.12/0.7.0/gigahorse-core_2.12-0.7.0.jar"
+                        },
+                        {
+                            "name": "gigahorse-core_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "69890f4dbc514a6a05489c0349f75c61c34c3b16"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/eed3si9n/gigahorse-core_2.12/0.7.0/gigahorse-core_2.12-0.7.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.eed3si9n",
+                    "name": "shaded-apache-httpasyncclient",
+                    "version": "0.7.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "shaded-apache-httpasyncclient",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/eed3si9n/shaded-apache-httpasyncclient/0.7.0/shaded-apache-httpasyncclient-0.7.0.jar"
+                        },
+                        {
+                            "name": "shaded-apache-httpasyncclient",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "5b6222f6c11d9b885eec4da0f84e7b07444d0d9b"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/eed3si9n/shaded-apache-httpasyncclient/0.7.0/shaded-apache-httpasyncclient-0.7.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.jline",
+                    "name": "jline-style",
+                    "version": "3.19.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jline-style",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "d99f3ff54a354b5b69237582faddd7b1af894a44"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/jline/jline-style/3.19.0/jline-style-3.19.0.jar"
+                        },
+                        {
+                            "name": "jline-style",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "08c11976195c48a0733c934802ecce0a3c65a8c5"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/jline/jline-style/3.19.0/jline-style-3.19.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "zinc-persist-core-assembly",
+                    "version": "1.9.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "zinc-persist-core-assembly",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/zinc-persist-core-assembly/1.9.5/zinc-persist-core-assembly-1.9.5.jar"
+                        },
+                        {
+                            "name": "zinc-persist-core-assembly",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "dcc0f261fb9a620ebc8d62d88321e8af4caf9162"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/zinc-persist-core-assembly/1.9.5/zinc-persist-core-assembly-1.9.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "sbinary_2.12",
+                    "version": "0.5.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "sbinary_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/sbinary_2.12/0.5.1/sbinary_2.12-0.5.1.jar"
+                        },
+                        {
+                            "name": "sbinary_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "c2313c7e56d7088fefb6769f54fa9f5bffff8088"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-sbt/sbinary_2.12/0.5.1/sbinary_2.12-0.5.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.typesafe",
+                    "name": "ssl-config-core_2.12",
+                    "version": "0.6.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "ssl-config-core_2.12",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/ssl-config-core_2.12/0.6.1/ssl-config-core_2.12-0.6.1.jar"
+                        },
+                        {
+                            "name": "ssl-config-core_2.12",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "42c672578a65c4bf407dc1da6b259bce72c76e08"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/typesafe/ssl-config-core_2.12/0.6.1/ssl-config-core_2.12-0.6.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.reactivestreams",
+                    "name": "reactive-streams",
+                    "version": "1.0.3",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "reactive-streams",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "d9fb7a7926ffa635b3dcaa5049fb2bfa25b3e7d0"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/reactivestreams/reactive-streams/1.0.3/reactive-streams-1.0.3.jar"
+                        },
+                        {
+                            "name": "reactive-streams",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "e6ffdff8c438d959376c91d94b319457354a84c5"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/reactivestreams/reactive-streams/1.0.3/reactive-streams-1.0.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.typesafe",
+                    "name": "config",
+                    "version": "1.4.2",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "config",
+                            "path": "/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/config/1.4.2/config-1.4.2.jar"
+                        },
+                        {
+                            "name": "config",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "7bccb8431d275619f4461f1b63a2173b0d2c5de1"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/com/typesafe/config/1.4.2/config-1.4.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-compiler",
+                    "version": "2.12.18",
+                    "configurations": "optional",
+                    "artifacts": [
+                        {
+                            "name": "scala-compiler",
+                            "path": "/home/ysyx/.sbt/boot/scala-2.12.18/lib/scala-compiler.jar"
+                        },
+                        {
+                            "name": "scala-compiler",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "5ed48435f6c3b40a1480fa55dd77c1c7bf47d1ba"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/scala-compiler/2.12.18/scala-compiler-2.12.18-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-library",
+                    "version": "2.12.18",
+                    "configurations": "optional",
+                    "artifacts": [
+                        {
+                            "name": "scala-library",
+                            "path": "/home/ysyx/.sbt/boot/scala-2.12.18/lib/scala-library.jar"
+                        },
+                        {
+                            "name": "scala-library",
+                            "classifier": "sources",
+                            "checksum": {
+                                "type": "sha1",
+                                "digest": "da6a485d45eeebe061858d1e8ad424a300a077ac"
+                            },
+                            "path": "/home/ysyx/.cache/coursier/v1/https/maven.aliyun.com/repository/central/org/scala-lang/scala-library/2.12.18/scala-library-2.12.18-sources.jar"
+                        }
+                    ]
+                }
+            ]
+        },
+        "tags": [
+            "library"
+        ]
+    }
+}
