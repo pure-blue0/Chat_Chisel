@@ -1369,3 +1369,62 @@ Caused by: java.lang.InterruptedException
 2024.02.04 14:20:37 INFO  compiling chisel_gen (19 scala sources)
 2024.02.04 14:20:42 INFO  time: compiled chisel_gen in 4.91s
 2024.02.04 14:23:55 INFO  skipping build import with status 'Installed'
+2024.02.04 19:10:45 INFO  Shutting down server
+2024.02.04 19:10:45 INFO  shutting down Metals
+2024.02.04 19:10:49 INFO  Shut down connection with build server.
+2024.02.04 19:10:50 INFO  Shut down connection with build server.
+2024.02.05 18:10:56 INFO  Started: Metals version 1.2.0 in folders '/home/ysyx/Project/chisel_gen' for client Visual Studio Code 1.81.1.
+Feb 05, 2024 6:10:59 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 2
+2024.02.05 18:10:59 INFO  Attempting to connect to the build server...
+2024.02.05 18:11:00 INFO  skipping build import with status 'Installed'
+2024.02.05 18:10:59 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.05 18:11:08 INFO  no build target found for /home/ysyx/Project/chisel_gen/src/main/scala/core.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2024.02.05 18:11:23 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+2024.02.05 18:11:27 INFO  Attempting to connect to the build server...
+2024.02.05 18:11:27 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.05 18:11:27 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/project/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+2024.02.05 18:11:27 INFO  time: Connected to build server in 28s
+2024.02.05 18:11:27 INFO  Connected to Build server: Bloop v1.5.13
+2024.02.05 18:11:28 INFO  time: Imported build in 0.41s
+2024.02.05 18:11:33 INFO  time: indexed workspace in 5.16s
+2024.02.05 18:11:35 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.05 18:11:35 INFO  compiling chisel_gen (19 scala sources)
+2024.02.05 18:11:59 INFO  time: compiled chisel_gen in 23s
+2024.02.05 18:11:59 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.05 18:19:08 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.05 20:41:20 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.05 20:41:50 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.05 20:41:50 INFO  compiling chisel_gen (1 scala source)
+2024.02.05 20:41:54 INFO  time: compiled chisel_gen in 3.18s
+2024.02.05 20:51:50 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.05 20:56:05 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+Exception in thread "pool-5-thread-1" java.lang.Error: java.lang.InterruptedException
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1155)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.InterruptedException
+	at scala.meta.internal.metals.FutureCancelToken.checkCanceled(FutureCancelToken.scala:29)
+	at scala.meta.internal.pc.CompilerAccess.$anonfun$onCompilerJobQueue$1(CompilerAccess.scala:230)
+	at scala.meta.internal.pc.CompilerJobQueue$Job.run(CompilerJobQueue.scala:152)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	... 2 more
+2024.02.05 21:34:31 WARN  Using indexes to guess the definition of funct3
+2024.02.05 21:35:44 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.05 21:35:44 INFO  compiling chisel_gen (1 scala source)
+2024.02.05 21:35:52 INFO  time: compiled chisel_gen in 8.34s
+2024.02.05 21:35:52 INFO  compiling chisel_gen (1 scala source)
+2024.02.05 21:36:02 INFO  time: compiled chisel_gen in 9.03s
+2024.02.05 21:36:24 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.05 21:36:24 INFO  compiling chisel_gen (1 scala source)
+2024.02.05 21:36:27 INFO  time: compiled chisel_gen in 3.17s
+2024.02.05 21:36:27 INFO  compiling chisel_gen (1 scala source)
+2024.02.05 21:36:35 INFO  time: compiled chisel_gen in 7.94s
+2024.02.05 21:36:51 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.05 21:37:31 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+Feb 05, 2024 9:37:41 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Feb 05, 2024 9:38:00 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 667
+Feb 05, 2024 9:38:51 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 676

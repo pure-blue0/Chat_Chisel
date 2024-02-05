@@ -108,7 +108,7 @@ class Decode extends Module {
   val csr_read = WireInit(csrInst)
   val csr_write = WireInit(csrInst)
 
-when(csrrwInst || (csrrwiInst && io.inst(11, 7).asUInt === 0.U)) {
+when((csrrwInst || csrrwiInst) && io.inst(11, 7).asUInt === 0.U) {
   csr_read := false.B
 }
 when((csrrsInst || csrrcInst || csrrsiInst || csrrciInst) && io.inst(19, 15).asUInt === 0.U) {
@@ -117,8 +117,65 @@ when((csrrsInst || csrrcInst || csrrsiInst || csrrciInst) && io.inst(19, 15).asU
 
   val mret_out = io.inst === "b00110000001000000000000001110011".U //Control.mret_INSTRUCTION
   val wfi_out = io.inst ===  "b00010000010100000000000001110011".U //Control.WFI_INSTRUCTION
-  val ecause_out = 0.U                             
-  val exception_out = 0.U 
+
+
+  val opcode = io.inst(6, 0)
+  val funct7 = io.inst(31, 25)
+  val funct3 = io.inst(14, 12)
+  val isLegalInstruction = Wire(Bool())
+  isLegalInstruction := MuxCase(false.B, Array(
+    (opcode === "b0110011".U && funct3 === "b000".U && funct7 === "b0000000".U) -> true.B,
+    (opcode === "b0110011".U && funct3 === "b000".U && funct7 === "b0100000".U) -> true.B,
+    (opcode === "b0110011".U && funct3 === "b000".U && funct7 === "b0000100".U) -> true.B,
+    (opcode === "b0110011".U && funct3 === "b110".U && funct7 === "b0000000".U) -> true.B,
+    (opcode === "b0110011".U && funct3 === "b111".U && funct7 === "b0000000".U) -> true.B,
+    (opcode === "b0110011".U && funct3 === "b001".U && funct7 === "b0000000".U) -> true.B,
+    (opcode === "b0110011".U && funct3 === "b101".U && funct7 === "b0000000".U) -> true.B,
+    (opcode === "b0110011".U && funct3 === "b101".U && funct7 === "b0100000".U) -> true.B,
+    (opcode === "b0110011".U && funct3 === "b010".U && funct7 === "b0000000".U) -> true.B,
+    (opcode === "b0110011".U && funct3 === "b011".U && funct7 === "b0000000".U) -> true.B,
+    (opcode === "b0010011".U && funct3 === "b000".U) -> true.B,
+    (opcode === "b0010011".U && funct3 === "b100".U) -> true.B,
+    (opcode === "b0010011".U && funct3 === "b110".U) -> true.B,
+    (opcode === "b0010011".U && funct3 === "b111".U) -> true.B,
+    (opcode === "b0010011".U && funct3 === "b001".U && funct7 === "b0000000".U)-> true.B,
+    (opcode === "b0010011".U && funct3 === "b101".U && funct7 === "b0000000".U) -> true.B,
+    (opcode === "b0010011".U && funct3 === "b101".U && funct7 === "b0100000".U) -> true.B,
+    (opcode === "b0010011".U && funct3 === "b010".U) -> true.B,
+    (opcode === "b0010011".U && funct3 === "b011".U) -> true.B,
+    (opcode === "b0000011".U && funct3 === "b000".U) -> true.B,
+    (opcode === "b0000011".U && funct3 === "b001".U) -> true.B,
+    (opcode === "b0000011".U && funct3 === "b010".U) -> true.B,
+    (opcode === "b0000011".U && funct3 === "b100".U) -> true.B,
+    (opcode === "b0000011".U && funct3 === "b101".U) -> true.B,
+    (opcode === "b0100011".U && funct3 === "b000".U) -> true.B,
+    (opcode === "b0100011".U && funct3 === "b001".U) -> true.B,
+    (opcode === "b0100011".U && funct3 === "b010".U) -> true.B,
+    (opcode === "b1100011".U && funct3 === "b000".U) -> true.B,
+    (opcode === "b1100011".U && funct3 === "b001".U) -> true.B,
+    (opcode === "b1100011".U && funct3 === "b100".U) -> true.B,
+    (opcode === "b1100011".U && funct3 === "b101".U) -> true.B,
+    (opcode === "b1100011".U && funct3 === "b110".U) -> true.B,
+    (opcode === "b1100011".U && funct3 === "b111".U) -> true.B,
+    (opcode === "b1101111".U) -> true.B,
+    (opcode === "b1100111".U && funct3 === "b000".U) -> true.B,
+    (opcode === "b0110111".U) -> true.B,
+    (opcode === "b0010111".U) -> true.B,
+    (opcode === "b1110011".U && funct3 === "b000".U && funct7 === "b0000000".U) -> true.B,
+    (opcode === "b1110011".U && funct3 === "b000".U && funct7 === "b0000001".U) -> true.B,
+    (opcode === "b1110011".U && funct3 === "b000".U && funct7 === "b0011000".U) -> true.B,
+    (opcode === "b1110011".U && funct3 === "b000".U && funct7 === "b0001000".U) -> true.B,
+    (opcode === "b1110011".U && funct3 === "b001".U) -> true.B,
+    (opcode === "b1110011".U && funct3 === "b010".U) -> true.B,
+    (opcode === "b1110011".U && funct3 === "b011".U) -> true.B,
+    (opcode === "b1110011".U && funct3 === "b101".U) -> true.B,
+    (opcode === "b1110011".U && funct3 === "b110".U) -> true.B,
+    (opcode === "b1110011".U && funct3 === "b111".U) -> true.B
+  ))
+
+  val exception_out = Mux(isLegalInstruction, false.B, true.B)
+  val ecause_out = Mux(isLegalInstruction, 0.U, 2.U)
+
 
    when(io.id_ex_flush) {
     id_ex_pc_reg := 0.U
