@@ -51,6 +51,15 @@ class Memory extends Module {
     val pcsrc = Output(Bool())
     val branch = Output(Bool())
     val mem_wb_flush = Input(Bool())
+    // Input from Top module
+    val memory_read_data = Input(UInt(32.W))
+    // Outputs to Top module
+    val load_store_unsigned = Output(Bool())
+    val memory_size = Output(UInt(2.W))
+    val memory_address = Output(UInt(32.W))
+    val memory_write_data = Output(UInt(32.W))
+    val memory_read = Output(Bool())
+    val memory_write = Output(Bool())
   })
 
    // Handle exceptions and generate outputs
@@ -97,13 +106,13 @@ class Memory extends Module {
   branch.io.mem_isbranch := io.mem_isbranch
   branch.io.mem_isjump := io.mem_isjump
 
-  // Instantiate the DataCache submodule
-  val dataCache = Module(new DataCache)
-  dataCache.io.mem_aluresult := io.mem_aluresult
-  dataCache.io.mem_rs2_data := io.mem_rs2_data
-  dataCache.io.mem_memread := io.mem_memread
-  dataCache.io.mem_funct3 := io.mem_funct3
-  dataCache.io.mem_memwrite := io.mem_memwrite && trapped
+  // Assign the signal to the output ports
+  io.memory_address := io.mem_aluresult
+  io.memory_write_data := io.mem_rs2_data
+  io.memory_read := io.mem_memread
+  io.load_store_unsigned := io.mem_funct3(2)
+  io.memory_size := io.mem_funct3(1,0)
+  io.memory_write := io.mem_memwrite && trapped
 
   // Define registers for the outputs
   val csr_write_enable_out_reg = RegInit(false.B)
@@ -152,7 +161,7 @@ class Memory extends Module {
     csr_read_data_out_reg := io.csr_read_data_in
     wfi_out_reg := io.wfi_in
     wb_reg_pc_reg := io.reg_pc
-    wb_readdata_reg := dataCache.io.read_data
+    wb_readdata_reg := io.memory_read_data
     wb_aluresult_reg := io.mem_aluresult
     wb_memtoreg_reg := io.mem_memtoreg
     wb_regwrite_reg := io.mem_regwrite

@@ -22,12 +22,15 @@ class Fetch extends Module {
     // to decode
     val id_pc = Output(UInt(32.W))
     val inst = Output(UInt(32.W))
+    //from top
+    val fetch_data = Input(UInt(32.W))
+    //to top
+    val fetch_address = Output(UInt(32.W))
   })
 
   // Define submodules
   val bht = Module(new BHT)
   val btb = Module(new BTB)
-  val icache = Module(new Icache)
 
   // Define registers
   val pcReg = RegInit("b1000".U(32.W)) // Program Counter register
@@ -45,7 +48,7 @@ class Fetch extends Module {
   btb.io.pcsrc := io.pcsrc
   btb.io.branch := io.branch
 
-  icache.io.pc := pcReg
+
 
   // Fetch stage logic
   when(io.trap) {
@@ -68,7 +71,7 @@ class Fetch extends Module {
     instReg := instReg
   }.otherwise {
     idPcReg := pcReg
-    instReg := icache.io.inst
+    instReg := io.fetch_data
   }
 
   when(io.if_id_flush) {
@@ -76,6 +79,7 @@ class Fetch extends Module {
     instReg := "b00000000000000000000000000010011".U // addi x0, x0, 0
   }
 
+  io.fetch_address := pcReg
   io.id_pc := idPcReg
   io.inst := instReg
 }

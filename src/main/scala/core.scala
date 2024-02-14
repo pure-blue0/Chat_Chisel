@@ -3,8 +3,16 @@ import chisel3.util._
 
 class core extends Module {
   val io = IO(new Bundle {
-    val meip = Input(Bool())
-    val trapped = Output(Bool())
+      val meip = Input(Bool())
+      val fetch_data = Input(UInt(32.W))
+      val fetch_address = Output(UInt(32.W))
+      val load_store_unsigned = Output(Bool())
+      val memory_size = Output(UInt(2.W))
+      val memory_address = Output(UInt(32.W))
+      val memory_write_data = Output(UInt(32.W))
+      val memory_read_data = Input(UInt(32.W))
+      val memory_read = Output(Bool())
+      val memory_write = Output(Bool())
   })
 
   val fetch = Module(new Fetch)
@@ -28,6 +36,7 @@ class core extends Module {
   fetch.io.if_id_stall := hazard.io.if_id_stall
   fetch.io.if_id_flush := hazard.io.if_id_flush
   fetch.io.predict := hazard.io.predict
+  fetch.io.fetch_data := io.fetch_data
 
   decode.io.id_pc := fetch.io.id_pc
   decode.io.inst := fetch.io.inst
@@ -93,6 +102,7 @@ class core extends Module {
   memory.io.tip := csr.io.tip
   memory.io.eip := csr.io.eip
   memory.io.mem_wb_flush := hazard.io.mem_wb_flush
+  memory.io.memory_read_data := io.memory_read_data
 
   writeback.io.csr_read_data_in := memory.io.csr_read_data_out
   writeback.io.wb_reg_pc := memory.io.wb_reg_pc
@@ -101,6 +111,7 @@ class core extends Module {
   writeback.io.wb_memtoreg := memory.io.wb_memtoreg
 
   csr.io.meip := io.meip
+  csr.io.mem_pc := execute.io.mem_pc
   csr.io.csr_address := decode.io.csr_address
   csr.io.csr_write_enable := memory.io.csr_write_enable_out
   csr.io.csr_write_address := memory.io.csr_write_address_out
@@ -132,31 +143,36 @@ class core extends Module {
   hazard.io.trapped := memory.io.trapped
   hazard.io.mret := memory.io.mret_out
 
-
-
- io.trapped := memory.io.trapped
+  io.fetch_address := fetch.io.fetch_address
+  io.load_store_unsigned := memory.io.load_store_unsigned
+  io.memory_size := memory.io.memory_size
+  io.memory_address := memory.io.memory_address
+  io.memory_write_data := memory.io.memory_write_data
+  io.memory_read := memory.io.memory_read
+  io.memory_write := memory.io.memory_write
+  
 }
 
 
 object ChiselCore extends App {
   println((new chisel3.stage.ChiselStage).emitVerilog(new core))
   println((new chisel3.stage.ChiselStage).emitVerilog(new Fetch))
-  println((new chisel3.stage.ChiselStage).emitVerilog(new Decode))
-  println((new chisel3.stage.ChiselStage).emitVerilog(new Execute))
+  // println((new chisel3.stage.ChiselStage).emitVerilog(new Decode))
+  // println((new chisel3.stage.ChiselStage).emitVerilog(new Execute))
   println((new chisel3.stage.ChiselStage).emitVerilog(new Memory))
-  println((new chisel3.stage.ChiselStage).emitVerilog(new Writeback))
+  // println((new chisel3.stage.ChiselStage).emitVerilog(new Writeback))
   println((new chisel3.stage.ChiselStage).emitVerilog(new CSR))
-  println((new chisel3.stage.ChiselStage).emitVerilog(new Hazard))
-  println((new chisel3.stage.ChiselStage).emitVerilog(new AluSelect))
-  println((new chisel3.stage.ChiselStage).emitVerilog(new BHT))
-  println((new chisel3.stage.ChiselStage).emitVerilog(new Branch))
-  println((new chisel3.stage.ChiselStage).emitVerilog(new BTB))
-  println((new chisel3.stage.ChiselStage).emitVerilog(new Control))
-  println((new chisel3.stage.ChiselStage).emitVerilog(new DataCache))
-  println((new chisel3.stage.ChiselStage).emitVerilog(new Icache))
-  println((new chisel3.stage.ChiselStage).emitVerilog(new ImmGen))
-  println((new chisel3.stage.ChiselStage).emitVerilog(new Regfile))
-  println((new chisel3.stage.ChiselStage).emitVerilog(new TargetGen))
+  // println((new chisel3.stage.ChiselStage).emitVerilog(new Hazard))
+  // println((new chisel3.stage.ChiselStage).emitVerilog(new AluSelect))
+  // println((new chisel3.stage.ChiselStage).emitVerilog(new BHT))
+  // println((new chisel3.stage.ChiselStage).emitVerilog(new Branch))
+  // println((new chisel3.stage.ChiselStage).emitVerilog(new BTB))
+  // println((new chisel3.stage.ChiselStage).emitVerilog(new Control))
+  // println((new chisel3.stage.ChiselStage).emitVerilog(new DataCache))
+  // println((new chisel3.stage.ChiselStage).emitVerilog(new Icache))
+  // println((new chisel3.stage.ChiselStage).emitVerilog(new ImmGen))
+  // println((new chisel3.stage.ChiselStage).emitVerilog(new Regfile))
+  // println((new chisel3.stage.ChiselStage).emitVerilog(new TargetGen))
 
 
 }
