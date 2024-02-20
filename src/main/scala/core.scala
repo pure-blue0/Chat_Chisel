@@ -155,15 +155,16 @@ class core extends Module {
 
 
 object ChiselCore extends App {
-  println((new chisel3.stage.ChiselStage).emitVerilog(new core))
-  println((new chisel3.stage.ChiselStage).emitVerilog(new Fetch))
+  //println((new chisel3.stage.ChiselStage).emitVerilog(new core))
+  //println((new chisel3.stage.ChiselStage).emitVerilog(new Fetch))
   // println((new chisel3.stage.ChiselStage).emitVerilog(new Decode))
   // println((new chisel3.stage.ChiselStage).emitVerilog(new Execute))
-  println((new chisel3.stage.ChiselStage).emitVerilog(new Memory))
+  //println((new chisel3.stage.ChiselStage).emitVerilog(new Memory))
   // println((new chisel3.stage.ChiselStage).emitVerilog(new Writeback))
-  println((new chisel3.stage.ChiselStage).emitVerilog(new CSR))
+  //println((new chisel3.stage.ChiselStage).emitVerilog(new CSR))
   // println((new chisel3.stage.ChiselStage).emitVerilog(new Hazard))
   // println((new chisel3.stage.ChiselStage).emitVerilog(new AluSelect))
+  // println((new chisel3.stage.ChiselStage).emitVerilog(new ALU))
   // println((new chisel3.stage.ChiselStage).emitVerilog(new BHT))
   // println((new chisel3.stage.ChiselStage).emitVerilog(new Branch))
   // println((new chisel3.stage.ChiselStage).emitVerilog(new BTB))

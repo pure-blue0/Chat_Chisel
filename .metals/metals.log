@@ -1428,3 +1428,792 @@ Feb 05, 2024 9:38:00 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellat
 WARNING: Unmatched cancel notification for request id 667
 Feb 05, 2024 9:38:51 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
 WARNING: Unmatched cancel notification for request id 676
+2024.02.05 22:02:23 INFO  Shutting down server
+2024.02.05 22:02:23 INFO  shutting down Metals
+2024.02.05 22:02:24 INFO  Shut down connection with build server.
+2024.02.05 22:02:24 INFO  Shut down connection with build server.
+2024.02.05 22:02:24 INFO  Exiting server
+2024.02.05 22:06:27 INFO  Started: Metals version 1.2.0 in folders '/home/ysyx/Project/chisel_gen' for client Visual Studio Code 1.81.1.
+2024.02.05 22:06:29 INFO  Attempting to connect to the build server...
+2024.02.05 22:06:29 INFO  skipping build import with status 'Installed'
+2024.02.05 22:06:29 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.05 22:06:29 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+2024.02.05 22:06:29 INFO  Attempting to connect to the build server...
+2024.02.05 22:06:29 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.05 22:06:29 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/project/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+2024.02.05 22:06:29 INFO  time: Connected to build server in 0.64s
+2024.02.05 22:06:29 INFO  Connected to Build server: Bloop v1.5.13
+2024.02.05 22:06:29 INFO  time: Imported build in 0.21s
+2024.02.05 22:06:30 INFO  no build target found for /home/ysyx/Project/chisel_gen/src/main/scala/decode.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2024.02.05 22:06:34 INFO  time: indexed workspace in 4.25s
+2024.02.05 22:06:44 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.05 22:06:44 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.05 23:28:34 WARN  Bloop is runing with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.05 23:51:43 INFO  Shutting down server
+2024.02.05 23:51:43 INFO  shutting down Metals
+2024.02.05 23:51:43 INFO  Shut down connection with build server.
+2024.02.05 23:51:43 INFO  Shut down connection with build server.
+2024.02.05 23:51:43 INFO  Exiting server
+2024.02.13 17:50:17 INFO  Started: Metals version 1.2.1 in folders '/home/ysyx/Project/chisel_gen' for client Visual Studio Code 1.81.1.
+Downloading https://repo1.maven.org/maven2/com/h2database/h2/2.1.214/h2-2.1.214.jar
+Downloaded 1372 bytes
+Downloaded 48572 bytes
+Downloaded 64956 bytes
+Downloaded 81340 bytes
+Downloaded 97724 bytes
+Downloaded 114108 bytes
+Downloaded 146876 bytes
+Downloaded 212412 bytes
+Downloaded 327100 bytes
+Downloaded 582209 bytes
+Downloaded 1052225 bytes
+Downloaded 1859969 bytes
+2024.02.13 17:51:02 INFO  Upgraded H2 database.
+17:51:02.878 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- Flyway Community Edition 9.22.3 by Redgate
+17:51:02.880 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- See release notes here: https://rd.gt/416ObMi
+17:51:02.880 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- 
+17:51:02.882 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classpath resources at 'classpath:db/callback' ...
+17:51:02.882 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Determining location urls for classpath:db/callback using ClassLoader sun.misc.Launcher$AppClassLoader@5c647e05 ...
+17:51:02.882 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Unable to resolve location classpath:db/callback.
+17:51:02.882 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classpath resources at 'classpath:db/migration' ...
+17:51:02.882 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Determining location urls for classpath:db/migration using ClassLoader sun.misc.Launcher$AppClassLoader@5c647e05 ...
+17:51:02.882 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning URL: jar:file:/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalameta/metals_2.13/1.2.1/metals_2.13-1.2.1.jar!/db/migration
+17:51:02.884 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/
+17:51:02.884 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V1__Create_tables.sql
+17:51:02.884 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V2__Server_discovery.sql
+17:51:02.884 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V3__Jar_symbols.sql
+17:51:02.884 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V4__Fingerprints.sql
+17:51:02.884 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classes at classpath:db/migration
+17:51:02.886 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+17:51:02.886 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V4__Fingerprints.sql
+17:51:02.887 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V1__Create_tables.sql
+17:51:02.887 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V2__Server_discovery.sql
+17:51:02.887 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V3__Jar_symbols.sql
+17:51:02.951 [pool-1-thread-1] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:file:/home/ysyx/Project/chisel_gen/.metals/metals (H2 2.2)
+17:51:02.952 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- Driver: H2 JDBC Driver 2.2.224 (2023-09-17)
+17:51:02.952 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- DDL Transactions Supported: false
+17:51:02.953 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.schemahistory.SchemaHistoryFactory -- Schemas: 
+17:51:02.953 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.schemahistory.SchemaHistoryFactory -- Default schema: null
+17:51:02.956 [pool-1-thread-1] WARN org.flywaydb.core.internal.database.base.Database -- Flyway upgrade recommended: H2 2.2.224 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.2.220.
+17:51:02.957 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.callback.SqlScriptCallbackFactory -- Scanning for SQL callbacks ...
+17:51:02.957 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+17:51:02.962 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.command.DbValidate -- Validating migrations ...
+17:51:02.978 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+17:51:02.984 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+17:51:02.984 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V4__Fingerprints.sql (filename: V4__Fingerprints.sql)
+17:51:02.984 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V1__Create_tables.sql (filename: V1__Create_tables.sql)
+17:51:02.984 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V2__Server_discovery.sql (filename: V2__Server_discovery.sql)
+17:51:02.984 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V3__Jar_symbols.sql (filename: V3__Jar_symbols.sql)
+17:51:02.984 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+17:51:02.984 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V4__Fingerprints.sql (filename: V4__Fingerprints.sql)
+17:51:02.984 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V1__Create_tables.sql (filename: V1__Create_tables.sql)
+17:51:02.984 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V2__Server_discovery.sql (filename: V2__Server_discovery.sql)
+17:51:02.984 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V3__Jar_symbols.sql (filename: V3__Jar_symbols.sql)
+17:51:02.991 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 4 migrations (execution time 00:00.016s)
+17:51:02.993 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.command.DbSchemas -- Skipping creation of existing schema: "PUBLIC"
+17:51:02.997 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": 4
+17:51:02.998 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbMigrate -- Schema "PUBLIC" is up to date. No migration necessary.
+17:51:03.008 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- Memory usage: 85 of 158M
+Feb 13, 2024 5:51:03 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2024.02.13 17:51:04 INFO  Attempting to connect to the build server...
+2024.02.13 17:51:04 INFO  skipping build import with status 'Installed'
+2024.02.13 17:51:04 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.13 17:51:07 INFO  no build target found for /home/ysyx/Project/chisel_gen/src/main/scala/csr.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2024.02.13 17:52:09 ERROR Starting the bsp launcher for bloop...
+2024.02.13 17:52:09 ERROR Opening a bsp server connection with 'bsp --protocol local --socket /tmp/bsp-launcher380423167841712776/bsp.socket'...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR error: Giving up on waiting for a connection, printing embedded bloop logs:
+2024.02.13 17:52:09 ERROR > No server running at 127.0.0.1:8212, let's fire one...
+2024.02.13 17:52:09 ERROR > Resolving ch.epfl.scala:bloop-frontend_2.12:1.5.15...
+2024.02.13 17:52:09 ERROR error: Trying a tcp-based connection to the server instead...
+2024.02.13 17:52:09 ERROR Opening a bsp server connection with 'bsp --protocol tcp --port 44840'...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR Waiting for the bsp connection to come up...
+2024.02.13 17:52:09 ERROR error: Giving up on waiting for a connection, printing embedded bloop logs:
+2024.02.13 17:52:09 ERROR > No server running at 127.0.0.1:8212, let's fire one...
+2024.02.13 17:52:09 ERROR > Resolving ch.epfl.scala:bloop-frontend_2.12:1.5.15...
+2024.02.13 17:52:09 ERROR error: The launcher failed to establish a bsp connection, aborting...
+2024.02.13 17:52:09 ERROR Failed to connect with build server, no functionality will work.
+java.lang.RuntimeException: The server did not start, got FailedToOpenBspConnection
+	at bloop.launcher.LauncherMain.failPromise$1(Launcher.scala:92)
+	at bloop.launcher.LauncherMain.runLauncher(Launcher.scala:119)
+	at scala.meta.internal.metals.BloopServers$$anon$2.run(BloopServers.scala:502)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2024.02.13 17:53:13 INFO  Shutting down server
+2024.02.13 17:53:13 INFO  shutting down Metals
+2024.02.13 17:53:13 INFO  Exiting server
+2024.02.13 22:05:29 INFO  Started: Metals version 1.2.1 in folders '/home/ysyx/Project/chisel_gen' for client Visual Studio Code 1.81.1.
+22:05:30.389 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- Flyway Community Edition 9.22.3 by Redgate
+22:05:30.392 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- See release notes here: https://rd.gt/416ObMi
+22:05:30.392 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- 
+22:05:30.396 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classpath resources at 'classpath:db/callback' ...
+22:05:30.396 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Determining location urls for classpath:db/callback using ClassLoader sun.misc.Launcher$AppClassLoader@5c647e05 ...
+22:05:30.396 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Unable to resolve location classpath:db/callback.
+22:05:30.396 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classpath resources at 'classpath:db/migration' ...
+22:05:30.396 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Determining location urls for classpath:db/migration using ClassLoader sun.misc.Launcher$AppClassLoader@5c647e05 ...
+22:05:30.396 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning URL: jar:file:/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalameta/metals_2.13/1.2.1/metals_2.13-1.2.1.jar!/db/migration
+22:05:30.398 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/
+22:05:30.398 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V1__Create_tables.sql
+22:05:30.398 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V2__Server_discovery.sql
+22:05:30.398 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V3__Jar_symbols.sql
+22:05:30.398 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V4__Fingerprints.sql
+22:05:30.398 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classes at classpath:db/migration
+22:05:30.400 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+22:05:30.400 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V4__Fingerprints.sql
+22:05:30.401 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V1__Create_tables.sql
+22:05:30.401 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V2__Server_discovery.sql
+22:05:30.401 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V3__Jar_symbols.sql
+22:05:30.469 [pool-1-thread-1] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:file:/home/ysyx/Project/chisel_gen/.metals/metals (H2 2.2)
+22:05:30.469 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- Driver: H2 JDBC Driver 2.2.224 (2023-09-17)
+22:05:30.469 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- DDL Transactions Supported: false
+22:05:30.470 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.schemahistory.SchemaHistoryFactory -- Schemas: 
+22:05:30.470 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.schemahistory.SchemaHistoryFactory -- Default schema: null
+22:05:30.473 [pool-1-thread-1] WARN org.flywaydb.core.internal.database.base.Database -- Flyway upgrade recommended: H2 2.2.224 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.2.220.
+22:05:30.474 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.callback.SqlScriptCallbackFactory -- Scanning for SQL callbacks ...
+22:05:30.474 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+22:05:30.480 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.command.DbValidate -- Validating migrations ...
+22:05:30.482 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+22:05:30.488 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+22:05:30.488 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V4__Fingerprints.sql (filename: V4__Fingerprints.sql)
+22:05:30.488 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V1__Create_tables.sql (filename: V1__Create_tables.sql)
+22:05:30.488 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V2__Server_discovery.sql (filename: V2__Server_discovery.sql)
+22:05:30.488 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V3__Jar_symbols.sql (filename: V3__Jar_symbols.sql)
+22:05:30.489 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+22:05:30.489 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V4__Fingerprints.sql (filename: V4__Fingerprints.sql)
+22:05:30.489 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V1__Create_tables.sql (filename: V1__Create_tables.sql)
+22:05:30.489 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V2__Server_discovery.sql (filename: V2__Server_discovery.sql)
+22:05:30.489 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V3__Jar_symbols.sql (filename: V3__Jar_symbols.sql)
+22:05:30.497 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 4 migrations (execution time 00:00.017s)
+22:05:30.498 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.command.DbSchemas -- Skipping creation of existing schema: "PUBLIC"
+22:05:30.502 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": 4
+22:05:30.504 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbMigrate -- Schema "PUBLIC" is up to date. No migration necessary.
+22:05:30.515 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- Memory usage: 87 of 163M
+2024.02.13 22:05:30 INFO  Attempting to connect to the build server...
+2024.02.13 22:05:30 INFO  skipping build import with status 'Installed'
+2024.02.13 22:05:30 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.13 22:05:37 INFO  no build target found for /home/ysyx/Project/chisel_gen/src/main/scala/csr.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2024.02.13 22:05:41 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/csr.scala
+Feb 13, 2024 10:05:42 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 13
+2024.02.13 22:06:25 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+2024.02.13 22:06:29 INFO  Attempting to connect to the build server...
+2024.02.13 22:06:29 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.13 22:06:29 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/project/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+2024.02.13 22:06:31 INFO  time: Connected to build server in 1m
+2024.02.13 22:06:31 INFO  Connected to Build server: Bloop v1.5.15
+2024.02.13 22:06:32 INFO  time: Imported build in 0.66s
+2024.02.13 22:07:29 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.13 22:07:29 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+2024.02.13 22:07:29 INFO  Connected to Build server: Bloop v1.5.15
+2024.02.13 22:19:02 INFO  time: indexed workspace in 12m29s
+2024.02.13 22:21:47 INFO  Shutting down server
+2024.02.13 22:21:47 INFO  shutting down Metals
+2024.02.13 22:21:47 INFO  Shut down connection with build server.
+2024.02.13 22:21:47 INFO  Shut down connection with build server.
+2024.02.13 22:21:47 INFO  Exiting server
+2024.02.14 12:06:48 INFO  Started: Metals version 1.2.1 in folders '/home/ysyx/Project/chisel_gen' for client Visual Studio Code 1.81.1.
+12:06:49.670 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- Flyway Community Edition 9.22.3 by Redgate
+12:06:49.677 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- See release notes here: https://rd.gt/416ObMi
+12:06:49.677 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- 
+12:06:49.684 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classpath resources at 'classpath:db/callback' ...
+12:06:49.684 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Determining location urls for classpath:db/callback using ClassLoader sun.misc.Launcher$AppClassLoader@5c647e05 ...
+12:06:49.684 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Unable to resolve location classpath:db/callback.
+12:06:49.684 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classpath resources at 'classpath:db/migration' ...
+12:06:49.684 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Determining location urls for classpath:db/migration using ClassLoader sun.misc.Launcher$AppClassLoader@5c647e05 ...
+12:06:49.684 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning URL: jar:file:/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalameta/metals_2.13/1.2.1/metals_2.13-1.2.1.jar!/db/migration
+12:06:49.687 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/
+12:06:49.687 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V1__Create_tables.sql
+12:06:49.687 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V2__Server_discovery.sql
+12:06:49.687 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V3__Jar_symbols.sql
+12:06:49.687 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V4__Fingerprints.sql
+12:06:49.687 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classes at classpath:db/migration
+12:06:49.713 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+12:06:49.713 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V4__Fingerprints.sql
+12:06:49.714 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V1__Create_tables.sql
+12:06:49.714 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V2__Server_discovery.sql
+12:06:49.714 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V3__Jar_symbols.sql
+12:06:49.845 [pool-1-thread-1] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:file:/home/ysyx/Project/chisel_gen/.metals/metals (H2 2.2)
+12:06:49.845 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- Driver: H2 JDBC Driver 2.2.224 (2023-09-17)
+12:06:49.845 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- DDL Transactions Supported: false
+12:06:49.846 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.schemahistory.SchemaHistoryFactory -- Schemas: 
+12:06:49.846 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.schemahistory.SchemaHistoryFactory -- Default schema: null
+12:06:49.850 [pool-1-thread-1] WARN org.flywaydb.core.internal.database.base.Database -- Flyway upgrade recommended: H2 2.2.224 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.2.220.
+12:06:49.851 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.callback.SqlScriptCallbackFactory -- Scanning for SQL callbacks ...
+12:06:49.851 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+12:06:49.860 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.command.DbValidate -- Validating migrations ...
+12:06:49.864 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+12:06:49.897 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+12:06:49.897 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V4__Fingerprints.sql (filename: V4__Fingerprints.sql)
+12:06:49.897 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V1__Create_tables.sql (filename: V1__Create_tables.sql)
+12:06:49.897 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V2__Server_discovery.sql (filename: V2__Server_discovery.sql)
+12:06:49.897 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V3__Jar_symbols.sql (filename: V3__Jar_symbols.sql)
+12:06:49.899 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+12:06:49.900 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V4__Fingerprints.sql (filename: V4__Fingerprints.sql)
+12:06:49.900 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V1__Create_tables.sql (filename: V1__Create_tables.sql)
+12:06:49.900 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V2__Server_discovery.sql (filename: V2__Server_discovery.sql)
+12:06:49.900 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V3__Jar_symbols.sql (filename: V3__Jar_symbols.sql)
+12:06:49.909 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 4 migrations (execution time 00:00.047s)
+12:06:49.911 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.command.DbSchemas -- Skipping creation of existing schema: "PUBLIC"
+12:06:49.915 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": 4
+12:06:49.921 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbMigrate -- Schema "PUBLIC" is up to date. No migration necessary.
+12:06:49.932 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- Memory usage: 51 of 143M
+2024.02.14 12:06:52 INFO  Attempting to connect to the build server...
+2024.02.14 12:06:52 INFO  skipping build import with status 'Installed'
+2024.02.14 12:06:52 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.14 12:07:03 INFO  no build target found for /home/ysyx/Project/chisel_gen/src/main/scala/csr.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2024.02.14 12:07:03 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+Feb 14, 2024 12:07:04 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 13
+2024.02.14 12:07:05 INFO  Attempting to connect to the build server...
+2024.02.14 12:07:05 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.14 12:07:05 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/project/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+2024.02.14 12:07:05 INFO  time: Connected to build server in 13s
+2024.02.14 12:07:05 INFO  Connected to Build server: Bloop v1.5.15
+2024.02.14 12:07:05 INFO  time: Imported build in 0.53s
+2024.02.14 12:07:09 INFO  time: indexed workspace in 3.59s
+2024.02.14 12:07:11 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 12:07:11 INFO  compiling chisel_gen (19 scala sources)
+2024.02.14 12:07:43 INFO  time: compiled chisel_gen in 31s
+2024.02.14 12:07:43 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 12:07:43 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+Feb 14, 2024 8:06:34 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 121
+2024.02.14 20:23:49 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 20:23:49 INFO  compiling chisel_gen (1 scala source)
+Feb 14, 2024 8:23:54 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2024.02.14 20:23:57 INFO  time: compiled chisel_gen in 8.02s
+2024.02.14 20:23:57 INFO  compiling chisel_gen (1 scala source)
+2024.02.14 20:24:02 INFO  time: compiled chisel_gen in 4.65s
+2024.02.14 20:52:41 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 20:52:43 INFO  compiling chisel_gen (1 scala source)
+2024.02.14 20:52:47 INFO  time: compiled chisel_gen in 4.17s
+2024.02.14 20:52:47 INFO  compiling chisel_gen (1 scala source)
+2024.02.14 20:52:52 INFO  time: compiled chisel_gen in 4.46s
+2024.02.14 20:53:12 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 20:56:32 ERROR Failed to tokenize input for semantic tokens for /home/ysyx/Project/chisel_gen/src/main/scala/memory.scala
+scala.meta.tokenizers.TokenizeException: <input>:114: error: illegal character '\u3010'
+  io.load_store_unsigned := io.mem_funct3【
+                                         ^
+	at scala.meta.internal.tokenizers.Reporter.syntaxError(Reporter.scala:23)
+	at scala.meta.internal.tokenizers.Reporter.syntaxError$(Reporter.scala:23)
+	at scala.meta.internal.tokenizers.Reporter$$anon$1.syntaxError(Reporter.scala:33)
+	at scala.meta.internal.tokenizers.Reporter.syntaxError(Reporter.scala:25)
+	at scala.meta.internal.tokenizers.Reporter.syntaxError$(Reporter.scala:25)
+	at scala.meta.internal.tokenizers.Reporter$$anon$1.syntaxError(Reporter.scala:33)
+	at scala.meta.internal.tokenizers.LegacyScanner.fetchOther$1(LegacyScanner.scala:469)
+	at scala.meta.internal.tokenizers.LegacyScanner.fetchToken(LegacyScanner.scala:474)
+	at scala.meta.internal.tokenizers.LegacyScanner.nextToken(LegacyScanner.scala:211)
+	at scala.meta.internal.tokenizers.LegacyScanner.foreach(LegacyScanner.scala:1011)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.uncachedTokenize(ScalametaTokenizer.scala:24)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.$anonfun$tokenize$1(ScalametaTokenizer.scala:17)
+	at scala.collection.concurrent.TrieMap.getOrElseUpdate(TrieMap.scala:962)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.tokenize(ScalametaTokenizer.scala:17)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer$$anon$2.apply(ScalametaTokenizer.scala:332)
+	at scala.meta.tokenizers.Api$XtensionTokenizeDialectInput.tokenize(Api.scala:25)
+	at scala.meta.tokenizers.Api$XtensionTokenizeInputLike.tokenize(Api.scala:14)
+	at scala.meta.internal.metals.SemanticTokensProvider$.getTokens(SemanticTokensProvider.scala:30)
+	at scala.meta.internal.metals.SemanticTokensProvider$.provide(SemanticTokensProvider.scala:89)
+	at scala.meta.internal.metals.Compilers.$anonfun$semanticTokens$3(Compilers.scala:541)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:467)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2024.02.14 20:56:34 ERROR Failed to tokenize input for semantic tokens for /home/ysyx/Project/chisel_gen/src/main/scala/memory.scala
+scala.meta.tokenizers.TokenizeException: <input>:114: error: illegal character '\uff08'
+  io.load_store_unsigned := io.mem_funct3（
+                                         ^
+	at scala.meta.internal.tokenizers.Reporter.syntaxError(Reporter.scala:23)
+	at scala.meta.internal.tokenizers.Reporter.syntaxError$(Reporter.scala:23)
+	at scala.meta.internal.tokenizers.Reporter$$anon$1.syntaxError(Reporter.scala:33)
+	at scala.meta.internal.tokenizers.Reporter.syntaxError(Reporter.scala:25)
+	at scala.meta.internal.tokenizers.Reporter.syntaxError$(Reporter.scala:25)
+	at scala.meta.internal.tokenizers.Reporter$$anon$1.syntaxError(Reporter.scala:33)
+	at scala.meta.internal.tokenizers.LegacyScanner.fetchOther$1(LegacyScanner.scala:469)
+	at scala.meta.internal.tokenizers.LegacyScanner.fetchToken(LegacyScanner.scala:474)
+	at scala.meta.internal.tokenizers.LegacyScanner.nextToken(LegacyScanner.scala:211)
+	at scala.meta.internal.tokenizers.LegacyScanner.foreach(LegacyScanner.scala:1011)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.uncachedTokenize(ScalametaTokenizer.scala:24)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.$anonfun$tokenize$1(ScalametaTokenizer.scala:17)
+	at scala.collection.concurrent.TrieMap.getOrElseUpdate(TrieMap.scala:962)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.tokenize(ScalametaTokenizer.scala:17)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer$$anon$2.apply(ScalametaTokenizer.scala:332)
+	at scala.meta.tokenizers.Api$XtensionTokenizeDialectInput.tokenize(Api.scala:25)
+	at scala.meta.tokenizers.Api$XtensionTokenizeInputLike.tokenize(Api.scala:14)
+	at scala.meta.internal.metals.SemanticTokensProvider$.getTokens(SemanticTokensProvider.scala:30)
+	at scala.meta.internal.metals.SemanticTokensProvider$.provide(SemanticTokensProvider.scala:89)
+	at scala.meta.internal.metals.Compilers.$anonfun$semanticTokens$3(Compilers.scala:541)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:467)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2024.02.14 20:56:35 ERROR Failed to tokenize input for semantic tokens for /home/ysyx/Project/chisel_gen/src/main/scala/memory.scala
+scala.meta.tokenizers.TokenizeException: <input>:114: error: illegal character '\uff08'
+  io.load_store_unsigned := io.mem_funct3（）
+                                         ^
+	at scala.meta.internal.tokenizers.Reporter.syntaxError(Reporter.scala:23)
+	at scala.meta.internal.tokenizers.Reporter.syntaxError$(Reporter.scala:23)
+	at scala.meta.internal.tokenizers.Reporter$$anon$1.syntaxError(Reporter.scala:33)
+	at scala.meta.internal.tokenizers.Reporter.syntaxError(Reporter.scala:25)
+	at scala.meta.internal.tokenizers.Reporter.syntaxError$(Reporter.scala:25)
+	at scala.meta.internal.tokenizers.Reporter$$anon$1.syntaxError(Reporter.scala:33)
+	at scala.meta.internal.tokenizers.LegacyScanner.fetchOther$1(LegacyScanner.scala:469)
+	at scala.meta.internal.tokenizers.LegacyScanner.fetchToken(LegacyScanner.scala:474)
+	at scala.meta.internal.tokenizers.LegacyScanner.nextToken(LegacyScanner.scala:211)
+	at scala.meta.internal.tokenizers.LegacyScanner.foreach(LegacyScanner.scala:1011)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.uncachedTokenize(ScalametaTokenizer.scala:24)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.$anonfun$tokenize$1(ScalametaTokenizer.scala:17)
+	at scala.collection.concurrent.TrieMap.getOrElseUpdate(TrieMap.scala:962)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.tokenize(ScalametaTokenizer.scala:17)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer$$anon$2.apply(ScalametaTokenizer.scala:332)
+	at scala.meta.tokenizers.Api$XtensionTokenizeDialectInput.tokenize(Api.scala:25)
+	at scala.meta.tokenizers.Api$XtensionTokenizeInputLike.tokenize(Api.scala:14)
+	at scala.meta.internal.metals.SemanticTokensProvider$.getTokens(SemanticTokensProvider.scala:30)
+	at scala.meta.internal.metals.SemanticTokensProvider$.provide(SemanticTokensProvider.scala:89)
+	at scala.meta.internal.metals.Compilers.$anonfun$semanticTokens$3(Compilers.scala:541)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:467)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2024.02.14 20:57:04 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 20:59:43 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 20:59:43 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 20:59:52 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 21:05:33 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 21:05:33 INFO  compiling chisel_gen (1 scala source)
+2024.02.14 21:05:42 INFO  time: compiled chisel_gen in 8.29s
+2024.02.14 21:05:42 INFO  compiling chisel_gen (1 scala source)
+2024.02.14 21:05:43 INFO  time: compiled chisel_gen in 1.15s
+2024.02.14 21:06:39 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 21:06:39 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 21:07:45 INFO  Shutting down server
+2024.02.14 21:07:45 INFO  shutting down Metals
+2024.02.14 21:07:45 INFO  Shut down connection with build server.
+2024.02.14 21:07:45 INFO  Shut down connection with build server.
+2024.02.14 21:07:45 INFO  Exiting server
+2024.02.14 21:23:42 INFO  Started: Metals version 1.2.1 in folders '/home/ysyx/Project/chisel_gen' for client Visual Studio Code 1.81.1.
+21:23:42.671 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- Flyway Community Edition 9.22.3 by Redgate
+21:23:42.674 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- See release notes here: https://rd.gt/416ObMi
+21:23:42.674 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- 
+21:23:42.676 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classpath resources at 'classpath:db/callback' ...
+21:23:42.677 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Determining location urls for classpath:db/callback using ClassLoader sun.misc.Launcher$AppClassLoader@5c647e05 ...
+21:23:42.677 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Unable to resolve location classpath:db/callback.
+21:23:42.677 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classpath resources at 'classpath:db/migration' ...
+21:23:42.677 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Determining location urls for classpath:db/migration using ClassLoader sun.misc.Launcher$AppClassLoader@5c647e05 ...
+21:23:42.677 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning URL: jar:file:/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalameta/metals_2.13/1.2.1/metals_2.13-1.2.1.jar!/db/migration
+21:23:42.682 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/
+21:23:42.682 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V1__Create_tables.sql
+21:23:42.682 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V2__Server_discovery.sql
+21:23:42.682 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V3__Jar_symbols.sql
+21:23:42.682 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V4__Fingerprints.sql
+21:23:42.682 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classes at classpath:db/migration
+21:23:42.685 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+21:23:42.685 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V4__Fingerprints.sql
+21:23:42.686 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V1__Create_tables.sql
+21:23:42.686 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V2__Server_discovery.sql
+21:23:42.686 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V3__Jar_symbols.sql
+21:23:42.759 [pool-1-thread-1] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:file:/home/ysyx/Project/chisel_gen/.metals/metals (H2 2.2)
+21:23:42.759 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- Driver: H2 JDBC Driver 2.2.224 (2023-09-17)
+21:23:42.759 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- DDL Transactions Supported: false
+21:23:42.760 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.schemahistory.SchemaHistoryFactory -- Schemas: 
+21:23:42.760 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.schemahistory.SchemaHistoryFactory -- Default schema: null
+21:23:42.763 [pool-1-thread-1] WARN org.flywaydb.core.internal.database.base.Database -- Flyway upgrade recommended: H2 2.2.224 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.2.220.
+21:23:42.764 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.callback.SqlScriptCallbackFactory -- Scanning for SQL callbacks ...
+21:23:42.764 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+21:23:42.770 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.command.DbValidate -- Validating migrations ...
+21:23:42.773 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+21:23:42.777 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+21:23:42.777 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V4__Fingerprints.sql (filename: V4__Fingerprints.sql)
+21:23:42.777 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V1__Create_tables.sql (filename: V1__Create_tables.sql)
+21:23:42.777 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V2__Server_discovery.sql (filename: V2__Server_discovery.sql)
+21:23:42.778 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V3__Jar_symbols.sql (filename: V3__Jar_symbols.sql)
+21:23:42.778 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+21:23:42.778 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V4__Fingerprints.sql (filename: V4__Fingerprints.sql)
+21:23:42.778 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V1__Create_tables.sql (filename: V1__Create_tables.sql)
+21:23:42.778 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V2__Server_discovery.sql (filename: V2__Server_discovery.sql)
+21:23:42.778 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V3__Jar_symbols.sql (filename: V3__Jar_symbols.sql)
+21:23:42.788 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 4 migrations (execution time 00:00.017s)
+21:23:42.790 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.command.DbSchemas -- Skipping creation of existing schema: "PUBLIC"
+21:23:42.793 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": 4
+21:23:42.797 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbMigrate -- Schema "PUBLIC" is up to date. No migration necessary.
+21:23:42.805 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- Memory usage: 88 of 171M
+2024.02.14 21:23:43 INFO  skipping build import with status 'Installed'
+2024.02.14 21:23:43 INFO  Attempting to connect to the build server...
+2024.02.14 21:23:43 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.14 21:23:43 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+2024.02.14 21:23:43 INFO  Attempting to connect to the build server...
+2024.02.14 21:23:43 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.14 21:23:43 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/project/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+2024.02.14 21:23:43 INFO  time: Connected to build server in 0.77s
+2024.02.14 21:23:43 INFO  Connected to Build server: Bloop v1.5.15
+2024.02.14 21:23:43 INFO  time: Imported build in 0.11s
+2024.02.14 21:23:45 INFO  no build target found for /home/ysyx/Project/chisel_gen/src/main/scala/csr.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2024.02.14 21:23:46 INFO  time: indexed workspace in 1.45s
+2024.02.14 21:23:46 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+Feb 14, 2024 9:23:48 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2024.02.14 21:23:48 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 21:24:25 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 21:24:25 INFO  compiling chisel_gen (1 scala source)
+2024.02.14 21:24:28 INFO  time: compiled chisel_gen in 3.47s
+2024.02.14 21:24:28 INFO  compiling chisel_gen (1 scala source)
+2024.02.14 21:24:35 INFO  time: compiled chisel_gen in 6.66s
+Feb 14, 2024 9:27:32 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 281
+2024.02.14 21:30:43 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 21:30:43 INFO  compiling chisel_gen (1 scala source)
+2024.02.14 21:30:47 INFO  time: compiled chisel_gen in 3.73s
+2024.02.14 21:31:31 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 21:31:31 INFO  compiling chisel_gen (1 scala source)
+2024.02.14 21:31:33 INFO  time: compiled chisel_gen in 1.86s
+2024.02.14 21:33:47 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 21:33:47 INFO  compiling chisel_gen (1 scala source)
+2024.02.14 21:33:48 INFO  time: compiled chisel_gen in 1.45s
+Feb 14, 2024 10:04:43 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2024.02.14 22:05:34 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 22:05:34 INFO  compiling chisel_gen (1 scala source)
+2024.02.14 22:05:36 INFO  time: compiled chisel_gen in 1.85s
+2024.02.14 22:52:23 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 22:52:30 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.14 22:54:23 INFO  Shutting down server
+2024.02.14 22:54:23 INFO  shutting down Metals
+2024.02.14 22:54:23 INFO  Shut down connection with build server.
+2024.02.14 22:54:23 INFO  Shut down connection with build server.
+2024.02.14 22:54:23 INFO  Exiting server
+2024.02.19 21:46:15 INFO  Started: Metals version 1.2.2 in folders '/home/ysyx/Project/chisel_gen' for client Visual Studio Code 1.81.1.
+21:46:15.368 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- Flyway Community Edition 9.22.3 by Redgate
+21:46:15.371 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- See release notes here: https://rd.gt/416ObMi
+21:46:15.371 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- 
+21:46:15.374 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classpath resources at 'classpath:db/callback' ...
+21:46:15.374 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Determining location urls for classpath:db/callback using ClassLoader sun.misc.Launcher$AppClassLoader@5c647e05 ...
+21:46:15.374 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Unable to resolve location classpath:db/callback.
+21:46:15.375 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classpath resources at 'classpath:db/migration' ...
+21:46:15.375 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Determining location urls for classpath:db/migration using ClassLoader sun.misc.Launcher$AppClassLoader@5c647e05 ...
+21:46:15.375 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning URL: jar:file:/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalameta/metals_2.13/1.2.2/metals_2.13-1.2.2.jar!/db/migration
+21:46:15.377 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/
+21:46:15.378 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V1__Create_tables.sql
+21:46:15.378 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V2__Server_discovery.sql
+21:46:15.378 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V3__Jar_symbols.sql
+21:46:15.378 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V4__Fingerprints.sql
+21:46:15.378 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classes at classpath:db/migration
+21:46:15.380 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+21:46:15.380 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V2__Server_discovery.sql
+21:46:15.381 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V3__Jar_symbols.sql
+21:46:15.381 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V1__Create_tables.sql
+21:46:15.381 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V4__Fingerprints.sql
+21:46:15.445 [pool-1-thread-1] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:file:/home/ysyx/Project/chisel_gen/.metals/metals (H2 2.2)
+21:46:15.445 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- Driver: H2 JDBC Driver 2.2.224 (2023-09-17)
+21:46:15.445 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- DDL Transactions Supported: false
+21:46:15.446 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.schemahistory.SchemaHistoryFactory -- Schemas: 
+21:46:15.446 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.schemahistory.SchemaHistoryFactory -- Default schema: null
+21:46:15.450 [pool-1-thread-1] WARN org.flywaydb.core.internal.database.base.Database -- Flyway upgrade recommended: H2 2.2.224 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.2.220.
+21:46:15.450 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.callback.SqlScriptCallbackFactory -- Scanning for SQL callbacks ...
+21:46:15.450 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+21:46:15.456 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.command.DbValidate -- Validating migrations ...
+21:46:15.459 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+21:46:15.464 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V2__Server_discovery.sql (filename: V2__Server_discovery.sql)
+21:46:15.464 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V3__Jar_symbols.sql (filename: V3__Jar_symbols.sql)
+21:46:15.464 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V1__Create_tables.sql (filename: V1__Create_tables.sql)
+21:46:15.464 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V4__Fingerprints.sql (filename: V4__Fingerprints.sql)
+21:46:15.464 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+21:46:15.464 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V2__Server_discovery.sql (filename: V2__Server_discovery.sql)
+21:46:15.465 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V3__Jar_symbols.sql (filename: V3__Jar_symbols.sql)
+21:46:15.465 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V1__Create_tables.sql (filename: V1__Create_tables.sql)
+21:46:15.465 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V4__Fingerprints.sql (filename: V4__Fingerprints.sql)
+21:46:15.465 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+21:46:15.472 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 4 migrations (execution time 00:00.015s)
+21:46:15.474 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.command.DbSchemas -- Skipping creation of existing schema: "PUBLIC"
+21:46:15.477 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": 4
+21:46:15.480 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbMigrate -- Schema "PUBLIC" is up to date. No migration necessary.
+21:46:15.755 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- Memory usage: 133 of 199M
+2024.02.19 21:46:16 INFO  Attempting to connect to the build server...
+2024.02.19 21:46:16 INFO  skipping build import with status 'Installed'
+2024.02.19 21:46:16 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.19 21:46:20 INFO  no build target found for /home/ysyx/Project/chisel_gen/src/main/scala/core.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2024.02.19 21:46:50 WARN  no build target for: /home/ysyx/Project/chisel_gen/src/main/scala/core.scala
+2024.02.19 21:46:59 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+2024.02.19 21:46:59 INFO  Attempting to connect to the build server...
+2024.02.19 21:46:59 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.19 21:46:59 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/project/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+2024.02.19 21:46:59 INFO  time: Connected to build server in 43s
+2024.02.19 21:46:59 INFO  Connected to Build server: Bloop v1.5.15
+2024.02.19 21:47:00 INFO  time: Imported build in 0.44s
+2024.02.19 21:48:28 INFO  Failed to resolve mtags for 2.12.18
+2024.02.19 21:48:28 ERROR Failed to fetch mtags for 2.12.18
+Error downloading org.scalameta:mtags_2.12.18:1.2.2
+  not found: /home/ysyx/.ivy2/local/org.scalameta/mtags_2.12.18/1.2.2/ivys/ivy.xml
+  download error: Caught java.net.ConnectException (Connection refused (Connection refused)) while downloading https://repo1.maven.org/maven2/org/scalameta/mtags_2.12.18/1.2.2/mtags_2.12.18-1.2.2.pom
+  not found: /home/ysyx/.ivy2/local/org.scalameta/mtags_2.12.18/1.2.2/ivys/ivy.xml
+  download error: Caught java.net.ConnectException (Connection refused (Connection refused)) while downloading https://oss.sonatype.org/content/repositories/public/org/scalameta/mtags_2.12.18/1.2.2/mtags_2.12.18-1.2.2.pom
+  not found: https://oss.sonatype.org/content/repositories/snapshots/org/scalameta/mtags_2.12.18/1.2.2/mtags_2.12.18-1.2.2.pom
+2024.02.19 21:48:32 INFO  Failed to resolve mtags for 2.12.13
+2024.02.19 21:48:32 ERROR Failed to fetch mtags for 2.12.13
+Error downloading org.scalameta:mtags_2.12.13:1.2.2
+  not found: /home/ysyx/.ivy2/local/org.scalameta/mtags_2.12.13/1.2.2/ivys/ivy.xml
+  download error: Caught java.net.ConnectException (Connection refused (Connection refused)) while downloading https://repo1.maven.org/maven2/org/scalameta/mtags_2.12.13/1.2.2/mtags_2.12.13-1.2.2.pom
+  not found: /home/ysyx/.ivy2/local/org.scalameta/mtags_2.12.13/1.2.2/ivys/ivy.xml
+  download error: Caught java.net.ConnectException (Connection refused (Connection refused)) while downloading https://oss.sonatype.org/content/repositories/public/org/scalameta/mtags_2.12.13/1.2.2/mtags_2.12.13-1.2.2.pom
+  not found: https://oss.sonatype.org/content/repositories/snapshots/org/scalameta/mtags_2.12.13/1.2.2/mtags_2.12.13-1.2.2.pom
+2024.02.19 21:48:32 WARN  unsupported Scala 2.12.13
+2024.02.19 21:50:00 INFO  Failed to resolve mtags for 2.12.13
+2024.02.19 21:50:00 ERROR Failed to fetch mtags for 2.12.13
+Error downloading org.scalameta:mtags_2.12.13:1.2.2
+  not found: /home/ysyx/.ivy2/local/org.scalameta/mtags_2.12.13/1.2.2/ivys/ivy.xml
+  download error: Caught java.net.ConnectException (Connection refused (Connection refused)) while downloading https://repo1.maven.org/maven2/org/scalameta/mtags_2.12.13/1.2.2/mtags_2.12.13-1.2.2.pom
+  not found: /home/ysyx/.ivy2/local/org.scalameta/mtags_2.12.13/1.2.2/ivys/ivy.xml
+  download error: Caught java.net.ConnectException (Connection refused (Connection refused)) while downloading https://oss.sonatype.org/content/repositories/public/org/scalameta/mtags_2.12.13/1.2.2/mtags_2.12.13-1.2.2.pom
+  not found: https://oss.sonatype.org/content/repositories/snapshots/org/scalameta/mtags_2.12.13/1.2.2/mtags_2.12.13-1.2.2.pom
+2024.02.19 21:50:03 INFO  Started: Metals version 1.2.2 in folders '/home/ysyx/Project/chisel_gen' for client Visual Studio Code 1.81.1.
+21:50:03.997 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- Flyway Community Edition 9.22.3 by Redgate
+21:50:03.999 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- See release notes here: https://rd.gt/416ObMi
+21:50:04.000 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- 
+21:50:04.002 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classpath resources at 'classpath:db/callback' ...
+21:50:04.002 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Determining location urls for classpath:db/callback using ClassLoader sun.misc.Launcher$AppClassLoader@5c647e05 ...
+21:50:04.002 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Unable to resolve location classpath:db/callback.
+21:50:04.002 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classpath resources at 'classpath:db/migration' ...
+21:50:04.002 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Determining location urls for classpath:db/migration using ClassLoader sun.misc.Launcher$AppClassLoader@5c647e05 ...
+21:50:04.002 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning URL: jar:file:/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalameta/metals_2.13/1.2.2/metals_2.13-1.2.2.jar!/db/migration
+21:50:04.006 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/
+21:50:04.006 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V1__Create_tables.sql
+21:50:04.006 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V2__Server_discovery.sql
+21:50:04.006 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V3__Jar_symbols.sql
+21:50:04.006 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V4__Fingerprints.sql
+21:50:04.006 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classes at classpath:db/migration
+21:50:04.008 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+21:50:04.008 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V2__Server_discovery.sql
+21:50:04.009 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V3__Jar_symbols.sql
+21:50:04.009 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V1__Create_tables.sql
+21:50:04.009 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V4__Fingerprints.sql
+21:50:04.033 [pool-1-thread-1] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:file:/home/ysyx/Project/chisel_gen/.metals/metals (H2 2.2)
+21:50:04.034 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- Driver: H2 JDBC Driver 2.2.224 (2023-09-17)
+21:50:04.034 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- DDL Transactions Supported: false
+21:50:04.034 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.schemahistory.SchemaHistoryFactory -- Schemas: 
+21:50:04.034 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.schemahistory.SchemaHistoryFactory -- Default schema: null
+21:50:04.040 [pool-1-thread-1] WARN org.flywaydb.core.internal.database.base.Database -- Flyway upgrade recommended: H2 2.2.224 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.2.220.
+21:50:04.041 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.callback.SqlScriptCallbackFactory -- Scanning for SQL callbacks ...
+21:50:04.041 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+21:50:04.045 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.command.DbValidate -- Validating migrations ...
+21:50:04.048 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+21:50:04.053 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V2__Server_discovery.sql (filename: V2__Server_discovery.sql)
+21:50:04.053 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V3__Jar_symbols.sql (filename: V3__Jar_symbols.sql)
+21:50:04.053 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V1__Create_tables.sql (filename: V1__Create_tables.sql)
+21:50:04.053 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V4__Fingerprints.sql (filename: V4__Fingerprints.sql)
+21:50:04.053 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+21:50:04.054 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V2__Server_discovery.sql (filename: V2__Server_discovery.sql)
+21:50:04.054 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V3__Jar_symbols.sql (filename: V3__Jar_symbols.sql)
+21:50:04.054 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V1__Create_tables.sql (filename: V1__Create_tables.sql)
+21:50:04.055 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V4__Fingerprints.sql (filename: V4__Fingerprints.sql)
+21:50:04.055 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+21:50:04.067 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 4 migrations (execution time 00:00.020s)
+21:50:04.069 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.command.DbSchemas -- Skipping creation of existing schema: "PUBLIC"
+21:50:04.083 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": 4
+21:50:04.087 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbMigrate -- Schema "PUBLIC" is up to date. No migration necessary.
+21:50:04.096 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- Memory usage: 69 of 178M
+2024.02.19 21:50:04 INFO  Attempting to connect to the build server...
+2024.02.19 21:50:04 INFO  skipping build import with status 'Started'
+2024.02.19 21:50:04 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.19 21:50:04 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+2024.02.19 21:50:04 INFO  Attempting to connect to the build server...
+2024.02.19 21:50:04 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.19 21:50:04 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/project/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+2024.02.19 21:50:04 INFO  time: Connected to build server in 0.34s
+2024.02.19 21:50:04 INFO  Connected to Build server: Bloop v1.5.15
+2024.02.19 21:50:06 INFO  no build target found for /home/ysyx/Project/chisel_gen/src/main/scala/core.scala. Using presentation compiler with project's scala-library version: 3.3.1
+Feb 19, 2024 9:51:36 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 129
+Feb 19, 2024 9:51:36 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 130
+Feb 19, 2024 9:51:36 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 136
+Feb 19, 2024 9:51:36 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2024.02.19 21:51:36 INFO  Shutting down server
+2024.02.19 21:51:36 INFO  shutting down Metals
+2024.02.19 21:51:36 INFO  Shut down connection with build server.
+21:51:36.530 [pool-1-thread-2] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classpath resources at 'classpath:db/callback' ...
+2024.02.19 21:51:36 INFO  Shut down connection with build server.
+21:51:36.531 [pool-1-thread-2] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Determining location urls for classpath:db/callback using ClassLoader sun.misc.Launcher$AppClassLoader@5c647e05 ...
+Feb 19, 2024 9:51:36 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint notify
+INFO: Failed to send notification message.
+org.eclipse.lsp4j.jsonrpc.JsonRpcException: java.nio.channels.ClosedChannelException
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageConsumer.consume(StreamMessageConsumer.java:72)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:41)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.notify(RemoteEndpoint.java:126)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.sendCancelNotification(RemoteEndpoint.java:180)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint$1.cancel(RemoteEndpoint.java:150)
+	at scala.meta.internal.metals.utils.FutureWithTimeout$$anon$1.$anonfun$cancel$1(FutureWithTimeout.scala:37)
+	at scala.runtime.java8.JFunction0$mcZ$sp.apply(JFunction0$mcZ$sp.scala:17)
+	at scala.util.Try$.apply(Try.scala:210)
+	at scala.meta.internal.metals.utils.FutureWithTimeout$$anon$1.cancel(FutureWithTimeout.scala:37)
+	at scala.meta.internal.metals.Cancelable$.$anonfun$cancelAll$1(Cancelable.scala:29)
+	at scala.collection.immutable.List.foreach(List.scala:333)
+	at scala.meta.internal.metals.Cancelable$.cancelAll(Cancelable.scala:28)
+	at scala.meta.internal.metals.MutableCancelable.cancel(MutableCancelable.scala:25)
+	at scala.meta.internal.metals.utils.RequestRegistry.cancel(RequestRegistry.scala:94)
+	at scala.meta.internal.metals.BuildServerConnection.cancel(BuildServerConnection.scala:396)
+	at scala.meta.internal.metals.BuildServerConnection.$anonfun$shutdown$1(BuildServerConnection.scala:171)
+	at scala.meta.internal.metals.BuildServerConnection.$anonfun$shutdown$1$adapted(BuildServerConnection.scala:163)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:467)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.nio.channels.ClosedChannelException
+	at sun.nio.ch.SinkChannelImpl.ensureOpen(SinkChannelImpl.java:154)
+	at sun.nio.ch.SinkChannelImpl.write(SinkChannelImpl.java:158)
+	at java.nio.channels.Channels.writeFullyImpl(Channels.java:78)
+	at java.nio.channels.Channels.writeFully(Channels.java:98)
+	at java.nio.channels.Channels.access$000(Channels.java:61)
+	at java.nio.channels.Channels$1.write(Channels.java:174)
+	at java.io.OutputStream.write(OutputStream.java:75)
+	at java.nio.channels.Channels$1.write(Channels.java:155)
+	at scala.meta.internal.metals.ClosableOutputStream.write(ClosableOutputStream.scala:26)
+	at java.io.FilterOutputStream.write(FilterOutputStream.java:125)
+	at java.io.FilterOutputStream.write(FilterOutputStream.java:97)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageConsumer.consume(StreamMessageConsumer.java:67)
+	... 20 more
+
+2024.02.19 21:51:36 INFO  Cancelling compilation on Bloop server
+2024.02.19 21:51:36 WARN  resetting database: /home/ysyx/Project/chisel_gen/.metals/metals.h2.db
+2024.02.19 21:51:40 INFO  time: indexed workspace in 1m34s
+2024.02.19 21:51:40 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.19 21:51:40 INFO  compiling chisel_gen (1 scala source)
+2024.02.19 21:51:45 INFO  time: compiled chisel_gen in 4.76s
+2024.02.19 21:51:45 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.20 00:14:11 INFO  Shutting down server
+2024.02.20 00:14:11 INFO  shutting down Metals
+2024.02.20 00:14:11 INFO  Shut down connection with build server.
+2024.02.20 00:14:11 INFO  Shut down connection with build server.
+2024.02.20 00:14:11 INFO  Exiting server
+2024.02.20 18:30:58 INFO  Started: Metals version 1.2.2 in folders '/home/ysyx/Project/chisel_gen' for client Visual Studio Code 1.81.1.
+18:30:59.020 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- Flyway Community Edition 9.22.3 by Redgate
+18:30:59.024 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- See release notes here: https://rd.gt/416ObMi
+18:30:59.024 [pool-1-thread-1] INFO org.flywaydb.core.internal.license.VersionPrinter -- 
+18:30:59.028 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classpath resources at 'classpath:db/callback' ...
+18:30:59.028 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Determining location urls for classpath:db/callback using ClassLoader sun.misc.Launcher$AppClassLoader@5c647e05 ...
+18:30:59.029 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Unable to resolve location classpath:db/callback.
+18:30:59.029 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classpath resources at 'classpath:db/migration' ...
+18:30:59.029 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Determining location urls for classpath:db/migration using ClassLoader sun.misc.Launcher$AppClassLoader@5c647e05 ...
+18:30:59.029 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning URL: jar:file:/home/ysyx/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalameta/metals_2.13/1.2.2/metals_2.13-1.2.2.jar!/db/migration
+18:30:59.046 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/
+18:30:59.046 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V1__Create_tables.sql
+18:30:59.047 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V2__Server_discovery.sql
+18:30:59.047 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V3__Jar_symbols.sql
+18:30:59.047 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Found resource: db/migration/V4__Fingerprints.sql
+18:30:59.047 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.classpath.ClassPathScanner -- Scanning for classes at classpath:db/migration
+18:30:59.050 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+18:30:59.050 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V2__Server_discovery.sql
+18:30:59.051 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V3__Jar_symbols.sql
+18:30:59.051 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V1__Create_tables.sql
+18:30:59.051 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.resource.ResourceNameValidator -- Validating V4__Fingerprints.sql
+18:30:59.118 [pool-1-thread-1] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:file:/home/ysyx/Project/chisel_gen/.metals/metals (H2 2.2)
+18:30:59.118 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- Driver: H2 JDBC Driver 2.2.224 (2023-09-17)
+18:30:59.118 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- DDL Transactions Supported: false
+18:30:59.119 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.schemahistory.SchemaHistoryFactory -- Schemas: 
+18:30:59.119 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.schemahistory.SchemaHistoryFactory -- Default schema: null
+18:30:59.123 [pool-1-thread-1] WARN org.flywaydb.core.internal.database.base.Database -- Flyway upgrade recommended: H2 2.2.224 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.2.220.
+18:30:59.124 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.callback.SqlScriptCallbackFactory -- Scanning for SQL callbacks ...
+18:30:59.125 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+18:30:59.129 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.command.DbValidate -- Validating migrations ...
+18:30:59.132 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+18:30:59.137 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V2__Server_discovery.sql (filename: V2__Server_discovery.sql)
+18:30:59.137 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V3__Jar_symbols.sql (filename: V3__Jar_symbols.sql)
+18:30:59.137 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V1__Create_tables.sql (filename: V1__Create_tables.sql)
+18:30:59.137 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V4__Fingerprints.sql (filename: V4__Fingerprints.sql)
+18:30:59.137 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+18:30:59.137 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V2__Server_discovery.sql (filename: V2__Server_discovery.sql)
+18:30:59.137 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V3__Jar_symbols.sql (filename: V3__Jar_symbols.sql)
+18:30:59.137 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V1__Create_tables.sql (filename: V1__Create_tables.sql)
+18:30:59.137 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/V4__Fingerprints.sql (filename: V4__Fingerprints.sql)
+18:30:59.137 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.scanner.Scanner -- Filtering out resource: db/migration/ (filename: )
+18:30:59.144 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 4 migrations (execution time 00:00.014s)
+18:30:59.145 [pool-1-thread-1] DEBUG org.flywaydb.core.internal.command.DbSchemas -- Skipping creation of existing schema: "PUBLIC"
+18:30:59.148 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": 4
+18:30:59.152 [pool-1-thread-1] INFO org.flywaydb.core.internal.command.DbMigrate -- Schema "PUBLIC" is up to date. No migration necessary.
+18:30:59.473 [pool-1-thread-1] DEBUG org.flywaydb.core.FlywayExecutor -- Memory usage: 71 of 162M
+Feb 20, 2024 6:31:00 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2024.02.20 18:31:00 INFO  skipping build import with status 'Installed'
+2024.02.20 18:31:00 INFO  Attempting to connect to the build server...
+2024.02.20 18:31:00 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.20 18:31:04 INFO  no build target found for /home/ysyx/Project/chisel_gen/src/main/scala/core.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2024.02.20 18:31:22 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+2024.02.20 18:31:22 INFO  Attempting to connect to the build server...
+2024.02.20 18:31:22 INFO  Bloop uses /opt/jdk/jdk1.8.0_181 defined at /home/ysyx/.bloop/bloop.json
+2024.02.20 18:31:22 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/ysyx/Project/chisel_gen/project/.metals/bsp.trace.json or /home/ysyx/.cache/metals/bsp.trace.json
+2024.02.20 18:31:22 INFO  time: Connected to build server in 22s
+2024.02.20 18:31:22 INFO  Connected to Build server: Bloop v1.5.15
+2024.02.20 18:31:23 INFO  time: Imported build in 0.2s
+2024.02.20 18:31:24 INFO  time: indexed workspace in 1.25s
+2024.02.20 18:31:28 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+2024.02.20 18:31:28 WARN  Bloop is running with 1.8.0_181 but your code requires 1.8.0_181 to compile, this might cause some compilation issues when using JDK API unsupported by the Bloop's current JVM version
+Feb 20, 2024 6:47:36 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace

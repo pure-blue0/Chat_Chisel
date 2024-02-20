@@ -6,8 +6,6 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ysyx/Project/chisel_gen/target/scala-2.12/classes/Writeback$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	ALU.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ysyx/Project/chisel_gen/target/scala-2.12/classes/ALU.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Icache$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/ysyx/Project/chisel_gen/target/scala-2.12/classes/Icache$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Fetch.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ysyx/Project/chisel_gen/target/scala-2.12/classes/Fetch.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	ChiselCore$.class[0m
@@ -54,10 +52,6 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ysyx/Project/chisel_gen/target/scala-2.12/classes/Regfile$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Execute.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ysyx/Project/chisel_gen/target/scala-2.12/classes/Execute.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	DataCache.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/ysyx/Project/chisel_gen/target/scala-2.12/classes/DataCache.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Icache.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/ysyx/Project/chisel_gen/target/scala-2.12/classes/Icache.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Writeback.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ysyx/Project/chisel_gen/target/scala-2.12/classes/Writeback.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	TargetGen.class[0m
@@ -78,8 +72,6 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ysyx/Project/chisel_gen/target/scala-2.12/classes/BHT.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Control.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ysyx/Project/chisel_gen/target/scala-2.12/classes/Control.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	DataCache$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/ysyx/Project/chisel_gen/target/scala-2.12/classes/DataCache$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	core$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ysyx/Project/chisel_gen/target/scala-2.12/classes/core$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Fetch$$anon$1.class[0m
