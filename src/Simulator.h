@@ -60,16 +60,15 @@ enum CSR_REG{
   Mtval   = 0X343,
   Mip     = 0X344,
   Mcycle  = 0XB00,
-  Mtime   = 0XC00,//DIFF
+  Mcycleh = 0XB80,
   Minstret= 0XB02,
+  Minstreth=0XB82,
 
-  Cycle   = 0X100,//DIFF
-  Time    = 0XC01,//DIFF
-  Instret = 0XC02,//DIFF
   Mvendorid= 0XF11,
   Marchid  = 0XF12,
   Mimpid   = 0XF13,
   Mhartid  = 0XF14,
+
 };
 
 enum InstType {
@@ -95,47 +94,39 @@ enum Inst {
   LB = 10,
   LH = 11,
   LW = 12,
-  LD = 13,
-  LBU = 14,
-  LHU = 15,
-  SB = 16,
-  SH = 17,
-  SW = 18,
-  SD = 19,
-  ADDI = 20,
-  SLTI = 21,
-  SLTIU = 22,
-  XORI = 23,
-  ORI = 24,
-  ANDI = 25,
-  SLLI = 26,
-  SRLI = 27,
-  SRAI = 28,
-  ADD = 29,
-  SUB = 30,
-  SLL = 31,
-  SLT = 32,
-  SLTU = 33,
-  XOR = 34,
-  SRL = 35,
-  SRA = 36,
-  OR = 37,
-  AND = 38,
-  ECALL = 39,
-  ADDIW = 40,
-  MUL = 41,
-  MULH = 42,
-  DIV = 43,
-  REM = 44,
-  LWU = 45,
-  SLLIW = 46,
-  SRLIW = 47,
-  SRAIW = 48,
-  ADDW = 49,
-  SUBW = 50,
-  SLLW = 51,
-  SRLW = 52,
-  SRAW = 53,
+  LBU = 13,
+  LHU = 14,
+  SB = 15,
+  SH = 16,
+  SW = 17,
+  ADDI = 18,
+  SLTI = 19,
+  SLTIU = 20,
+  XORI = 21,
+  ORI = 22,
+  ANDI = 23,
+  SLLI = 24,
+  SRLI = 25,
+  SRAI = 26,
+  ADD = 27,
+  SUB = 28,
+  SLL = 29,
+  SLT = 30,
+  SLTU = 31,
+  XOR = 32,
+  SRL = 33,
+  SRA = 34,
+  OR = 35,
+  AND = 36,
+  //CSR Inst
+  CSRRW = 37,
+  CSRRS = 38,
+  CSRRC = 39,
+  CSRRWI= 40,
+  CSRRSI= 41,
+  CSRRCI= 42,
+  ECALL = 43,
+
   UNKNOWN = -1,
 };
 extern const char *INSTNAME[];
@@ -150,30 +141,10 @@ const int OP_LOAD = 0x03;
 const int OP_AUIPC = 0x17;
 const int OP_JAL = 0x6F;
 const int OP_JALR = 0x67;
-const int OP_SYSTEM = 0x73;
+const int OP_CSR = 0x73;
 
-inline bool isBranch(Inst inst) {
-  if (inst == BEQ || inst == BNE || inst == BLT || inst == BGE ||
-      inst == BLTU || inst == BGEU) {
-    return true;
-  }
-  return false;
-}
 
-inline bool isJump(Inst inst) {
-  if (inst == JAL || inst == JALR) {
-    return true;
-  }
-  return false;
-}
 
-inline bool isReadMem(Inst inst) {
-  if (inst == LB || inst == LH || inst == LW || inst == LD || inst == LBU ||
-      inst == LHU || inst == LWU) {
-    return true;
-  }
-  return false;
-}
 
 } // namespace RISCV
 
@@ -200,6 +171,7 @@ public:
   uint32_t pcWrite;
   uint32_t predictedPC; // for branch prediction module, predicted PC destination
   uint32_t reg[RISCV::REGNUM];
+  uint32_t csr_reg[0xFFF];
   uint32_t stackBase;
   uint32_t maximumStackSize;
   MemoryManager *memory;
@@ -227,6 +199,8 @@ private:
     uint32_t inst;
 
     bool prediction_jump;
+    uint32_t trap_vector;
+    uint32_t mret_vector;
   } IF_IDReg, IF_IDRegNew;
   struct DReg {
     // Control Signals
@@ -262,6 +236,15 @@ private:
     uint32_t  Rs2_op;
     uint32_t      imm;
     int32_t      funct3;
+
+    //CSR
+    bool csr_read;
+    bool csr_write;
+    uint32_t csr_address;
+    uint32_t ecause_out;
+    uint32_t exception_out;
+    bool mret_out;
+    uint32_t wfi_out;
     
   } ID_EXReg, ID_EXRegNew;
   struct EReg {
@@ -291,6 +274,17 @@ private:
     uint32_t RegWrite;
     uint32_t MemtoReg; //2bit
 
+    //CSR
+    bool csr_WriteEnable;
+    uint32_t csr_Readdata;
+    uint32_t csr_address;
+    uint32_t csr_writedata;
+
+    uint32_t ecause_out;
+    uint32_t exception_out;
+    bool mret_out;
+    uint32_t wfi_out;
+
   } EX_MEMReg, EX_MEMRegNew;
   struct MReg {
     // Control Signals
@@ -306,7 +300,23 @@ private:
     //control
     uint32_t RegWrite;
     uint32_t MemtoReg; //2bit
+    //to CSR module
+    bool csr_WriteEnable;
+    uint32_t csr_address;
+    uint32_t csr_writedata;
+    bool csr_trapped;
+    bool csr_interrupt;
+    uint32_t csr_ecause;
+    uint32_t csr_Readdata;
+    bool mret_out;
+    
+    
+
   } MEM_WBReg, MEM_WBNew;
+  struct CSR_val {
+    uint32_t trap_vector;
+    uint32_t mret_vector;
+  } CSR_VAL;
 
   // Pipeline Related Variables
   // To avoid older values(in MEM) overriding newer values(in EX)
@@ -317,6 +327,7 @@ private:
 
   struct History {
     uint32_t instCount;
+    uint32_t retried_Count;
     uint32_t cycleCount;
     uint32_t stalledCycleCount;
 
@@ -339,7 +350,7 @@ private:
   void execute();
   void memoryAccess();
   void writeBack();
-
+  void csr();
   
 
   int32_t handleSystemCall(int32_t op1, int32_t op2);
@@ -356,7 +367,7 @@ private:
   bool Dcache_Write(uint32_t mem_write, int32_t funct3,int32_t AluResult,int32_t RS2_op,uint32_t *cycles);
 
   //wb
-  uint32_t Writedata_back(uint32_t wb_reg_pc,uint32_t wb_readdata,uint32_t wb_AluResult,uint32_t wb_memtoreg);
+  uint32_t Writedata_back(uint32_t wb_reg_pc,uint32_t wb_readdata,uint32_t wb_AluResult,uint32_t wb_csrReadData,uint32_t wb_memtoreg);
   
 
   void panic(const char *format, ...);
