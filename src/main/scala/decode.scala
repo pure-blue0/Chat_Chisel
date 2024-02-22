@@ -126,7 +126,7 @@ when((csrrsInst || csrrcInst || csrrsiInst || csrrciInst) && io.inst(19, 15).asU
   isLegalInstruction := MuxCase(false.B, Array(
     (opcode === "b0110011".U && funct3 === "b000".U && funct7 === "b0000000".U) -> true.B,
     (opcode === "b0110011".U && funct3 === "b000".U && funct7 === "b0100000".U) -> true.B,
-    (opcode === "b0110011".U && funct3 === "b000".U && funct7 === "b0000100".U) -> true.B,
+    (opcode === "b0110011".U && funct3 === "b100".U && funct7 === "b0000000".U) -> true.B,
     (opcode === "b0110011".U && funct3 === "b110".U && funct7 === "b0000000".U) -> true.B,
     (opcode === "b0110011".U && funct3 === "b111".U && funct7 === "b0000000".U) -> true.B,
     (opcode === "b0110011".U && funct3 === "b001".U && funct7 === "b0000000".U) -> true.B,

@@ -1,6 +1,3 @@
-`include  "Control.v"
-`include  "ImmGen.v"
-`include  "Regfile.v"
 module Decode(
   input         clock,
   input         reset,
@@ -150,7 +147,8 @@ module Decode(
   wire  _isLegalInstruction_T_4 = io_inst[6:0] == 7'h33 & io_inst[14:12] == 3'h0 & io_inst[31:25] == 7'h0; // @[decode.scala 127:53]
   wire  _isLegalInstruction_T_8 = io_inst[31:25] == 7'h20; // @[decode.scala 128:63]
   wire  _isLegalInstruction_T_9 = _isLegalInstruction_T_2 & io_inst[31:25] == 7'h20; // @[decode.scala 128:53]
-  wire  _isLegalInstruction_T_14 = _isLegalInstruction_T_2 & io_inst[31:25] == 7'h4; // @[decode.scala 129:53]
+  wire  _isLegalInstruction_T_11 = io_inst[14:12] == 3'h4; // @[decode.scala 129:40]
+  wire  _isLegalInstruction_T_14 = _isLegalInstruction_T & io_inst[14:12] == 3'h4 & _isLegalInstruction_T_3; // @[decode.scala 129:53]
   wire  _isLegalInstruction_T_19 = _isLegalInstruction_T & _csrrsiInst_T_1 & _isLegalInstruction_T_3; // @[decode.scala 130:53]
   wire  _isLegalInstruction_T_24 = _isLegalInstruction_T & _csrrciInst_T_1 & _isLegalInstruction_T_3; // @[decode.scala 131:53]
   wire  _isLegalInstruction_T_29 = _isLegalInstruction_T & _csrrwInst_T_1 & _isLegalInstruction_T_3; // @[decode.scala 132:53]
@@ -161,8 +159,7 @@ module Decode(
   wire  _isLegalInstruction_T_49 = _isLegalInstruction_T & _csrrcInst_T_1 & _isLegalInstruction_T_3; // @[decode.scala 136:53]
   wire  _isLegalInstruction_T_50 = io_inst[6:0] == 7'h13; // @[decode.scala 137:13]
   wire  _isLegalInstruction_T_52 = io_inst[6:0] == 7'h13 & _isLegalInstruction_T_1; // @[decode.scala 137:30]
-  wire  _isLegalInstruction_T_54 = io_inst[14:12] == 3'h4; // @[decode.scala 138:40]
-  wire  _isLegalInstruction_T_55 = _isLegalInstruction_T_50 & io_inst[14:12] == 3'h4; // @[decode.scala 138:30]
+  wire  _isLegalInstruction_T_55 = _isLegalInstruction_T_50 & _isLegalInstruction_T_11; // @[decode.scala 138:30]
   wire  _isLegalInstruction_T_58 = _isLegalInstruction_T_50 & _csrrsiInst_T_1; // @[decode.scala 139:30]
   wire  _isLegalInstruction_T_61 = _isLegalInstruction_T_50 & _csrrciInst_T_1; // @[decode.scala 140:30]
   wire  _isLegalInstruction_T_66 = _isLegalInstruction_T_50 & _csrrwInst_T_1 & _isLegalInstruction_T_3; // @[decode.scala 141:53]
@@ -175,7 +172,7 @@ module Decode(
   wire  _isLegalInstruction_T_85 = io_inst[6:0] == 7'h3 & _isLegalInstruction_T_1; // @[decode.scala 146:30]
   wire  _isLegalInstruction_T_88 = _isLegalInstruction_T_83 & _csrrwInst_T_1; // @[decode.scala 147:30]
   wire  _isLegalInstruction_T_91 = _isLegalInstruction_T_83 & _csrrsInst_T_1; // @[decode.scala 148:30]
-  wire  _isLegalInstruction_T_94 = _isLegalInstruction_T_83 & _isLegalInstruction_T_54; // @[decode.scala 149:30]
+  wire  _isLegalInstruction_T_94 = _isLegalInstruction_T_83 & _isLegalInstruction_T_11; // @[decode.scala 149:30]
   wire  _isLegalInstruction_T_97 = _isLegalInstruction_T_83 & _csrrwiInst_T_1; // @[decode.scala 150:30]
   wire  _isLegalInstruction_T_98 = io_inst[6:0] == 7'h23; // @[decode.scala 151:13]
   wire  _isLegalInstruction_T_100 = io_inst[6:0] == 7'h23 & _isLegalInstruction_T_1; // @[decode.scala 151:30]
@@ -184,7 +181,7 @@ module Decode(
   wire  _isLegalInstruction_T_107 = io_inst[6:0] == 7'h63; // @[decode.scala 154:13]
   wire  _isLegalInstruction_T_109 = io_inst[6:0] == 7'h63 & _isLegalInstruction_T_1; // @[decode.scala 154:30]
   wire  _isLegalInstruction_T_112 = _isLegalInstruction_T_107 & _csrrwInst_T_1; // @[decode.scala 155:30]
-  wire  _isLegalInstruction_T_115 = _isLegalInstruction_T_107 & _isLegalInstruction_T_54; // @[decode.scala 156:30]
+  wire  _isLegalInstruction_T_115 = _isLegalInstruction_T_107 & _isLegalInstruction_T_11; // @[decode.scala 156:30]
   wire  _isLegalInstruction_T_118 = _isLegalInstruction_T_107 & _csrrwiInst_T_1; // @[decode.scala 157:30]
   wire  _isLegalInstruction_T_121 = _isLegalInstruction_T_107 & _csrrsiInst_T_1; // @[decode.scala 158:30]
   wire  _isLegalInstruction_T_124 = _isLegalInstruction_T_107 & _csrrciInst_T_1; // @[decode.scala 159:30]

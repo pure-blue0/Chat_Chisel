@@ -40,65 +40,52 @@ class Control extends Module {
 
 
   // Control signal generation logic goes here
-  io.aluop := MuxLookup(io.opcode, "b0000".U(4.W), 
-    Array(
-      "b0110011".U -> MuxLookup(io.funct3, "b0000".U, 
-        Array(
-          "b000".U -> MuxLookup(io.funct7, "b0000".U, 
-            Array(
-              "b0000000".U -> "b0000".U,
-              "b0100000".U -> "b0001".U,
-              "b0000100".U -> "b0010".U
-            )
-          ),
-          "b110".U -> "b0011".U,
-          "b111".U -> "b0100".U,
-          "b001".U -> "b0101".U,
-          "b101".U -> MuxLookup(io.funct7, "b0110".U, 
-            Array(
-              "b0000000".U -> "b0110".U,
-              "b0100000".U -> "b0111".U
-            )
-          ),
-          "b010".U -> "b1000".U,
-          "b011".U -> "b1001".U
-        )
-      ),
-      "b0010011".U -> MuxLookup(io.funct3, "b0000".U, 
-        Array(
-          "b000".U -> "b0000".U,
-          "b100".U -> "b0010".U,
-          "b110".U -> "b0011".U,
-          "b111".U -> "b0100".U,
-          "b001".U -> "b0101".U,
-          "b101".U -> MuxLookup(io.funct7, "b0110".U, 
-            Array(
-              "b0000000".U -> "b0110".U,
-              "b0100000".U -> "b0111".U
-            )
-          ),
-          "b010".U -> "b1000".U,
-          "b011".U -> "b1001".U
-        )
-      ),
-      "b0000011".U -> "b0000".U,
-      "b0100011".U -> "b0000".U,
-      "b1100011".U -> MuxLookup(io.funct3, "b1000".U, 
-        Array(
-          "b000".U -> "b1000".U,
-          "b001".U -> "b1000".U,
-          "b100".U -> "b1000".U,
-          "b101".U -> "b1000".U,
-          "b110".U -> "b1001".U,
-          "b111".U -> "b1001".U
-        )
-      ),
-      "b1101111".U -> "b0000".U,
-      "b1100111".U -> "b0000".U,
-      "b0110111".U -> "b0000".U,
-      "b0010111".U -> "b0000".U
-    )
-  )
+   io.aluop := MuxLookup(io.opcode, "b0000".U, Array(
+    "b0110011".U -> MuxLookup(io.funct3, "b0000".U, Array(
+      "b000".U -> MuxLookup(io.funct7, "b0000".U, Array(
+        "b0000000".U -> "b0000".U,
+        "b0100000".U -> "b0001".U
+      )),
+      "b100".U -> "b0010".U,
+      "b110".U -> "b0011".U,
+      "b111".U -> "b0100".U,
+      "b001".U -> "b0101".U,
+      "b101".U -> MuxLookup(io.funct7, "b0000".U, Array(
+        "b0000000".U -> "b0110".U,
+        "b0100000".U -> "b0111".U
+      )),
+      "b010".U -> "b1000".U,
+      "b011".U -> "b1001".U
+    )),
+    "b0010011".U -> MuxLookup(io.funct3, "b0000".U, Array(
+      "b000".U -> "b0000".U,
+      "b100".U -> "b0010".U,
+      "b110".U -> "b0011".U,
+      "b111".U -> "b0100".U,
+      "b001".U -> "b0101".U,
+      "b101".U -> MuxLookup(io.funct7, "b0000".U, Array(
+        "b0000000".U -> "b0110".U,
+        "b0100000".U -> "b0111".U
+      )),
+      "b010".U -> "b1000".U,
+      "b011".U -> "b1001".U
+    )),
+    "b0000011".U -> "b0000".U,
+    "b0100011".U -> "b0000".U,
+    "b1100011".U -> MuxLookup(io.funct3, "b0000".U, Array(
+      "b000".U -> "b1000".U,
+      "b001".U -> "b1000".U,
+      "b100".U -> "b1000".U,
+      "b101".U -> "b1000".U,
+      "b110".U -> "b1001".U,
+      "b111".U -> "b1001".U
+    )),
+    "b1101111".U -> "b0000".U,
+    "b1100111".U -> "b0000".U,
+    "b0110111".U -> "b0000".U,
+    "b0010111".U -> "b0000".U
+  ))
+  
 
 
   io.immsrc := MuxLookup(io.opcode, 0.U, Array(
