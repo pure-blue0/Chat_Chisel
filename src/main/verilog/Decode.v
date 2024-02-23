@@ -194,21 +194,25 @@ module Decode(
   wire  _isLegalInstruction_T_140 = _isLegalInstruction_T_133 & io_inst[31:25] == 7'h1; // @[decode.scala 165:53]
   wire  _isLegalInstruction_T_145 = _isLegalInstruction_T_133 & io_inst[31:25] == 7'h18; // @[decode.scala 166:53]
   wire  _isLegalInstruction_T_150 = _isLegalInstruction_T_133 & io_inst[31:25] == 7'h8; // @[decode.scala 167:53]
-  wire  _isLegalInstruction_T_199 = _isLegalInstruction_T_76 | (_isLegalInstruction_T_79 | (_isLegalInstruction_T_82 | (
-    _isLegalInstruction_T_85 | (_isLegalInstruction_T_88 | (_isLegalInstruction_T_91 | (_isLegalInstruction_T_94 | (
-    _isLegalInstruction_T_97 | (_isLegalInstruction_T_100 | (_isLegalInstruction_T_103 | (_isLegalInstruction_T_106 | (
-    _isLegalInstruction_T_109 | (_isLegalInstruction_T_112 | (_isLegalInstruction_T_115 | (_isLegalInstruction_T_118 | (
-    _isLegalInstruction_T_121 | (_isLegalInstruction_T_124 | (_isLegalInstruction_T_125 | (_isLegalInstruction_T_128 | (
-    _isLegalInstruction_T_129 | (_isLegalInstruction_T_130 | (_isLegalInstruction_T_135 | (_isLegalInstruction_T_140 | (
-    _isLegalInstruction_T_145 | (_isLegalInstruction_T_150 | (csrrwInst | (csrrsInst | (csrrcInst | (csrrwiInst | (
-    csrrsiInst | csrrciInst))))))))))))))))))))))))))))); // @[Mux.scala 101:16]
+  wire  _isLegalInstruction_T_169 = io_inst[6:0] == 7'hf; // @[decode.scala 174:13]
+  wire  _isLegalInstruction_T_171 = io_inst[6:0] == 7'hf & _isLegalInstruction_T_1; // @[decode.scala 174:30]
+  wire  _isLegalInstruction_T_174 = _isLegalInstruction_T_169 & _csrrwInst_T_1; // @[decode.scala 175:30]
+  wire  _isLegalInstruction_T_205 = _isLegalInstruction_T_82 | (_isLegalInstruction_T_85 | (_isLegalInstruction_T_88 | (
+    _isLegalInstruction_T_91 | (_isLegalInstruction_T_94 | (_isLegalInstruction_T_97 | (_isLegalInstruction_T_100 | (
+    _isLegalInstruction_T_103 | (_isLegalInstruction_T_106 | (_isLegalInstruction_T_109 | (_isLegalInstruction_T_112 | (
+    _isLegalInstruction_T_115 | (_isLegalInstruction_T_118 | (_isLegalInstruction_T_121 | (_isLegalInstruction_T_124 | (
+    _isLegalInstruction_T_125 | (_isLegalInstruction_T_128 | (_isLegalInstruction_T_129 | (_isLegalInstruction_T_130 | (
+    _isLegalInstruction_T_135 | (_isLegalInstruction_T_140 | (_isLegalInstruction_T_145 | (_isLegalInstruction_T_150 | (
+    csrrwInst | (csrrsInst | (csrrcInst | (csrrwiInst | (csrrsiInst | (csrrciInst | (_isLegalInstruction_T_171 |
+    _isLegalInstruction_T_174))))))))))))))))))))))))))))); // @[Mux.scala 101:16]
   wire  isLegalInstruction = _isLegalInstruction_T_4 | (_isLegalInstruction_T_9 | (_isLegalInstruction_T_14 | (
     _isLegalInstruction_T_19 | (_isLegalInstruction_T_24 | (_isLegalInstruction_T_29 | (_isLegalInstruction_T_34 | (
     _isLegalInstruction_T_39 | (_isLegalInstruction_T_44 | (_isLegalInstruction_T_49 | (_isLegalInstruction_T_52 | (
     _isLegalInstruction_T_55 | (_isLegalInstruction_T_58 | (_isLegalInstruction_T_61 | (_isLegalInstruction_T_66 | (
-    _isLegalInstruction_T_71 | _isLegalInstruction_T_199))))))))))))))); // @[Mux.scala 101:16]
-  wire [1:0] ecause_out = isLegalInstruction ? 2'h0 : 2'h2; // @[decode.scala 177:23]
-  wire [1:0] _GEN_26 = io_id_ex_flush ? 2'h0 : ecause_out; // @[decode.scala 180:25 205:20 213:20]
+    _isLegalInstruction_T_71 | (_isLegalInstruction_T_76 | (_isLegalInstruction_T_79 | _isLegalInstruction_T_205))))))))
+    ))))))))); // @[Mux.scala 101:16]
+  wire [1:0] ecause_out = isLegalInstruction ? 2'h0 : 2'h2; // @[decode.scala 179:23]
+  wire [1:0] _GEN_26 = io_id_ex_flush ? 2'h0 : ecause_out; // @[decode.scala 182:25 207:20 215:20]
   Control control ( // @[decode.scala 52:23]
     .io_opcode(control_io_opcode),
     .io_funct7(control_io_funct7),
@@ -242,38 +246,38 @@ module Decode(
     .io_inst(immGen_io_inst),
     .io_imm(immGen_io_imm)
   );
-  assign io_csr_read = csr_read_reg; // @[decode.scala 244:15]
-  assign io_csr_write = csr_write_reg; // @[decode.scala 245:16]
-  assign io_csr_address = csr_address_reg; // @[decode.scala 246:18]
-  assign io_ecause_out = ecause_out_reg; // @[decode.scala 247:17]
-  assign io_exception_out = exception_out_reg; // @[decode.scala 248:20]
-  assign io_mret_out = mret_out_reg; // @[decode.scala 249:15]
-  assign io_wfi_out = wfi_out_reg; // @[decode.scala 250:14]
-  assign io_ex_pc = id_ex_pc_reg; // @[decode.scala 251:12]
-  assign io_aluop = id_ex_aluop_reg; // @[decode.scala 252:12]
-  assign io_immsrc = id_ex_immsrc_reg; // @[decode.scala 253:13]
-  assign io_isbranch = id_ex_isbranch_reg; // @[decode.scala 254:15]
-  assign io_memread = id_ex_memread_reg; // @[decode.scala 255:14]
-  assign io_memwrite = id_ex_memwrite_reg; // @[decode.scala 256:15]
-  assign io_regwrite = id_ex_regwrite_reg; // @[decode.scala 257:15]
-  assign io_memtoreg = id_ex_memtoreg_reg; // @[decode.scala 258:15]
-  assign io_pcsel = id_ex_pcsel_reg; // @[decode.scala 259:12]
-  assign io_rdsel = id_ex_rdsel_reg; // @[decode.scala 260:12]
-  assign io_isjump = id_ex_isjump_reg; // @[decode.scala 261:13]
-  assign io_islui = id_ex_islui_reg; // @[decode.scala 262:12]
-  assign io_rs1_data = id_ex_rs1_data_reg; // @[decode.scala 263:15]
-  assign io_rs2_data = id_ex_rs2_data_reg; // @[decode.scala 264:15]
-  assign io_imm = id_ex_imm_reg; // @[decode.scala 265:10]
-  assign io_funct3 = {{29'd0}, id_ex_funct3_reg}; // @[decode.scala 266:13]
-  assign io_ex_rs1 = id_ex_ex_rs1_reg; // @[decode.scala 267:13]
-  assign io_ex_rs2 = id_ex_ex_rs2_reg; // @[decode.scala 268:13]
-  assign io_ex_rd = id_ex_ex_rd_reg; // @[decode.scala 269:12]
-  assign io_ex_use_rs1 = id_ex_ex_use_rs1_reg; // @[decode.scala 270:17]
-  assign io_ex_use_rs2 = id_ex_ex_use_rs2_reg; // @[decode.scala 271:17]
-  assign io_id_rs1 = io_inst[19:15]; // @[decode.scala 274:23]
-  assign io_id_rs2 = io_inst[24:20]; // @[decode.scala 275:23]
-  assign io_use_rs1 = control_io_use_rs1; // @[decode.scala 276:14]
-  assign io_use_rs2 = control_io_use_rs2; // @[decode.scala 277:14]
+  assign io_csr_read = csr_read_reg; // @[decode.scala 246:15]
+  assign io_csr_write = csr_write_reg; // @[decode.scala 247:16]
+  assign io_csr_address = csr_address_reg; // @[decode.scala 248:18]
+  assign io_ecause_out = ecause_out_reg; // @[decode.scala 249:17]
+  assign io_exception_out = exception_out_reg; // @[decode.scala 250:20]
+  assign io_mret_out = mret_out_reg; // @[decode.scala 251:15]
+  assign io_wfi_out = wfi_out_reg; // @[decode.scala 252:14]
+  assign io_ex_pc = id_ex_pc_reg; // @[decode.scala 253:12]
+  assign io_aluop = id_ex_aluop_reg; // @[decode.scala 254:12]
+  assign io_immsrc = id_ex_immsrc_reg; // @[decode.scala 255:13]
+  assign io_isbranch = id_ex_isbranch_reg; // @[decode.scala 256:15]
+  assign io_memread = id_ex_memread_reg; // @[decode.scala 257:14]
+  assign io_memwrite = id_ex_memwrite_reg; // @[decode.scala 258:15]
+  assign io_regwrite = id_ex_regwrite_reg; // @[decode.scala 259:15]
+  assign io_memtoreg = id_ex_memtoreg_reg; // @[decode.scala 260:15]
+  assign io_pcsel = id_ex_pcsel_reg; // @[decode.scala 261:12]
+  assign io_rdsel = id_ex_rdsel_reg; // @[decode.scala 262:12]
+  assign io_isjump = id_ex_isjump_reg; // @[decode.scala 263:13]
+  assign io_islui = id_ex_islui_reg; // @[decode.scala 264:12]
+  assign io_rs1_data = id_ex_rs1_data_reg; // @[decode.scala 265:15]
+  assign io_rs2_data = id_ex_rs2_data_reg; // @[decode.scala 266:15]
+  assign io_imm = id_ex_imm_reg; // @[decode.scala 267:10]
+  assign io_funct3 = {{29'd0}, id_ex_funct3_reg}; // @[decode.scala 268:13]
+  assign io_ex_rs1 = id_ex_ex_rs1_reg; // @[decode.scala 269:13]
+  assign io_ex_rs2 = id_ex_ex_rs2_reg; // @[decode.scala 270:13]
+  assign io_ex_rd = id_ex_ex_rd_reg; // @[decode.scala 271:12]
+  assign io_ex_use_rs1 = id_ex_ex_use_rs1_reg; // @[decode.scala 272:17]
+  assign io_ex_use_rs2 = id_ex_ex_use_rs2_reg; // @[decode.scala 273:17]
+  assign io_id_rs1 = io_inst[19:15]; // @[decode.scala 276:23]
+  assign io_id_rs2 = io_inst[24:20]; // @[decode.scala 277:23]
+  assign io_use_rs1 = control_io_use_rs1; // @[decode.scala 278:14]
+  assign io_use_rs2 = control_io_use_rs2; // @[decode.scala 279:14]
   assign control_io_opcode = io_inst[6:0]; // @[decode.scala 87:31]
   assign control_io_funct7 = io_inst[31:25]; // @[decode.scala 88:31]
   assign control_io_funct3 = io_inst[14:12]; // @[decode.scala 89:31]
@@ -288,8 +292,8 @@ module Decode(
   always @(posedge clock) begin
     if (reset) begin // @[decode.scala 57:29]
       csr_read_reg <= 1'h0; // @[decode.scala 57:29]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      csr_read_reg <= 1'h0; // @[decode.scala 202:18]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      csr_read_reg <= 1'h0; // @[decode.scala 204:18]
     end else if ((csrrwInst | csrrwiInst) & io_inst[11:7] == 5'h0) begin // @[decode.scala 111:66]
       csr_read_reg <= 1'h0; // @[decode.scala 112:12]
     end else begin
@@ -297,8 +301,8 @@ module Decode(
     end
     if (reset) begin // @[decode.scala 58:30]
       csr_write_reg <= 1'h0; // @[decode.scala 58:30]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      csr_write_reg <= 1'h0; // @[decode.scala 203:19]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      csr_write_reg <= 1'h0; // @[decode.scala 205:19]
     end else if ((csrrsInst | csrrcInst | csrrsiInst | csrrciInst) & io_inst[19:15] == 5'h0) begin // @[decode.scala 114:94]
       csr_write_reg <= 1'h0; // @[decode.scala 115:13]
     end else begin
@@ -306,10 +310,10 @@ module Decode(
     end
     if (reset) begin // @[decode.scala 59:32]
       csr_address_reg <= 12'h0; // @[decode.scala 59:32]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      csr_address_reg <= 12'h0; // @[decode.scala 204:21]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      csr_address_reg <= 12'h0; // @[decode.scala 206:21]
     end else begin
-      csr_address_reg <= io_inst[31:20]; // @[decode.scala 212:21]
+      csr_address_reg <= io_inst[31:20]; // @[decode.scala 214:21]
     end
     if (reset) begin // @[decode.scala 60:31]
       ecause_out_reg <= 4'h0; // @[decode.scala 60:31]
@@ -318,173 +322,173 @@ module Decode(
     end
     if (reset) begin // @[decode.scala 61:34]
       exception_out_reg <= 1'h0; // @[decode.scala 61:34]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      exception_out_reg <= 1'h0; // @[decode.scala 206:23]
-    end else if (isLegalInstruction) begin // @[decode.scala 176:26]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      exception_out_reg <= 1'h0; // @[decode.scala 208:23]
+    end else if (isLegalInstruction) begin // @[decode.scala 178:26]
       exception_out_reg <= 1'h0;
     end else begin
       exception_out_reg <= 1'h1;
     end
     if (reset) begin // @[decode.scala 62:29]
       mret_out_reg <= 1'h0; // @[decode.scala 62:29]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      mret_out_reg <= 1'h0; // @[decode.scala 207:18]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      mret_out_reg <= 1'h0; // @[decode.scala 209:18]
     end else begin
-      mret_out_reg <= mret_out; // @[decode.scala 215:18]
+      mret_out_reg <= mret_out; // @[decode.scala 217:18]
     end
     if (reset) begin // @[decode.scala 63:28]
       wfi_out_reg <= 1'h0; // @[decode.scala 63:28]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      wfi_out_reg <= 1'h0; // @[decode.scala 208:17]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      wfi_out_reg <= 1'h0; // @[decode.scala 210:17]
     end else begin
-      wfi_out_reg <= wfi_out; // @[decode.scala 216:17]
+      wfi_out_reg <= wfi_out; // @[decode.scala 218:17]
     end
     if (reset) begin // @[decode.scala 64:29]
       id_ex_pc_reg <= 32'h0; // @[decode.scala 64:29]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_pc_reg <= 32'h0; // @[decode.scala 181:18]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_pc_reg <= 32'h0; // @[decode.scala 183:18]
     end else begin
-      id_ex_pc_reg <= io_id_pc; // @[decode.scala 217:18]
+      id_ex_pc_reg <= io_id_pc; // @[decode.scala 219:18]
     end
     if (reset) begin // @[decode.scala 65:32]
       id_ex_aluop_reg <= 4'h0; // @[decode.scala 65:32]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_aluop_reg <= 4'h0; // @[decode.scala 182:21]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_aluop_reg <= 4'h0; // @[decode.scala 184:21]
     end else begin
-      id_ex_aluop_reg <= control_io_aluop; // @[decode.scala 218:21]
+      id_ex_aluop_reg <= control_io_aluop; // @[decode.scala 220:21]
     end
     if (reset) begin // @[decode.scala 66:33]
       id_ex_immsrc_reg <= 1'h0; // @[decode.scala 66:33]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_immsrc_reg <= 1'h0; // @[decode.scala 183:22]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_immsrc_reg <= 1'h0; // @[decode.scala 185:22]
     end else begin
-      id_ex_immsrc_reg <= control_io_immsrc; // @[decode.scala 219:22]
+      id_ex_immsrc_reg <= control_io_immsrc; // @[decode.scala 221:22]
     end
     if (reset) begin // @[decode.scala 67:35]
       id_ex_isbranch_reg <= 1'h0; // @[decode.scala 67:35]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_isbranch_reg <= 1'h0; // @[decode.scala 184:24]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_isbranch_reg <= 1'h0; // @[decode.scala 186:24]
     end else begin
-      id_ex_isbranch_reg <= control_io_isbranch; // @[decode.scala 220:24]
+      id_ex_isbranch_reg <= control_io_isbranch; // @[decode.scala 222:24]
     end
     if (reset) begin // @[decode.scala 68:34]
       id_ex_memread_reg <= 1'h0; // @[decode.scala 68:34]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_memread_reg <= 1'h0; // @[decode.scala 185:23]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_memread_reg <= 1'h0; // @[decode.scala 187:23]
     end else begin
-      id_ex_memread_reg <= control_io_memread; // @[decode.scala 221:23]
+      id_ex_memread_reg <= control_io_memread; // @[decode.scala 223:23]
     end
     if (reset) begin // @[decode.scala 69:35]
       id_ex_memwrite_reg <= 1'h0; // @[decode.scala 69:35]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_memwrite_reg <= 1'h0; // @[decode.scala 186:24]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_memwrite_reg <= 1'h0; // @[decode.scala 188:24]
     end else begin
-      id_ex_memwrite_reg <= control_io_memwrite; // @[decode.scala 222:24]
+      id_ex_memwrite_reg <= control_io_memwrite; // @[decode.scala 224:24]
     end
     if (reset) begin // @[decode.scala 70:35]
       id_ex_regwrite_reg <= 1'h0; // @[decode.scala 70:35]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_regwrite_reg <= 1'h0; // @[decode.scala 187:24]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_regwrite_reg <= 1'h0; // @[decode.scala 189:24]
     end else begin
-      id_ex_regwrite_reg <= control_io_regwrite; // @[decode.scala 223:24]
+      id_ex_regwrite_reg <= control_io_regwrite; // @[decode.scala 225:24]
     end
     if (reset) begin // @[decode.scala 71:35]
       id_ex_memtoreg_reg <= 2'h0; // @[decode.scala 71:35]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_memtoreg_reg <= 2'h0; // @[decode.scala 188:24]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_memtoreg_reg <= 2'h0; // @[decode.scala 190:24]
     end else begin
-      id_ex_memtoreg_reg <= control_io_memtoreg; // @[decode.scala 224:24]
+      id_ex_memtoreg_reg <= control_io_memtoreg; // @[decode.scala 226:24]
     end
     if (reset) begin // @[decode.scala 72:32]
       id_ex_pcsel_reg <= 1'h0; // @[decode.scala 72:32]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_pcsel_reg <= 1'h0; // @[decode.scala 189:21]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_pcsel_reg <= 1'h0; // @[decode.scala 191:21]
     end else begin
-      id_ex_pcsel_reg <= control_io_pcsel; // @[decode.scala 225:21]
+      id_ex_pcsel_reg <= control_io_pcsel; // @[decode.scala 227:21]
     end
     if (reset) begin // @[decode.scala 73:32]
       id_ex_rdsel_reg <= 1'h0; // @[decode.scala 73:32]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_rdsel_reg <= 1'h0; // @[decode.scala 190:21]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_rdsel_reg <= 1'h0; // @[decode.scala 192:21]
     end else begin
-      id_ex_rdsel_reg <= control_io_rdsel; // @[decode.scala 226:21]
+      id_ex_rdsel_reg <= control_io_rdsel; // @[decode.scala 228:21]
     end
     if (reset) begin // @[decode.scala 74:33]
       id_ex_isjump_reg <= 1'h0; // @[decode.scala 74:33]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_isjump_reg <= 1'h0; // @[decode.scala 191:22]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_isjump_reg <= 1'h0; // @[decode.scala 193:22]
     end else begin
-      id_ex_isjump_reg <= control_io_isjump; // @[decode.scala 227:22]
+      id_ex_isjump_reg <= control_io_isjump; // @[decode.scala 229:22]
     end
     if (reset) begin // @[decode.scala 75:32]
       id_ex_islui_reg <= 1'h0; // @[decode.scala 75:32]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_islui_reg <= 1'h0; // @[decode.scala 192:21]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_islui_reg <= 1'h0; // @[decode.scala 194:21]
     end else begin
-      id_ex_islui_reg <= control_io_islui; // @[decode.scala 228:21]
+      id_ex_islui_reg <= control_io_islui; // @[decode.scala 230:21]
     end
     if (reset) begin // @[decode.scala 76:35]
       id_ex_rs1_data_reg <= 32'h0; // @[decode.scala 76:35]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_rs1_data_reg <= 32'h0; // @[decode.scala 193:24]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_rs1_data_reg <= 32'h0; // @[decode.scala 195:24]
     end else begin
-      id_ex_rs1_data_reg <= regfile_io_rs1_data; // @[decode.scala 229:24]
+      id_ex_rs1_data_reg <= regfile_io_rs1_data; // @[decode.scala 231:24]
     end
     if (reset) begin // @[decode.scala 77:35]
       id_ex_rs2_data_reg <= 32'h0; // @[decode.scala 77:35]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_rs2_data_reg <= 32'h0; // @[decode.scala 194:24]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_rs2_data_reg <= 32'h0; // @[decode.scala 196:24]
     end else begin
-      id_ex_rs2_data_reg <= regfile_io_rs2_data; // @[decode.scala 230:24]
+      id_ex_rs2_data_reg <= regfile_io_rs2_data; // @[decode.scala 232:24]
     end
     if (reset) begin // @[decode.scala 78:30]
       id_ex_imm_reg <= 32'h0; // @[decode.scala 78:30]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_imm_reg <= 32'h0; // @[decode.scala 195:19]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_imm_reg <= 32'h0; // @[decode.scala 197:19]
     end else begin
-      id_ex_imm_reg <= immGen_io_imm; // @[decode.scala 231:19]
+      id_ex_imm_reg <= immGen_io_imm; // @[decode.scala 233:19]
     end
     if (reset) begin // @[decode.scala 79:33]
       id_ex_funct3_reg <= 3'h0; // @[decode.scala 79:33]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_funct3_reg <= 3'h0; // @[decode.scala 196:22]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_funct3_reg <= 3'h0; // @[decode.scala 198:22]
     end else begin
-      id_ex_funct3_reg <= io_inst[14:12]; // @[decode.scala 232:22]
+      id_ex_funct3_reg <= io_inst[14:12]; // @[decode.scala 234:22]
     end
     if (reset) begin // @[decode.scala 80:33]
       id_ex_ex_rs1_reg <= 5'h0; // @[decode.scala 80:33]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_ex_rs1_reg <= 5'h0; // @[decode.scala 197:22]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_ex_rs1_reg <= 5'h0; // @[decode.scala 199:22]
     end else begin
-      id_ex_ex_rs1_reg <= io_inst[19:15]; // @[decode.scala 233:22]
+      id_ex_ex_rs1_reg <= io_inst[19:15]; // @[decode.scala 235:22]
     end
     if (reset) begin // @[decode.scala 81:33]
       id_ex_ex_rs2_reg <= 5'h0; // @[decode.scala 81:33]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_ex_rs2_reg <= 5'h0; // @[decode.scala 198:22]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_ex_rs2_reg <= 5'h0; // @[decode.scala 200:22]
     end else begin
-      id_ex_ex_rs2_reg <= io_inst[24:20]; // @[decode.scala 234:22]
+      id_ex_ex_rs2_reg <= io_inst[24:20]; // @[decode.scala 236:22]
     end
     if (reset) begin // @[decode.scala 82:32]
       id_ex_ex_rd_reg <= 5'h0; // @[decode.scala 82:32]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_ex_rd_reg <= 5'h0; // @[decode.scala 199:21]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_ex_rd_reg <= 5'h0; // @[decode.scala 201:21]
     end else begin
-      id_ex_ex_rd_reg <= io_inst[11:7]; // @[decode.scala 235:21]
+      id_ex_ex_rd_reg <= io_inst[11:7]; // @[decode.scala 237:21]
     end
     if (reset) begin // @[decode.scala 83:37]
       id_ex_ex_use_rs1_reg <= 1'h0; // @[decode.scala 83:37]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_ex_use_rs1_reg <= 1'h0; // @[decode.scala 200:26]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_ex_use_rs1_reg <= 1'h0; // @[decode.scala 202:26]
     end else begin
-      id_ex_ex_use_rs1_reg <= control_io_use_rs1; // @[decode.scala 236:26]
+      id_ex_ex_use_rs1_reg <= control_io_use_rs1; // @[decode.scala 238:26]
     end
     if (reset) begin // @[decode.scala 84:37]
       id_ex_ex_use_rs2_reg <= 1'h0; // @[decode.scala 84:37]
-    end else if (io_id_ex_flush) begin // @[decode.scala 180:25]
-      id_ex_ex_use_rs2_reg <= 1'h0; // @[decode.scala 201:26]
+    end else if (io_id_ex_flush) begin // @[decode.scala 182:25]
+      id_ex_ex_use_rs2_reg <= 1'h0; // @[decode.scala 203:26]
     end else begin
-      id_ex_ex_use_rs2_reg <= control_io_use_rs2; // @[decode.scala 237:26]
+      id_ex_ex_use_rs2_reg <= control_io_use_rs2; // @[decode.scala 239:26]
     end
   end
 // Register and memory initialization

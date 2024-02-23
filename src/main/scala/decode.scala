@@ -170,7 +170,9 @@ when((csrrsInst || csrrcInst || csrrsiInst || csrrciInst) && io.inst(19, 15).asU
     (opcode === "b1110011".U && funct3 === "b011".U) -> true.B,
     (opcode === "b1110011".U && funct3 === "b101".U) -> true.B,
     (opcode === "b1110011".U && funct3 === "b110".U) -> true.B,
-    (opcode === "b1110011".U && funct3 === "b111".U) -> true.B
+    (opcode === "b1110011".U && funct3 === "b111".U) -> true.B,
+    (opcode === "b0001111".U && funct3 === "b000".U) -> true.B,
+    (opcode === "b0001111".U && funct3 === "b001".U) -> true.B,
   ))
 
   val exception_out = Mux(isLegalInstruction, false.B, true.B)
