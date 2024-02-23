@@ -19,8 +19,8 @@ void loadElfToMemory(ELFIO::elfio *reader, MemoryManager *memory);
 char *elfFile = nullptr;
 bool verbose = 0;
 bool isSingleStep = 0;
-uint32_t stackBaseAddr = 0x80000000;
-uint32_t stackSize = 0x400000;
+uint32_t stackBaseAddr = 0x8000a000;
+uint32_t stackSize = 0x4000;
 MemoryManager memory;
 Cache *l1i_Cache, *l1d_Cache;
 BranchPredictor::Strategy strategy = BranchPredictor::Strategy::BPB;
@@ -68,17 +68,22 @@ int main(int argc, char **argv) {
 
   loadElfToMemory(&reader, &memory);
 
-  if (verbose) {
-    memory.printInfo();
-  }
+  
 
   simulator.isSingleStep = isSingleStep;
   simulator.verbose = verbose;
   simulator.branchPredictor->strategy = strategy;
   simulator.pcNew = reader.get_entry();
+  if (verbose) {
+    memory.printInfo();
+  }
+  printf("===============fire=========");
   simulator.initStack(stackBaseAddr, stackSize);
+  if (verbose) {
+    memory.printInfo();
+  }
   simulator.simulate();
-
+  
 
   delete l1i_Cache;
   delete l1d_Cache;
@@ -142,18 +147,18 @@ void printElfInfo(ELFIO::elfio *reader) {
 
   ELFIO::Elf_Half sec_num = reader->sections.size();
   printf("Number of Sections: %d\n", sec_num);
-  printf("ID\tName\t\tAddress\tSize\n");
+  printf("ID\tName\t\t\tAddress\t\tSize\n");
 
   for (int i = 0; i < sec_num; ++i) {
     const ELFIO::section *psec = reader->sections[i];
 
-    printf("[%d]\t%-12s\t0x%lx\t%ld\n", i, psec->get_name().c_str(),
+    printf("[%d]\t%-16s\t0x%-6lx\t%ld\n", i, psec->get_name().c_str(),
            psec->get_address(), psec->get_size());
   }
 
   ELFIO::Elf_Half seg_num = reader->segments.size();
   printf("Number of Segments: %d\n", seg_num);
-  printf("ID\tFlags\tAddress\tFSize\tMSize\n");
+  printf("ID\tFlags\tAddress\t\tFSize\tMSize\n");
 
   for (int i = 0; i < seg_num; ++i) {
     const ELFIO::segment *pseg = reader->segments[i];
@@ -173,7 +178,6 @@ void loadElfToMemory(ELFIO::elfio *reader, MemoryManager *memory) {
 
     uint64_t fullmemsz = pseg->get_memory_size();
     uint64_t fulladdr = pseg->get_virtual_address();
-    // Our 32bit simulator cannot handle this
     if (fulladdr + fullmemsz > 0xFFFFFFFF) {
       printf(
           "ELF address space larger than 32bit! Seg %d has max addr of 0x%lx\n",
@@ -189,12 +193,12 @@ void loadElfToMemory(ELFIO::elfio *reader, MemoryManager *memory) {
       if (!memory->isPageExist(p)) {
         memory->addPage(p);
       }
-
       if (p < addr + filesz) {
-        memory->setByteNoCache(p, pseg->get_data()[p - addr]);
+        memory->setByteNoCache(p, pseg->get_data()[p - addr]&0xff);
       } else {
         memory->setByteNoCache(p, 0);
       }
     }
   }
+  
 }

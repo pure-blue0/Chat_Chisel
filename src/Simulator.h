@@ -126,7 +126,8 @@ enum Inst {
   CSRRSI= 41,
   CSRRCI= 42,
   ECALL = 43,
-
+  MRET  = 44,
+  WFI   = 45,
   UNKNOWN = -1,
 };
 extern const char *INSTNAME[];
@@ -165,6 +166,8 @@ public:
   bool hazard_verify;
   bool dcache_verify;
   bool targetGen_verify;
+
+  bool meip;//top interrupt
   
   uint32_t pcNew;
   uint32_t pc;

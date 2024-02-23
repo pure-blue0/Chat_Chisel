@@ -8,47 +8,66 @@
 namespace RISCV {
 
 const char *REGNAME[32] = {
-    "zero", // x0
-    "ra",   // x1
-    "sp",   // x2
-    "gp",   // x3
-    "tp",   // x4
-    "t0",   // x5
-    "t1",   // x6
-    "t2",   // x7
-    "s0",   // x8
-    "s1",   // x9
-    "a0",   // x10
-    "a1",   // x11
-    "a2",   // x12
-    "a3",   // x13
-    "a4",   // x14
-    "a5",   // x15
-    "a6",   // x16
-    "a7",   // x17
-    "s2",   // x18
-    "s3",   // x19
-    "s4",   // x20
-    "s5",   // x21
-    "s6",   // x22
-    "s7",   // x23
-    "s8",   // x24
-    "s9",   // x25
-    "s10",  // x26
-    "s11",  // x27
-    "t3",   // x28
-    "t4",   // x29
-    "t5",   // x30
-    "t6",   // x31
+    "zero", 
+    "ra",   
+    "sp",   
+    "gp",   
+    "tp",  
+    "t0",  
+    "t1",  
+    "t2",  
+    "s0",   
+    "s1",  
+    "a0",   
+    "a1",  
+    "a2",  
+    "a3", 
+    "a4",   
+    "a5",  
+    "a6",   
+    "a7",   
+    "s2",   
+    "s3",  
+    "s4",  
+    "s5", 
+    "s6",  
+    "s7", 
+    "s8",  
+    "s9",   
+    "s10", 
+    "s11", 
+    "t3",  
+    "t4",  
+    "t5",  
+    "t6",  
+};
+
+const char *CSRNAME[17] = {
+    "Mstatus", 
+    "Misa",  
+    "Mie",  
+    "Mtvec",  
+    "Mscratch",  
+    "Mepc", 
+    "Mcause",
+    "Mtval",  
+    "Mip",  
+    "Mcycle",  
+    "Mcycleh",   
+    "Minstret",  
+    "Minstreth",  
+    "Mvendorid",  
+    "Marchid",   
+    "Mimpid",  
+    "Mhartid",  
 };
 
 const char *INSTNAME[]{
-    "lui"  , "auipc", "jal"  , "jalr" , "beq"  ,   "bne",  "blt",  "bge",  "bltu",
-    "bgeu" , "lb"   , "lh"   , "lw"   , "lbu"  ,   "lhu",  "sb",   "sh" ,   "sw" , 
-    "addi" , "slti" , "sltiu", "xori" , "ori"  ,  "andi",  "slli", "srli", "srai",
-    "add"  , "sub"  , "sll"  , "slt"  , "sltu" , "xor",  "srl", "sra",  "or", "and",
-    "csrrw", "csrrs", "csrrc","csrrwi","csrrsi","csrrci","ecall", 
-    
+    "lui"  , "auipc", "jal"  , "jalr" , "beq"  ,"bne"   ,"blt"  ,"bge" ,"bltu",
+    "bgeu" , "lb"   , "lh"   , "lw"   , "lbu"  ,"lhu"   ,"sb"   ,"sh"  ,"sw"  , 
+    "addi" , "slti" , "sltiu", "xori" , "ori"  ,"andi"  ,"slli" ,"srli","srai",
+    "add"  , "sub"  , "sll"  , "slt"  , "sltu" ,"xor"   ,"srl"  ,"sra" ,"or"  , 
+    "and"  ,"csrrw" , "csrrs", "csrrc","csrrwi","csrrsi","csrrci","ecall","mret","wfi"    
 };
 
 } // namespace RISCV
@@ -61,6 +80,7 @@ Simulator::Simulator(MemoryManager *memory, BranchPredictor *predictor) {
   this->pc = 0;
   this->pcNew=0;
   this->pcWrite = true;
+  this->meip=false;
   //default get value is pc+4
   this->BP_mux  = false;
   this->ispcsrc = false;
@@ -75,6 +95,7 @@ Simulator::~Simulator() {}
 void Simulator::initStack(uint32_t baseaddr, uint32_t maxSize) {
   this->reg[REG_SP] = baseaddr;
   this->stackBase = baseaddr;
+  
   this->maximumStackSize = maxSize;
   for (uint32_t addr = baseaddr; addr > baseaddr - maxSize; addr--) {
     if (!this->memory->isPageExist(addr)) {
@@ -114,9 +135,9 @@ void Simulator::simulate() {
       this->panic("Register 0's value is not zero!\n");
     }
 
-    if (this->reg[REG_SP] < this->stackBase - this->maximumStackSize) {
-      this->panic("Stack Overflow!\n");
-    }
+    // if (this->reg[REG_SP] < this->stackBase - this->maximumStackSize) {
+    //   this->panic("Stack Overflow!\n");
+    // }
 
     this->executeWriteBack = false;
     this->executeWBReg = -1;
@@ -124,9 +145,9 @@ void Simulator::simulate() {
     this->memoryWBReg = -1;
     
     if (this->verbose) {
-      printf("-----------------------------------\n");
-      printf("----------CYCLE %d----------------\n",this->history.cycleCount);
-      printf("-----------------------------------\n");
+      printf("--------------------------------------------------------\n");
+      printf("----------------------CYCLE %d--------------------------\n",this->history.cycleCount);
+      printf("--------------------------------------------------------\n");
     }
 
     this->fetch();
@@ -160,18 +181,31 @@ void Simulator::simulate() {
 }
 
 void Simulator::fetch() {
-
+  if(verbose) printf("<--Fetch stage-->\n");
   //printf("trapped:%d,mret:%d\n",this->MEM_WBReg.csr_trapped,this->MEM_WBReg.mret_out);
   /*if(this->MEM_WBReg.csr_trapped)this->pc=this->IF_IDReg.trap_vector;
-  else if(this->MEM_WBReg.mret_out)this->pc=this->IF_IDReg.mret_vector;*/
-  if(this->pcWrite)this->pc=this->pcNew;
+  else */
+  if(this->MEM_WBReg.mret_out){
+    this->pc=this->IF_IDReg.mret_vector;
+    this->IF_IDReg.bubble = true;
+    this->ID_EXReg.bubble = true;
+    this->EX_MEMReg.bubble=true;
+  }
+  else if(this->pcWrite)this->pc=this->pcNew;
   else this->pc=this->pc;
   
+
   if (this->pc % 2 != 0) this->panic("Illegal PC 0x%x!\n", this->pc);
   //get fetch(The process of getting the finger from the Icache is also in the function)
   uint32_t inst = this->memory->getInt(this->pc);
+  if(this->pc==0x80000000)inst|=0x6f;
+  if(inst==0x0ff0000f){//skip fence inst
+    this->pc=this->pc+4;
+    inst = this->memory->getInt(this->pc);
+  }
   //Prediction Next PC
   bool predictedBranch = this->branchPredictor->BTB_Predict(this->pc);
+  
   //BHT
   bool BHT_match=this->branchPredictor->bht_match(this->pc);
   bool BHT_valid=this->branchPredictor->get_bht_valid(this->pc);
@@ -188,8 +222,8 @@ void Simulator::fetch() {
     this->IF_IDRegNew.prediction_jump=false;
   }
 
-  if(this->BHT_verify)printf("Module:BHT  match %d, valid %d ,bht_pred_pc 0x%.8x\n",BHT_match,BHT_valid,BHT_target_pc);
-  if (this->verbose) printf("Fetched instruction 0x%.8x at address 0x%x\n", inst, this->pc);
+  if(this->BHT_verify)printf("\tModule:BHT  match %d, valid %d ,bht_pred_pc 0x%.8x\n",BHT_match,BHT_valid,BHT_target_pc);
+  if (this->verbose) printf("\tFetched instruction 0x%.8x at address 0x%x\n", inst, this->pc);
   
   this->IF_IDRegNew.bubble = false;
   this->IF_IDRegNew.stall = false;
@@ -200,20 +234,21 @@ void Simulator::fetch() {
 
 
 void Simulator::decode() {
+  if(verbose) printf("<--Decode stage-->\n");
   if (this->IF_IDReg.stall) {
-    if (verbose) printf("Decode: Stall\n");
+    if (verbose) printf("\tDecode: Stall\n");
 
     return;
   }
   if (this->IF_IDReg.bubble || this->IF_IDReg.inst == 0) {
-    if (verbose) printf("Decode: Bubble\n");
+    if (verbose) printf("\tDecode: Bubble\n");
     this->ID_EXRegNew.bubble = true;
     return;
   }
 
   std::string instname = "";
   std::string inststr = "";
-  std::string deststr, op1str, op2str, offsetstr;
+  std::string deststr, op1str, op2str,csrstr, offsetstr;
   Inst insttype = Inst::UNKNOWN;
 
   uint32_t inst = this->IF_IDReg.inst;
@@ -535,14 +570,32 @@ void Simulator::decode() {
       dest = REG_A0;
       insttype = ECALL;
     } 
-    else this->panic("Unknown OP_CSR inst with funct3 0x%x and funct7 0x%x\n",funct3, funct7);
-    inststr = instname;
+    
+    //else this->panic("Unknown OP_CSR inst with funct3 0x%x and funct7 0x%x\n",funct3, funct7);
+    op1str = REGNAME[rs1];
+    offsetstr = std::to_string(imm);
+    csrstr = std::to_string(csr_address);
+    deststr = REGNAME[rd];
+    if(funct3==0x1||funct3==0x2||funct3==0x3)inststr = instname + " " + deststr + "," + csrstr + "," + op1str;
+    else  inststr = instname + " " + deststr + "," + csrstr + "," + offsetstr;
     break;
   default:  this->panic("Unsupported opcode 0x%x!\n", opcode);
   }
-  if(inst==0x30200073) mret_out=true; //mret inst
+  if(inst==0x30200073) {
+    instname="mret";
+    mret_out=true; //mret inst
+    csr_write=false;
+    csr_read=false;
+    insttype = MRET;
+  }
   else  mret_out=false;
-  if(inst==0x10500073)wfi_out=true;   //WFI inst
+  if(inst==0x10500073){
+    instname="wfi";
+    wfi_out=true;   //WFI inst
+    csr_write=false;
+    csr_read=false;
+    insttype = WFI;
+  }
   else wfi_out=false;
   //judgement inst legal
   if(insttype==UNKNOWN){//The commands are not matched
@@ -555,14 +608,16 @@ void Simulator::decode() {
   }
   
   
-  //save info
-  char buf[4096];
-  sprintf(buf, "0x%x: %s\n", this->IF_IDReg.id_pc, inststr.c_str());
-  if (verbose)  printf("Decoded instruction 0x%.8x as %s\n", inst, inststr.c_str());
-    
+  if (verbose){
+     //output info
+    char buf[4096];
+    sprintf(buf, "0x%x: %s\n", this->IF_IDReg.id_pc, inststr.c_str());
+    printf("\tDecoded instruction 0x%.8x as %s\n", inst, inststr.c_str());
+  }
   if (instname != INSTNAME[insttype]) this->panic("Unmatch instname %s with insttype %d\n", instname.c_str(), insttype);
   //calculate branch address and save the back-end redirection address
-
+  if(verbose&&mret_out)printf("\tdecode inst is mret\n");
+  if (verbose) printf("\tDECODE:writeable%d,readable%d\n",csr_write,csr_read);
   this->ID_EXRegNew.stall =  false;
   this->ID_EXRegNew.bubble = false;
 
@@ -592,17 +647,18 @@ void Simulator::decode() {
 //The reason for [logic module]  executing in execute is the program is order running,
 //But the real RISCV CPU running is parallel,so these data must be prepared One cycle ahead
 void Simulator::execute() {
+  if(verbose) printf("<--Execute stage-->\n");
   if (this->ID_EXReg.stall) {
-    if (verbose) printf("Execute: Stall\n");
+    if (verbose) printf("\tExecute: Stall\n");
     this->EX_MEMRegNew.bubble = true;
     return;
   }
   if (this->ID_EXReg.bubble) {
-    if (verbose) printf("Execute: Bubble\n");
+    if (verbose) printf("\tExecute: Bubble\n");
     this->EX_MEMRegNew.bubble = true;
     return;
   }
-  if (verbose) printf("Execute: %s\n ALUOP is:%d", INSTNAME[this->ID_EXReg.insttype],this->ID_EXReg.ALUOp);
+  if (verbose) printf("\tExecute: %s ALUOP is:%d\n", INSTNAME[this->ID_EXReg.insttype],this->ID_EXReg.ALUOp);
 
   this->history.instCount++;//PMU
 
@@ -631,6 +687,7 @@ void Simulator::execute() {
   uint32_t ecause_out=0,exception_out=0;
   //handle exception
   bool csr_exception=(this->ID_EXReg.csr_read!=readable)||(this->ID_EXReg.csr_write!=writeable);//check csr operate whether legal
+  if(verbose) printf("\tcsr_address:%x,csr_read:%d,readable:%d,csr_write:%d,writeable:%d\n",this->ID_EXReg.csr_address,this->ID_EXReg.csr_read,readable,this->ID_EXReg.csr_write,writeable);
   if(!exception_in &&csr_exception){//The exception is not handled and the CSR operation is illegal
     exception_out=1;
     ecause_out=2;
@@ -643,7 +700,7 @@ void Simulator::execute() {
   uint32_t ex_pc = this->ID_EXReg.ex_pc;
   uint32_t target_pc = 0;
   RegId ex_rd   = this->ID_EXReg.rd;
-  int32_t result  = 0,csr_write_out;
+  int32_t result  = 0,csr_write_out=0;
   bool branch = false;
   switch (insttype) {
   case LUI:  result = offset;break;
@@ -696,6 +753,8 @@ void Simulator::execute() {
   case CSRRSI:csr_write_out=csr_read_data|offset;break;
   case CSRRCI:csr_write_out=csr_read_data&(~offset);break;
   case ECALL: result = handleSystemCall(Rs1_op, Rs2_op); break;
+  case MRET:break;
+  case WFI:break;
   default:    this->panic("Unknown instruction type %d\n", insttype);
   }
   
@@ -776,14 +835,14 @@ void Simulator::execute() {
       this->executeWBReg = ex_rd;
       this->executeWriteBack = true;
       this->history.dataHazardCount++;
-      if (verbose) printf("  Forward Data %s to Decode op1\n", REGNAME[ex_rd]);
+      if (verbose) printf("\tForward Data %s to Decode op1\n", REGNAME[ex_rd]);
     }
     if (this->ID_EXRegNew.rs2 == ex_rd) {
       this->ID_EXRegNew.Rs2_op = result;
       this->executeWBReg = ex_rd;
       this->executeWriteBack = true;
       this->history.dataHazardCount++;
-      if (verbose) printf("  Forward Data %s to Decode op2\n", REGNAME[ex_rd]);
+      if (verbose) printf("\tForward Data %s to Decode op2\n", REGNAME[ex_rd]);
     }
   }
 
@@ -806,7 +865,8 @@ void Simulator::execute() {
   this->EX_MEMRegNew.Rs2_op = Rs2_op;     // for store
   //csr
   this->EX_MEMRegNew.csr_Readdata=csr_read_data;
-  this->EX_MEMRegNew.csr_WriteEnable=writeable;
+  this->EX_MEMRegNew.csr_WriteEnable=this->ID_EXReg.csr_write;
+  if(verbose) printf("\tEXECUTE:writeable:%d\n",this->EX_MEMRegNew.csr_WriteEnable);
   this->EX_MEMRegNew.csr_address=this->ID_EXReg.csr_address;
   this->EX_MEMRegNew.csr_writedata=csr_write_out;
   this->EX_MEMRegNew.mret_out=this->ID_EXReg.mret_out;
@@ -817,12 +877,13 @@ void Simulator::execute() {
 }
 
 void Simulator::memoryAccess() {
+  if(verbose) printf("<--Mem Access stage-->\n");
   if (this->EX_MEMReg.stall) {
-    if (verbose) printf("Memory Access: Stall\n");
+    if (verbose) printf("\tMemory Access: Stall\n");
     return;
   }
   if (this->EX_MEMReg.bubble) {
-    if (verbose) printf("Memory Access: Bubble\n");
+    if (verbose) printf("\tMemory Access: Bubble\n");
     this->MEM_WBNew.bubble = true;
     return;
   }
@@ -834,12 +895,19 @@ void Simulator::memoryAccess() {
   int32_t Mem_Result =0;
 
   //csr
+  bool ie=(this->csr_reg[Mstatus]>>3)&0x1;
+  bool meie=(this->csr_reg[Mie]>>11)&0x1;
+  bool mtie=(this->csr_reg[Mie]>>7)&0x1;
+  bool msie=(this->csr_reg[Mie]>>3)&0x1;
+  bool mtip=(this->csr_reg[Mip]>>7)&0x1;
+  bool msip=(this->csr_reg[Mip]>>3)&0x1;
+  bool sip=ie&&meie&&this->meip;
+  bool tip=ie&&mtie&&mtip;
+  bool eip=ie&&msie&&msip;
+
   bool exception_in=this->EX_MEMReg.exception_out;
   bool ecause_in=this->EX_MEMReg.ecause_out;
   bool wfi_in=this->EX_MEMReg.wfi_out;
-  bool sip=this->csr_reg[Mip] & 1?true:false;
-  bool tip=this->csr_reg[Mip] & 2?true:false;
-  bool eip=this->csr_reg[Mip] & 4?true:false;
   bool load_exception=this->EX_MEMReg.MemRead &&(rd==0);
 
   bool misaligned_exception=(this->EX_MEMReg.MemRead||this->EX_MEMReg.MemWrite)&&(ALU_Result&&0x3?true:false);
@@ -864,7 +932,7 @@ void Simulator::memoryAccess() {
     exception_out=true;
     ecause_out=5;
     interrupt=false;
-    printf("exception_in=0,load_exception=1\n");
+    if (verbose) printf("\texception_in=0,load_exception=1\n");
   }
   else if(!exception_in&&misaligned_exception){
     exception_out=true;
@@ -877,7 +945,13 @@ void Simulator::memoryAccess() {
     ecause_out=ecause_in;
     interrupt=false;
   }
-  //printf("sip:%d,tip:%d,eip:%d,exception:%d,exception_in:%d\n",sip,tip,eip,exception_out,exception_in);
+  if (verbose) {
+    printf("\tMEM:sip:%d,tip:%d,eip:%d,exception:%d,exception_in:%d\n",sip,tip,eip,exception_out,exception_in);
+    printf("\tException:decode:%d,exe:%d,mem:%d\n",this->ID_EXRegNew.exception_out,
+                                                   this->EX_MEMRegNew.exception_out,
+                                                   exception_out);
+  } 
+  
   trapped=sip||tip||eip||exception_out;
   retried=!trapped&&!wfi_in;
   if(retried)this->history.retried_Count++;
@@ -891,7 +965,7 @@ void Simulator::memoryAccess() {
   Mem_Result=this->Dcache_Read(this->EX_MEMReg.MemRead,this->EX_MEMReg.funct3,ALU_Result,&cycles);
   
   if (!good) this->panic("Invalid Mem Access!\n");
-  if (verbose) printf("Memory Access: %s\n", INSTNAME[insttype]);
+  if (verbose) printf("\tMemory Access: %s\n", INSTNAME[insttype]);
   
   //00:write this->MEM_WBNew.reg_pc to rd
   uint32_t forward_data=0;
@@ -909,7 +983,7 @@ void Simulator::memoryAccess() {
         this->memoryWriteBack = true;
         this->memoryWBReg = rd;
         this->history.dataHazardCount++;
-        if (verbose) printf("  Forward Data %s to Decode op1\n", REGNAME[rd]);
+        if (verbose) printf("\tForward Data %s to Decode op1\n", REGNAME[rd]);
           
       }
     }
@@ -922,7 +996,7 @@ void Simulator::memoryAccess() {
         this->memoryWBReg = rd;
         this->history.dataHazardCount++;
         if (verbose)
-          printf("  Forward Data %s to Decode op2\n", REGNAME[rd]);
+          printf("\tForward Data %s to Decode op2\n", REGNAME[rd]);
       }
     }
     // Corner case of forwarding mem load data to stalled decode reg
@@ -933,7 +1007,7 @@ void Simulator::memoryAccess() {
       this->memoryWBReg = rd;
       this->history.dataHazardCount++;
       if (verbose)
-          printf("  Forward Data %s to Decode op2\n", REGNAME[rd]);
+          printf("\tForward Data %s to Decode op2\n", REGNAME[rd]);
     }
   }
 
@@ -952,6 +1026,7 @@ void Simulator::memoryAccess() {
   //csr
   this->MEM_WBNew.mret_out=this->EX_MEMReg.mret_out;
   this->MEM_WBNew.csr_WriteEnable=this->EX_MEMReg.csr_WriteEnable;
+  if(verbose) printf("\tMEM:writeable:%d\n",this->MEM_WBNew.csr_WriteEnable);
   this->MEM_WBNew.csr_address=this->EX_MEMReg.csr_address;
   this->MEM_WBNew.csr_writedata=this->EX_MEMReg.csr_writedata;
   this->MEM_WBNew.csr_Readdata=this->EX_MEMReg.csr_Readdata;
@@ -962,15 +1037,16 @@ void Simulator::memoryAccess() {
 }
 
 void Simulator::writeBack() {
+  if(verbose) printf("<--WriteBack stage-->\n");
   if (this->MEM_WBReg.stall) {
-    if (verbose) printf("WriteBack: stall\n");
+    if (verbose) printf("\tWriteBack: stall\n");
     return;
   }
   if (this->MEM_WBReg.bubble) {
-    if (verbose) printf("WriteBack: Bubble\n");
+    if (verbose) printf("\tWriteBack: Bubble\n");
     return;
   }
-  if (verbose) printf("WriteBack: %s\n", INSTNAME[this->MEM_WBReg.insttype]);
+  if (verbose) printf("\tWriteBack: %s\n", INSTNAME[this->MEM_WBReg.insttype]);
   
   if (this->MEM_WBReg.RegWrite && this->MEM_WBReg.rd != 0) {
     //Select the data to be written to the rd
@@ -991,7 +1067,7 @@ void Simulator::writeBack() {
         if (!this->memoryWriteBack ||(this->memoryWriteBack  && this->memoryWBReg != this->MEM_WBReg.rd)) {
           this->ID_EXRegNew.Rs1_op = writedata;
           this->history.dataHazardCount++;
-          if (verbose) printf("  Forward Data %s to Decode op1\n",REGNAME[this->MEM_WBReg.rd]);
+          if (verbose) printf("\tForward Data %s to Decode op1\n",REGNAME[this->MEM_WBReg.rd]);
         }
       }
     }
@@ -1001,21 +1077,23 @@ void Simulator::writeBack() {
         if (!this->memoryWriteBack || (this->memoryWriteBack && this->memoryWBReg != this->MEM_WBReg.rd)) {
           this->ID_EXRegNew.Rs2_op = writedata;
           this->history.dataHazardCount++;
-          if (verbose) printf("  Forward Data %s to Decode op2\n",REGNAME[this->MEM_WBReg.rd]);
+          if (verbose) printf("\tForward Data %s to Decode op2\n",REGNAME[this->MEM_WBReg.rd]);
         }
       }
     }
   }
 }
 void Simulator::csr(){
+
+  
   this->IF_IDRegNew.trap_vector=this->csr_reg[Mtvec];
   this->IF_IDRegNew.mret_vector=this->csr_reg[Mepc];
   //---update reg data
   //cycle
-  this->csr_reg[Mcycleh]= (uint32_t)(this->history.cycleCount>>32);
+  this->csr_reg[Mcycleh]= (uint32_t)(this->history.cycleCount>>31);
   this->csr_reg[Mcycle]= (uint32_t)(this->history.cycleCount);
   //retired inst
-  this->csr_reg[Minstret]= (uint32_t)(this->history.retried_Count>>32);
+  this->csr_reg[Minstret]= (uint32_t)(this->history.retried_Count>>31);
   this->csr_reg[Minstreth]= (uint32_t)(this->history.retried_Count);
   //other csr reg
   uint32_t csr_writedata=this->MEM_WBNew.csr_writedata;
@@ -1023,7 +1101,6 @@ void Simulator::csr(){
   bool csr_interrupt=this->MEM_WBNew.csr_interrupt;
   uint32_t csr_ecause=this->MEM_WBNew.csr_ecause;
   bool csr_mret=this->MEM_WBNew.mret_out;
-  uint32_t meip=0;//from top
 
   if(csr_trapped){
     //update pie
@@ -1047,7 +1124,11 @@ void Simulator::csr(){
     //update pie
     this->csr_reg[Mstatus]|= 0x80;
   }
-
+  if(verbose) {
+    printf("\ttrapped:%d,mret:%d\n",csr_trapped,csr_mret);
+    printf("\twriteable:%d,address:0x%x,data:%x\n",this->MEM_WBNew.csr_WriteEnable,this->MEM_WBNew.csr_address,csr_writedata);
+  }
+  
   if(this->MEM_WBNew.csr_WriteEnable)
   {
     switch (this->MEM_WBNew.csr_address)
@@ -1085,7 +1166,7 @@ void Simulator::csr(){
     }
   } 
   this->csr_reg[Mip]&=~(0x880);//clean
-  this->csr_reg[Mip]=this->csr_reg[Mip]|(meip<<11);
+  this->csr_reg[Mip]=this->csr_reg[Mip]|(this->meip<<11);
   this->csr_reg[Mip]=this->csr_reg[Mip]|((this->csr_reg[Mcycle]>=0X7FFFFFFF)<<7);
 }
 
@@ -1133,7 +1214,15 @@ void Simulator::printInfo() {
     if (i % 4 == 3)
       printf("\n");
   }
-  printf("-----------------------------------\n");
+  printf("-------------CSR REG------------------\n");
+  uint32_t csr_reg_num[13]={0X300,0X301,0X304,0X305,0X340,0X341,0X342,
+                            0X343,0X344,0XB00,0XB80,0XB02,0XB82};
+  for (uint32_t i = 0; i < 13; ++i) {
+    printf("%s: 0x%.8x(%d) ", CSRNAME[i], this->csr_reg[csr_reg_num[i]], this->csr_reg[csr_reg_num[i]]);
+    if (i % 4 == 3)
+      printf("\n");
+  }
+  printf("\n-----------------------------------\n");
 }
 
 void Simulator::printStatistics() {
@@ -1180,7 +1269,6 @@ uint32_t Simulator::imm_gen(uint32_t inst){
   uint32_t imm_gen__opcode = inst & 0x7F;
   InstType imm_gen__type=NULL_TYPE;
   //decode the type
-  printf("inst is %x,opcode is:%x\n",inst,imm_gen__opcode);
   switch(imm_gen__opcode)
   {
     case OP_REG:    imm_gen__type=R_TYPE; break; //0X33
@@ -1221,17 +1309,18 @@ void Simulator::control(uint32_t opcode,uint32_t funct3,uint32_t funct7){
       {
         case 0x0:if(funct7==0x00){this->ID_EXRegNew.ALUOp=0;}         //ADD
                  else if(funct7==0x20){this->ID_EXRegNew.ALUOp=1;}    //SUB
-                 else if(funct7==0x04){this->ID_EXRegNew.ALUOp=2;}    //XOR
+                 
                  break;
         case 0x1:if(funct7==0x00){this->ID_EXRegNew.ALUOp=5;}break;   //SLL
         case 0x2:if(funct7==0x00){this->ID_EXRegNew.ALUOp=8;}break;   //SLT
         case 0x3:if(funct7==0x00){this->ID_EXRegNew.ALUOp=9;}break;   //SLTU
+        case 0x4:if(funct7==0x00){this->ID_EXRegNew.ALUOp=2;}        //XOR
         case 0x5:if(funct7==0x00){this->ID_EXRegNew.ALUOp=6;}         //SRL
                  else if(funct7==0x20){this->ID_EXRegNew.ALUOp=7;}    //SRA
                  break;
         case 0x6:if(funct7==0x00){this->ID_EXRegNew.ALUOp=3;}break;   //OR
         case 0x7:if(funct7==0x00){this->ID_EXRegNew.ALUOp=4;}break;   //AND
-        default:this->panic("Die in control_OP_REG");
+        default:this->panic("Die in control_OP_REG\n");
       }
       this->ID_EXRegNew.ImmSrc   = 0;
       this->ID_EXRegNew.isBranch = 0;
@@ -1423,13 +1512,13 @@ void Simulator::control(uint32_t opcode,uint32_t funct3,uint32_t funct7){
 void Simulator::DataHazard(uint32_t memRead,RISCV::RegId id_rs1,RISCV::RegId id_rs2,RISCV::RegId ex_rd){
   if (memRead&&(id_rs1 == ex_rd || id_rs2 == ex_rd)) {
     //如果当前指令是读指令，且下一个指令的rs1或rs2等于当前指令的目的寄存器，那么fetch和decode需要停顿1个周期
-      this->IF_IDRegNew.stall = 1;
-      this->ID_EXRegNew.stall = 1;//as same as set id_ex_flush=1(clean all the control signal)
+      this->IF_IDRegNew.stall = true;
+      this->ID_EXRegNew.stall = true;//as same as set id_ex_flush=1(clean all the control signal)
       this->pcWrite=false;
+      if(verbose)printf("\t stall because hazard\n");
       this->history.memoryHazardCount++;
   }
-  if(false){
-  //if(this->hazard_verify){
+  if(this->hazard_verify){
     printf("--------------------------------------hazard module--------------------------------------\n");
     printf("-->DataHazard\n");
     printf("Input :MemRead :%d ,ID_RS1:%s ,ID_RS2:%s ,EX_RD:%s \n",memRead,REGNAME[id_rs1],REGNAME[id_rs2],REGNAME[ex_rd]);
@@ -1444,14 +1533,14 @@ void Simulator::ForwardData(){
       this->executeWBReg = this->ID_EXReg.rd;
       this->executeWriteBack = true;
       this->history.dataHazardCount++;
-      if (verbose) printf("  Forward Data %s to Decode op1\n", REGNAME[this->ID_EXReg.rd]);
+      if (verbose) printf("\tForward Data %s to Decode op1\n", REGNAME[this->ID_EXReg.rd]);
     }
     if (this->ID_EXRegNew.rs2 == this->ID_EXReg.rd) {
       this->ID_EXRegNew.Rs2_op = this->EX_MEMRegNew.AluResult;//Current cycle EXE stage ALU calculation result;
       this->executeWBReg = this->ID_EXReg.rd;
       this->executeWriteBack = true;
       this->history.dataHazardCount++;
-      if (verbose) printf("  Forward Data %s to Decode op2\n", REGNAME[this->ID_EXReg.rd]);
+      if (verbose) printf("\tForward Data %s to Decode op2\n", REGNAME[this->ID_EXReg.rd]);
     }
   }
 }
@@ -1460,6 +1549,7 @@ void Simulator::ForwardData(){
 bool Simulator::Dcache_Write(uint32_t mem_write, int32_t funct3,int32_t AluResult,int32_t RS2_op,uint32_t *cycles){
   bool good=true;
   if (mem_write) {
+    if(AluResult==0X80001000)printf("ATTENTION!!!write data into thisreg\n\n\n");
     switch (funct3) {
     case 0:good = this->memory->setByte(AluResult, RS2_op& 0xFF, cycles); break;
     case 1:good = this->memory->setShort(AluResult,RS2_op& 0xFFFF, cycles); break;
@@ -1476,7 +1566,7 @@ bool Simulator::Dcache_Write(uint32_t mem_write, int32_t funct3,int32_t AluResul
 }
 //Dcache_Read
 int32_t Simulator::Dcache_Read(uint32_t mem_read, int32_t funct3,int32_t AluResult,uint32_t *cycles){
-  int32_t Mem_Result;
+  int32_t Mem_Result=0;
   if (mem_read) {
     switch (funct3) {
     case 0: Mem_Result = (int32_t)this->memory->getByte(AluResult, cycles);break;
@@ -1492,7 +1582,6 @@ int32_t Simulator::Dcache_Read(uint32_t mem_read, int32_t funct3,int32_t AluResu
       printf("OutPUT:Mem_Result:%d \n",Mem_Result);
     }
   }
-  
   return Mem_Result;
 }
 //WB

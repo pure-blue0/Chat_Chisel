@@ -173,6 +173,7 @@ uint32_t MemoryManager::getInt(uint32_t addr, uint32_t *cycles) {
   uint32_t b2 = this->get_iByte(addr + 1);
   uint32_t b3 = this->get_iByte(addr + 2);
   uint32_t b4 = this->get_iByte(addr + 3);
+ // printf("-----%x,%x,%x,%x\n",b1,b2,b3,b4);
   return b1 + (b2 << 8) + (b3 << 16) + (b4 << 24);
 }
 
@@ -183,7 +184,7 @@ void MemoryManager::printInfo() {
     if (this->memory[i] == nullptr) {
       continue;
     }
-    printf("0x%x-0x%x:\n", i << 22, (i + 1) << 22);
+    printf("  0x%x-0x%x:\n", i << 22, (i + 1) << 22);
     for (uint32_t j = 0; j < 1024; ++j) {
       if (this->memory[i][j] == nullptr) {
         continue;
