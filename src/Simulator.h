@@ -63,12 +63,13 @@ enum CSR_REG{
   Mcycleh = 0XB80,
   Minstret= 0XB02,
   Minstreth=0XB82,
+  SATP    = 0X180,
+  SEPC    = 0X141,
 
   Mvendorid= 0XF11,
   Marchid  = 0XF12,
   Mimpid   = 0XF13,
   Mhartid  = 0XF14,
-
 };
 
 enum InstType {
@@ -128,6 +129,8 @@ enum Inst {
   ECALL = 43,
   MRET  = 44,
   WFI   = 45,
+  SRET  = 46,
+  Fence = 47,
   UNKNOWN = -1,
 };
 extern const char *INSTNAME[];
@@ -143,7 +146,7 @@ const int OP_AUIPC = 0x17;
 const int OP_JAL = 0x6F;
 const int OP_JALR = 0x67;
 const int OP_CSR = 0x73;
-
+const int OP_FENCE=0X0F;
 
 
 
@@ -167,7 +170,10 @@ public:
   bool dcache_verify;
   bool targetGen_verify;
 
+  bool csr_forward_flag;
+  int32_t csr_forward_data;
   bool meip;//top interrupt
+  bool sert_flag;
   
   uint32_t pcNew;
   uint32_t pc;
@@ -204,6 +210,7 @@ private:
     bool prediction_jump;
     uint32_t trap_vector;
     uint32_t mret_vector;
+    uint32_t sret_vector;
   } IF_IDReg, IF_IDRegNew;
   struct DReg {
     // Control Signals

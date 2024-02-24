@@ -3,8 +3,8 @@ mkdir build
 cd build
 cmake ..
 make
-./model ../riscv-tests/rv32ui/rv32ui-p-xor 
-./model ../riscv-tests/rv32ui/rv32ui-v-xor -s -v
+./model ../riscv-tests/rv32ui/rv32ui-p-add 
+./model ../riscv-tests/rv32ui/rv32ui-v-lw
 
 #  ./model ../32riscv-elf/rv32ui-p-add
 #  ./model ../32riscv-elf/rv32ui-p-lui 

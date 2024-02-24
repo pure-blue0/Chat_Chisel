@@ -42,7 +42,7 @@ const char *REGNAME[32] = {
     "t6",  
 };
 
-const char *CSRNAME[17] = {
+const char *CSRNAME[18] = {
     "Mstatus", 
     "Misa",  
     "Mie",  
@@ -55,7 +55,9 @@ const char *CSRNAME[17] = {
     "Mcycle",  
     "Mcycleh",   
     "Minstret",  
-    "Minstreth",  
+    "Minstreth",
+    "Satp",  
+    "Sepc"
     "Mvendorid",  
     "Marchid",   
     "Mimpid",  
@@ -67,7 +69,8 @@ const char *INSTNAME[]{
     "bgeu" , "lb"   , "lh"   , "lw"   , "lbu"  ,"lhu"   ,"sb"   ,"sh"  ,"sw"  , 
     "addi" , "slti" , "sltiu", "xori" , "ori"  ,"andi"  ,"slli" ,"srli","srai",
     "add"  , "sub"  , "sll"  , "slt"  , "sltu" ,"xor"   ,"srl"  ,"sra" ,"or"  , 
-    "and"  ,"csrrw" , "csrrs", "csrrc","csrrwi","csrrsi","csrrci","ecall","mret","wfi"    
+    "and"  ,"csrrw" , "csrrs", "csrrc","csrrwi","csrrsi","csrrci","ecall","mret",
+    "wfi","sret","fence"   
 };
 
 } // namespace RISCV
@@ -81,6 +84,8 @@ Simulator::Simulator(MemoryManager *memory, BranchPredictor *predictor) {
   this->pcNew=0;
   this->pcWrite = true;
   this->meip=false;
+  this->csr_forward_flag=false;
+  this->csr_forward_data=0;
   //default get value is pc+4
   this->BP_mux  = false;
   this->ispcsrc = false;
@@ -185,7 +190,14 @@ void Simulator::fetch() {
   //printf("trapped:%d,mret:%d\n",this->MEM_WBReg.csr_trapped,this->MEM_WBReg.mret_out);
   /*if(this->MEM_WBReg.csr_trapped)this->pc=this->IF_IDReg.trap_vector;
   else */
-  if(this->MEM_WBReg.mret_out){
+  if(this->sert_flag){
+    this->pc=this->IF_IDReg.sret_vector;
+    this->sert_flag=0;
+    this->IF_IDReg.bubble = true;
+    this->ID_EXReg.bubble = true;
+    this->EX_MEMReg.bubble=true;
+  }
+  else if(this->MEM_WBReg.mret_out){
     this->pc=this->IF_IDReg.mret_vector;
     this->IF_IDReg.bubble = true;
     this->ID_EXReg.bubble = true;
@@ -199,10 +211,6 @@ void Simulator::fetch() {
   //get fetch(The process of getting the finger from the Icache is also in the function)
   uint32_t inst = this->memory->getInt(this->pc);
   if(this->pc==0x80000000)inst|=0x6f;
-  if(inst==0x0ff0000f){//skip fence inst
-    this->pc=this->pc+4;
-    inst = this->memory->getInt(this->pc);
-  }
   //Prediction Next PC
   bool predictedBranch = this->branchPredictor->BTB_Predict(this->pc);
   
@@ -579,6 +587,11 @@ void Simulator::decode() {
     if(funct3==0x1||funct3==0x2||funct3==0x3)inststr = instname + " " + deststr + "," + csrstr + "," + op1str;
     else  inststr = instname + " " + deststr + "," + csrstr + "," + offsetstr;
     break;
+  case OP_FENCE:
+    instname = "fence";
+    insttype = Fence;
+    inststr =instname;
+    break;
   default:  this->panic("Unsupported opcode 0x%x!\n", opcode);
   }
   if(inst==0x30200073) {
@@ -597,6 +610,16 @@ void Simulator::decode() {
     insttype = WFI;
   }
   else wfi_out=false;
+    if(inst==0x10200073){
+    instname = "sret";
+    insttype = SRET;
+  }
+  if(inst==0x00000073){
+    printf("Program exit from an exit() system call\n");
+    this->printStatistics();
+    exit(0);
+  }
+  
   //judgement inst legal
   if(insttype==UNKNOWN){//The commands are not matched
     exception_out=true;
@@ -606,7 +629,7 @@ void Simulator::decode() {
     exception_out=false;
     ecause_out=0;
   }
-  
+
   
   if (verbose){
      //output info
@@ -653,7 +676,7 @@ void Simulator::execute() {
     this->EX_MEMRegNew.bubble = true;
     return;
   }
-  if (this->ID_EXReg.bubble) {
+  if (this->ID_EXReg.bubble||this->ID_EXReg.insttype==Fence) {//if inst is fence,insert bubble
     if (verbose) printf("\tExecute: Bubble\n");
     this->EX_MEMRegNew.bubble = true;
     return;
@@ -667,20 +690,26 @@ void Simulator::execute() {
   int32_t Rs2_op = this->ID_EXReg.Rs2_op;
   int32_t offset = this->ID_EXReg.imm;
   //CSR data read
+  uint32_t csr_address=this->ID_EXReg.csr_address;
   bool readable=false,writeable=false;
-  int32_t csr_read_data=this->csr_reg[this->ID_EXReg.csr_address];
+  int32_t csr_read_data=0;
+  //printf("forward_flag:%d,data:%x\n",this->csr_forward_flag,this->csr_forward_data);
+  if(!this->csr_forward_flag) csr_read_data=this->csr_reg[this->ID_EXReg.csr_address];
+  else   csr_read_data=this->csr_forward_data;
+  
   readable =this->ID_EXReg.csr_address==0XC00||this->ID_EXReg.csr_address==0XC80||this->ID_EXReg.csr_address==0XC02
           ||this->ID_EXReg.csr_address==0XC82||this->ID_EXReg.csr_address==Mvendorid||this->ID_EXReg.csr_address==Marchid
           ||this->ID_EXReg.csr_address==Mimpid ||this->ID_EXReg.csr_address==Mhartid||this->ID_EXReg.csr_address==Mstatus
           ||this->ID_EXReg.csr_address==Misa||this->ID_EXReg.csr_address==Mie ||this->ID_EXReg.csr_address==Mtvec
           ||this->ID_EXReg.csr_address==Mscratch||this->ID_EXReg.csr_address==Mepc||this->ID_EXReg.csr_address==Mcause
           ||this->ID_EXReg.csr_address==Mtval||this->ID_EXReg.csr_address==Mip||this->ID_EXReg.csr_address==Mcycle
-          ||this->ID_EXReg.csr_address==Mcycleh||this->ID_EXReg.csr_address==Minstret||this->ID_EXReg.csr_address==Minstreth;
+          ||this->ID_EXReg.csr_address==Mcycleh||this->ID_EXReg.csr_address==Minstret||this->ID_EXReg.csr_address==Minstreth
+          ||this->ID_EXReg.csr_address==SATP||this->ID_EXReg.csr_address==SEPC;
   writeable=this->ID_EXReg.csr_address==Mstatus||this->ID_EXReg.csr_address==Misa||this->ID_EXReg.csr_address==Mie
           ||this->ID_EXReg.csr_address==Mtvec||this->ID_EXReg.csr_address==Mscratch||this->ID_EXReg.csr_address==Mepc
           ||this->ID_EXReg.csr_address==Mcause||this->ID_EXReg.csr_address==Mtval||this->ID_EXReg.csr_address==Mip
           ||this->ID_EXReg.csr_address==Mcycle||this->ID_EXReg.csr_address==Mcycleh||this->ID_EXReg.csr_address==Minstret
-          ||this->ID_EXReg.csr_address==Minstreth;
+          ||this->ID_EXReg.csr_address==Minstreth||this->ID_EXReg.csr_address==SATP||this->ID_EXReg.csr_address==SEPC;
   
   uint32_t ecause_in=this->ID_EXReg.ecause_out;
   uint32_t exception_in=this->ID_EXReg.exception_out;
@@ -755,11 +784,10 @@ void Simulator::execute() {
   case ECALL: result = handleSystemCall(Rs1_op, Rs2_op); break;
   case MRET:break;
   case WFI:break;
+  case SRET:break;
   default:    this->panic("Unknown instruction type %d\n", insttype);
   }
   
-  
-
   if (this->ID_EXReg.isJump||(this->ID_EXReg.isBranch &&branch)) this->ispcsrc=true;
   else this->ispcsrc=false;
   
@@ -827,25 +855,41 @@ void Simulator::execute() {
 
   //DataHazard
   this->DataHazard(this->ID_EXReg.MemRead,this->ID_EXRegNew.rs1,this->ID_EXRegNew.rs2,ex_rd);
-
+  //printf(">>rd:%x,this->ID_EXRegNew.rs1:%x,this->ID_EXRegNew.rs2:%x\n",ex_rd,this->ID_EXRegNew.rs1,this->ID_EXRegNew.rs2);
   //forward data
+  uint32_t forward_data=0;
+  if(this->ID_EXReg.MemtoReg==0x3)       forward_data = csr_write_out;
+  else  forward_data = result;
   if (this->ID_EXReg.RegWrite && ex_rd != 0 && !this->ID_EXReg.MemRead) {
     if (this->ID_EXRegNew.rs1 == ex_rd) {
-      this->ID_EXRegNew.Rs1_op = result;
+      this->ID_EXRegNew.Rs1_op = forward_data;
       this->executeWBReg = ex_rd;
       this->executeWriteBack = true;
       this->history.dataHazardCount++;
-      if (verbose) printf("\tForward Data %s to Decode op1\n", REGNAME[ex_rd]);
+      if (verbose) printf("\tForward Data %s(%x)to Decode op1\n", REGNAME[ex_rd],forward_data);
     }
     if (this->ID_EXRegNew.rs2 == ex_rd) {
-      this->ID_EXRegNew.Rs2_op = result;
+      this->ID_EXRegNew.Rs2_op = forward_data;
       this->executeWBReg = ex_rd;
       this->executeWriteBack = true;
       this->history.dataHazardCount++;
-      if (verbose) printf("\tForward Data %s to Decode op2\n", REGNAME[ex_rd]);
+      if (verbose) printf("\tForward Data %s(%x)to Decode op1\n", REGNAME[ex_rd],forward_data);
     }
   }
-
+  //printf("ex_address:%x,decode_address:%x\n",this->ID_EXReg.csr_address,this->ID_EXRegNew.csr_address);
+  if((this->ID_EXReg.csr_address==this->ID_EXRegNew.csr_address)
+     &&(this->ID_EXReg.csr_write&&this->ID_EXRegNew.csr_read))
+  {
+    this->csr_forward_flag = 1;
+    this->csr_forward_data = csr_write_out;
+    this->history.dataHazardCount++;
+    if (verbose) printf("\tForward csr Data %s to next inst op\n", csr_reg[this->ID_EXReg.csr_write]);
+  }
+  else{
+    this->csr_forward_flag = 0;
+    this->csr_forward_data = 0;
+  }
+  //printf(">>rd:%x\n",ex_rd);
   this->EX_MEMRegNew.bubble = false;
   this->EX_MEMRegNew.stall = false;
  
@@ -867,7 +911,7 @@ void Simulator::execute() {
   this->EX_MEMRegNew.csr_Readdata=csr_read_data;
   this->EX_MEMRegNew.csr_WriteEnable=this->ID_EXReg.csr_write;
   if(verbose) printf("\tEXECUTE:writeable:%d\n",this->EX_MEMRegNew.csr_WriteEnable);
-  this->EX_MEMRegNew.csr_address=this->ID_EXReg.csr_address;
+  this->EX_MEMRegNew.csr_address=csr_address;
   this->EX_MEMRegNew.csr_writedata=csr_write_out;
   this->EX_MEMRegNew.mret_out=this->ID_EXReg.mret_out;
   this->EX_MEMRegNew.wfi_out=this->ID_EXReg.wfi_out;
@@ -972,6 +1016,7 @@ void Simulator::memoryAccess() {
   if(this->EX_MEMReg.MemtoReg==0x0)       forward_data = this->EX_MEMReg.reg_pc;
   else if(this->EX_MEMReg.MemtoReg==0x1)  forward_data = Mem_Result;
   else if(this->EX_MEMReg.MemtoReg==0x2)  forward_data = ALU_Result;
+  else if(this->EX_MEMReg.MemtoReg==0x3)  forward_data = this->EX_MEMReg.csr_Readdata;
   //forward data
   if (this->EX_MEMReg.RegWrite && rd != 0) {
     if (this->ID_EXRegNew.rs1 == rd) {
@@ -1010,7 +1055,8 @@ void Simulator::memoryAccess() {
           printf("\tForward Data %s to Decode op2\n", REGNAME[rd]);
     }
   }
-
+  if(insttype==SRET)this->sert_flag=1;
+  else this->sert_flag=0;
   this->MEM_WBNew.bubble = false;
   this->MEM_WBNew.stall = false;
   this->MEM_WBNew.insttype = insttype;
@@ -1088,6 +1134,8 @@ void Simulator::csr(){
   
   this->IF_IDRegNew.trap_vector=this->csr_reg[Mtvec];
   this->IF_IDRegNew.mret_vector=this->csr_reg[Mepc];
+  this->IF_IDRegNew.sret_vector=this->csr_reg[SEPC];
+  
   //---update reg data
   //cycle
   this->csr_reg[Mcycleh]= (uint32_t)(this->history.cycleCount>>31);
@@ -1161,6 +1209,10 @@ void Simulator::csr(){
       this->csr_reg[Minstret]=csr_writedata|this->csr_reg[Minstret];break;//update Minstret
     case Minstreth:
       this->csr_reg[Minstreth]=csr_writedata|this->csr_reg[Minstreth];break;//update Minstreth
+    case SATP:
+      this->csr_reg[SATP]=csr_writedata;break;//update SATP
+    case SEPC:
+      this->csr_reg[SEPC]=csr_writedata|0X80000000;break;//update SEPC
     default:
       break;
     }
@@ -1173,6 +1225,7 @@ void Simulator::csr(){
 int32_t Simulator::handleSystemCall(int32_t op1, int32_t op2) {
   int32_t type = op2; // reg a7
   int32_t arg1 = op1; // reg a0
+  
   switch (type) {
   case 0: { // print string
     uint32_t addr = arg1;
@@ -1215,9 +1268,9 @@ void Simulator::printInfo() {
       printf("\n");
   }
   printf("-------------CSR REG------------------\n");
-  uint32_t csr_reg_num[13]={0X300,0X301,0X304,0X305,0X340,0X341,0X342,
-                            0X343,0X344,0XB00,0XB80,0XB02,0XB82};
-  for (uint32_t i = 0; i < 13; ++i) {
+  uint32_t csr_reg_num[15]={0X300,0X301,0X304,0X305,0X340,0X341,0X342,
+                            0X343,0X344,0XB00,0XB80,0XB02,0XB82,0X180,0X141};
+  for (uint32_t i = 0; i < 14; ++i) {
     printf("%s: 0x%.8x(%d) ", CSRNAME[i], this->csr_reg[csr_reg_num[i]], this->csr_reg[csr_reg_num[i]]);
     if (i % 4 == 3)
       printf("\n");
@@ -1292,7 +1345,7 @@ uint32_t Simulator::imm_gen(uint32_t inst){
   else if(imm_gen__type==UJ_TYPE)  imm_data=int32_t(((inst >> 21) & 0x3FF) | ((inst >> 10) & 0x400) |
                                         ((inst >> 1) & 0x7F800) | ((inst >> 12) & 0x80000))<< 12 >>11;
   else if(imm_gen__type==R_TYPE)        imm_data=0;
-  else  this->panic("Illegal Inst type!!! 0x%x!,%d\n", inst,imm_gen__type);
+  
   if(this->immGen_verify){
     printf("----------------------------------imm_gen module----------------------------------\n");
     printf("Input :instruction:0x%.8x\n",inst);
@@ -1549,11 +1602,12 @@ void Simulator::ForwardData(){
 bool Simulator::Dcache_Write(uint32_t mem_write, int32_t funct3,int32_t AluResult,int32_t RS2_op,uint32_t *cycles){
   bool good=true;
   if (mem_write) {
-    if(AluResult==0X80001000)printf("ATTENTION!!!write data into thisreg\n\n\n");
-    switch (funct3) {
+    
+        switch (funct3) {
     case 0:good = this->memory->setByte(AluResult, RS2_op& 0xFF, cycles); break;
-    case 1:good = this->memory->setShort(AluResult,RS2_op& 0xFFFF, cycles); break;
-    case 2:good = this->memory->setInt(AluResult, RS2_op& 0xFFFFFFFF, cycles); break;
+    case 1:good = this->memory->setShort(AluResult,RS2_op& 0xFFFF, cycles);break;
+    case 2:good = this->memory->setInt(AluResult, RS2_op& 0xFFFFFFFF, cycles); 
+            break;
     default:this->panic("Unknown funct3 %d\n", this->EX_MEMReg.funct3);
     }
     if(this->dcache_verify){
@@ -1576,6 +1630,7 @@ int32_t Simulator::Dcache_Read(uint32_t mem_read, int32_t funct3,int32_t AluResu
     case 5: Mem_Result = (uint32_t)this->memory->getShort(AluResult, cycles);break;
     default:this->panic("Unknown funct3 %d\n", this->EX_MEMReg.funct3);
     }
+    //printf("read data:%x from address:%x",Mem_Result,AluResult);
     if(this->dcache_verify){
       printf("-----------------------------------Dcache Read module----------- ------------------------\n");
       printf("Input :mem_write:%d ,funct3:0x%.2x ,AluResult:0x%x \n",mem_read,funct3,AluResult);
