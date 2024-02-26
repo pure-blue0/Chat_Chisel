@@ -74,10 +74,6 @@ int main(int argc, char **argv) {
   simulator.verbose = verbose;
   simulator.branchPredictor->strategy = strategy;
   simulator.pcNew = reader.get_entry();
-  if (verbose) {
-    memory.printInfo();
-  }
-  printf("===============fire=========");
   simulator.initStack(stackBaseAddr, stackSize);
   if (verbose) {
     memory.printInfo();

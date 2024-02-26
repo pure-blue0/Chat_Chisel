@@ -111,6 +111,7 @@ uint8_t MemoryManager::getByte(uint32_t addr, uint32_t *cycles) {
   if (this->dcache != nullptr) {
     return this->dcache->getByte(addr, cycles);
   }
+  
   uint32_t i = this->getFirstEntryId(addr);
   uint32_t j = this->getSecondEntryId(addr);
   uint32_t k = this->getPageOffset(addr);
@@ -161,13 +162,21 @@ bool MemoryManager::setInt(uint32_t addr, uint32_t val, uint32_t *cycles) {
     printf("Int write to invalid addr 0x%x!\n", addr);
     return false;
   }
-  this->set_iByte(addr, val & 0xFF, cycles);
-  this->set_iByte(addr + 1, (val >> 8) & 0xFF);
-  this->set_iByte(addr + 2, (val >> 16) & 0xFF);
-  this->set_iByte(addr + 3, (val >> 24) & 0xFF);
+  this->setByte(addr, val & 0xFF, cycles);
+  this->setByte(addr + 1, (val >> 8) & 0xFF);
+  this->setByte(addr + 2, (val >> 16) & 0xFF);
+  this->setByte(addr + 3, (val >> 24) & 0xFF);
   return true;
 }
 
+uint32_t MemoryManager::get_iInt(uint32_t addr, uint32_t *cycles) {
+  uint32_t b1 = this->get_iByte(addr, cycles);
+  uint32_t b2 = this->get_iByte(addr + 1);
+  uint32_t b3 = this->get_iByte(addr + 2);
+  uint32_t b4 = this->get_iByte(addr + 3);
+ // printf("-----%x,%x,%x,%x\n",b1,b2,b3,b4);
+  return b1 + (b2 << 8) + (b3 << 16) + (b4 << 24);
+}
 uint32_t MemoryManager::getInt(uint32_t addr, uint32_t *cycles) {
   uint32_t b1 = this->get_iByte(addr, cycles);
   uint32_t b2 = this->get_iByte(addr + 1);

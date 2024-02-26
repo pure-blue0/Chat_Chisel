@@ -3,9 +3,13 @@ mkdir build
 cd build
 cmake ..
 make
-./model ../riscv-tests/rv32ui/rv32ui-p-add 
-./model ../riscv-tests/rv32ui/rv32ui-v-lw
-
+# ./model ../riscv-tests/rv32ui/rv32ui-p-jalr 
+# #./model ../riscv-tests/rv32ui/rv32ui-v-lw -s -v
+# ./model ../riscv-tests/rv32mi/rv32mi-p-lh-misaligned 
+# ./model ../riscv-tests/rv32mi/rv32mi-p-ma_addr 
+# ./model ../riscv-tests/rv32mi/rv32mi-p-mcsr
+#./model ../riscv-tests/rv32mi/rv32mi-p-sbreak -s -v
+./model ../riscv-tests/rv32mi/rv32mi-p-scall -s -v
 #  ./model ../32riscv-elf/rv32ui-p-add
 #  ./model ../32riscv-elf/rv32ui-p-lui 
 # ./model ../32riscv-elf/ackermann.riscv

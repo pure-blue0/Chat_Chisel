@@ -86,6 +86,7 @@ Simulator::Simulator(MemoryManager *memory, BranchPredictor *predictor) {
   this->meip=false;
   this->csr_forward_flag=false;
   this->csr_forward_data=0;
+  this->csr_reg[Misa]=0X40000000;
   //default get value is pc+4
   this->BP_mux  = false;
   this->ispcsrc = false;
@@ -209,7 +210,7 @@ void Simulator::fetch() {
 
   if (this->pc % 2 != 0) this->panic("Illegal PC 0x%x!\n", this->pc);
   //get fetch(The process of getting the finger from the Icache is also in the function)
-  uint32_t inst = this->memory->getInt(this->pc);
+  uint32_t inst = this->memory->get_iInt(this->pc);
   if(this->pc==0x80000000)inst|=0x6f;
   //Prediction Next PC
   bool predictedBranch = this->branchPredictor->BTB_Predict(this->pc);
@@ -263,8 +264,8 @@ void Simulator::decode() {
   int32_t  Rs1_op = 0, Rs2_op = 0, imm = 0; 
   
   //CSR
-  bool csr_read=false,csr_write=false;
-  uint32_t ecause_out=0,exception_out=0;
+  bool csr_read=false,csr_write=false,exception_out=false;
+  uint32_t ecause_out=0;
   uint32_t csr_address=0;
   uint32_t mret_out=false;
   uint32_t wfi_out=false;
@@ -530,6 +531,7 @@ void Simulator::decode() {
     csr_read=true;
     csr_write=true;
     imm=rs1;
+    
     switch (funct3) {
     case 0x1:
       instname = "csrrw";
@@ -550,24 +552,23 @@ void Simulator::decode() {
       instname = "csrrwi";
       insttype = CSRRWI;
       if(rd==0)csr_read=false;
-      imm=imm&&0x1F;
+      imm=imm&0x1F;
       break;
     case 0x6:
       instname = "csrrsi";
       insttype = CSRRSI;
       if(rs1==0)csr_write=false;
-      imm=imm&&0x1F;
+      imm=imm&0x1F;
       break;
     case 0x7:
       instname = "csrrci";
       insttype = CSRRCI;
       if(rs1==0)csr_write=false;
-      imm=imm&&0x1F;
+      imm=imm&0x1F;
       break;
     default:;
       //this->panic("Unknown funct3 0x%x for OP_CSR\n", funct3);
     }
-
     if (funct3 == 0x0 && funct7 == 0x0) {
       
       instname = "ecall";
@@ -614,11 +615,7 @@ void Simulator::decode() {
     instname = "sret";
     insttype = SRET;
   }
-  if(inst==0x00000073){
-    printf("Program exit from an exit() system call\n");
-    this->printStatistics();
-    exit(0);
-  }
+
   
   //judgement inst legal
   if(insttype==UNKNOWN){//The commands are not matched
@@ -713,12 +710,13 @@ void Simulator::execute() {
   
   uint32_t ecause_in=this->ID_EXReg.ecause_out;
   uint32_t exception_in=this->ID_EXReg.exception_out;
-  uint32_t ecause_out=0,exception_out=0;
+  uint32_t ecause_out=0;
+  bool exception_out=false;
   //handle exception
   bool csr_exception=(this->ID_EXReg.csr_read!=readable)||(this->ID_EXReg.csr_write!=writeable);//check csr operate whether legal
   if(verbose) printf("\tcsr_address:%x,csr_read:%d,readable:%d,csr_write:%d,writeable:%d\n",this->ID_EXReg.csr_address,this->ID_EXReg.csr_read,readable,this->ID_EXReg.csr_write,writeable);
   if(!exception_in &&csr_exception){//The exception is not handled and the CSR operation is illegal
-    exception_out=1;
+    exception_out=true;
     ecause_out=2;
   }
   else{
@@ -787,7 +785,7 @@ void Simulator::execute() {
   case SRET:break;
   default:    this->panic("Unknown instruction type %d\n", insttype);
   }
-  
+ // printf(">>csr_write_out:%x",csr_write_out);
   if (this->ID_EXReg.isJump||(this->ID_EXReg.isBranch &&branch)) this->ispcsrc=true;
   else this->ispcsrc=false;
   
@@ -953,8 +951,8 @@ void Simulator::memoryAccess() {
   bool ecause_in=this->EX_MEMReg.ecause_out;
   bool wfi_in=this->EX_MEMReg.wfi_out;
   bool load_exception=this->EX_MEMReg.MemRead &&(rd==0);
-
   bool misaligned_exception=(this->EX_MEMReg.MemRead||this->EX_MEMReg.MemWrite)&&(ALU_Result&&0x3?true:false);
+  
   bool exception_out=false;
   uint32_t ecause_out=0;
   bool interrupt=false;
@@ -1176,31 +1174,30 @@ void Simulator::csr(){
     printf("\ttrapped:%d,mret:%d\n",csr_trapped,csr_mret);
     printf("\twriteable:%d,address:0x%x,data:%x\n",this->MEM_WBNew.csr_WriteEnable,this->MEM_WBNew.csr_address,csr_writedata);
   }
-  
-  if(this->MEM_WBNew.csr_WriteEnable)
+    if(this->MEM_WBNew.csr_WriteEnable)
   {
     switch (this->MEM_WBNew.csr_address)
     {
     case Mstatus:
       this->csr_reg[Mstatus]&= ~(0x88);//clean
-      this->csr_reg[Mstatus]=this->csr_reg[Mstatus]|(csr_writedata&0x88);break;//update ie and pie
+      this->csr_reg[Mstatus]=csr_writedata;break;//update ie and pie
     case Mie:
       this->csr_reg[Mie]&= ~(0x888);//clean
-      this->csr_reg[Mie]=this->csr_reg[Mie]|(csr_writedata&0x888);break;//update msie,mtie,meie
+      this->csr_reg[Mie]=csr_writedata;break;//update msie,mtie,meie
     case Mtvec:
-      this->csr_reg[Mtvec]=csr_writedata&0xFFFFFFFC;break;//update mtvec
+      this->csr_reg[Mtvec]=csr_writedata;break;//update mtvec
     case Mscratch:
       this->csr_reg[Mscratch]=csr_writedata;break;//update Mscratch
     case Mepc:
       this->csr_reg[Mepc]=csr_writedata;break;//update Mepc      
     case Mcause:
       this->csr_reg[Mcause]&=~(0x8000000F);//clean
-      this->csr_reg[Mcause]=this->csr_reg[Mcause]|(csr_writedata&0x8000000F);break;//update minterrupt,mcause
+      this->csr_reg[Mcause]=csr_writedata;break;//update minterrupt,mcause
     case Mtval:
       this->csr_reg[Mtval]=csr_writedata;break;//update Mtval
     case Mip:
       this->csr_reg[Mip]&=~(0x8);//clean
-      this->csr_reg[Mip]=this->csr_reg[Mip]|(csr_writedata&0x8);break;//update minterrupt,mcause
+      this->csr_reg[Mip]=csr_writedata;break;//update minterrupt,mcause
     case Mcycle:
       this->csr_reg[Mcycle]=csr_writedata|this->csr_reg[Mcycle];break;//update Mcycle
     case Mcycleh:
@@ -1237,7 +1234,10 @@ int32_t Simulator::handleSystemCall(int32_t op1, int32_t op2) {
     break;
   }
   case 1: // print char
-    printf("%c", (char)arg1);
+    printf("Program exit from an exit() system call\n");
+    this->printStatistics();
+    exit(0);
+    //printf("%c", (char)arg1);
     break;
   case 2: // print num
     printf("%d", (int32_t)arg1);
@@ -1603,13 +1603,14 @@ bool Simulator::Dcache_Write(uint32_t mem_write, int32_t funct3,int32_t AluResul
   bool good=true;
   if (mem_write) {
     
-        switch (funct3) {
-    case 0:good = this->memory->setByte(AluResult, RS2_op& 0xFF, cycles); break;
+    switch (funct3) {
+    case 0:good = this->memory->setByte(AluResult, RS2_op& 0xFF, cycles);break;
     case 1:good = this->memory->setShort(AluResult,RS2_op& 0xFFFF, cycles);break;
-    case 2:good = this->memory->setInt(AluResult, RS2_op& 0xFFFFFFFF, cycles); 
-            break;
+    case 2:good = this->memory->setInt(AluResult, RS2_op& 0xFFFFFFFF, cycles); break;
+            
     default:this->panic("Unknown funct3 %d\n", this->EX_MEMReg.funct3);
     }
+    //printf("write data :%x,into :%x\n",RS2_op& 0xFFFFFFFF,AluResult);
     if(this->dcache_verify){
       printf("-----------------------------------Dcache Write module-----------------------------------\n");
       printf("Input :mem_write:%d ,funct3:0x%.2x ,AluResult:0x%x ,RS2_op:%d \n",mem_write,funct3,AluResult,RS2_op);
@@ -1623,8 +1624,10 @@ int32_t Simulator::Dcache_Read(uint32_t mem_read, int32_t funct3,int32_t AluResu
   int32_t Mem_Result=0;
   if (mem_read) {
     switch (funct3) {
-    case 0: Mem_Result = (int32_t)this->memory->getByte(AluResult, cycles);break;
-    case 1: Mem_Result = (int32_t)this->memory->getShort(AluResult, cycles);break;
+    case 0: Mem_Result = (int32_t)this->memory->getByte(AluResult, cycles);
+            if(Mem_Result>>7)Mem_Result|=0XFFFFFF00;break;
+    case 1: Mem_Result = (int32_t)this->memory->getShort(AluResult, cycles);
+            if(Mem_Result>>15)Mem_Result|=0XFFFF0000;break;
     case 2: Mem_Result = (int32_t)this->memory->getInt(AluResult, cycles);break;
     case 4: Mem_Result = (uint32_t)this->memory->getByte(AluResult, cycles);break;
     case 5: Mem_Result = (uint32_t)this->memory->getShort(AluResult, cycles);break;

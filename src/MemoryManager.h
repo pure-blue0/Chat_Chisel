@@ -33,7 +33,7 @@ public:
 
   bool setInt(uint32_t addr, uint32_t val, uint32_t *cycles = nullptr);
   uint32_t getInt(uint32_t addr, uint32_t *cycles = nullptr);
-
+  uint32_t get_iInt(uint32_t addr, uint32_t *cycles = nullptr);
   void printInfo();
   void printStatistics();
 
