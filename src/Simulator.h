@@ -131,6 +131,7 @@ enum Inst {
   WFI   = 45,
   SRET  = 46,
   Fence = 47,
+  Ebreak= 48,
   UNKNOWN = -1,
 };
 extern const char *INSTNAME[];
@@ -252,7 +253,7 @@ private:
     bool csr_write;
     uint32_t csr_address;
     uint32_t ecause_out;
-    uint32_t exception_out;
+    bool exception_out;
     bool mret_out;
     uint32_t wfi_out;
     
@@ -319,8 +320,6 @@ private:
     uint32_t csr_ecause;
     uint32_t csr_Readdata;
     bool mret_out;
-    
-    
 
   } MEM_WBReg, MEM_WBNew;
   struct CSR_val {

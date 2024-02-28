@@ -178,10 +178,10 @@ uint32_t MemoryManager::get_iInt(uint32_t addr, uint32_t *cycles) {
   return b1 + (b2 << 8) + (b3 << 16) + (b4 << 24);
 }
 uint32_t MemoryManager::getInt(uint32_t addr, uint32_t *cycles) {
-  uint32_t b1 = this->get_iByte(addr, cycles);
-  uint32_t b2 = this->get_iByte(addr + 1);
-  uint32_t b3 = this->get_iByte(addr + 2);
-  uint32_t b4 = this->get_iByte(addr + 3);
+  uint32_t b1 = this->getByte(addr, cycles);
+  uint32_t b2 = this->getByte(addr + 1);
+  uint32_t b3 = this->getByte(addr + 2);
+  uint32_t b4 = this->getByte(addr + 3);
  // printf("-----%x,%x,%x,%x\n",b1,b2,b3,b4);
   return b1 + (b2 << 8) + (b3 << 16) + (b4 << 24);
 }

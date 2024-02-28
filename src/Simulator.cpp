@@ -70,7 +70,7 @@ const char *INSTNAME[]{
     "addi" , "slti" , "sltiu", "xori" , "ori"  ,"andi"  ,"slli" ,"srli","srai",
     "add"  , "sub"  , "sll"  , "slt"  , "sltu" ,"xor"   ,"srl"  ,"sra" ,"or"  , 
     "and"  ,"csrrw" , "csrrs", "csrrc","csrrwi","csrrsi","csrrci","ecall","mret",
-    "wfi","sret","fence"   
+    "wfi","sret","fence","ebreak"  
 };
 
 } // namespace RISCV
@@ -189,11 +189,16 @@ void Simulator::simulate() {
 void Simulator::fetch() {
   if(verbose) printf("<--Fetch stage-->\n");
   //printf("trapped:%d,mret:%d\n",this->MEM_WBReg.csr_trapped,this->MEM_WBReg.mret_out);
-  /*if(this->MEM_WBReg.csr_trapped)this->pc=this->IF_IDReg.trap_vector;
-  else */
+  
   if(this->sert_flag){
     this->pc=this->IF_IDReg.sret_vector;
     this->sert_flag=0;
+    this->IF_IDReg.bubble = true;
+    this->ID_EXReg.bubble = true;
+    this->EX_MEMReg.bubble=true;
+  }
+  if(this->MEM_WBReg.csr_trapped){
+    this->pc=this->IF_IDReg.trap_vector;
     this->IF_IDReg.bubble = true;
     this->ID_EXReg.bubble = true;
     this->EX_MEMReg.bubble=true;
@@ -372,6 +377,11 @@ void Simulator::decode() {
     case 0x1:
       instname = "slli";
       insttype = SLLI;
+      if(imm>0x1f){
+        printf("\tSLLI exception,imm:%x>0X1F\n",imm);
+        exception_out=true;
+        ecause_out=2;
+      }
       break;
     case 0x2:
       instname = "slti";
@@ -389,9 +399,19 @@ void Simulator::decode() {
       if (((inst >> 26) & 0x3F) == 0x0) {
         instname = "srli";
         insttype = SRLI;
+        if(imm>0x1f){
+          printf("\tSRLI exception,imm:%x>0X1F\n",imm);
+          exception_out=true;
+          ecause_out=2;
+        }
       } else if (((inst >> 26) & 0x3F) == 0x10) {
         instname = "srai";
         insttype = SRAI;
+        if((imm&0xbff)>0x1f){
+          printf("\tSRAI exception,imm:%x>0X1F,%x\n",imm);
+          exception_out=true;
+          ecause_out=2;
+        }
       } 
       else this->panic("Unknown funct7 0x%x for OP_IMM\n", (inst >> 26) & 0x3F);
       break;
@@ -570,14 +590,24 @@ void Simulator::decode() {
       //this->panic("Unknown funct3 0x%x for OP_CSR\n", funct3);
     }
     if (funct3 == 0x0 && funct7 == 0x0) {
+      if(csr_address==0x000)
+      {
+        instname = "ecall";
+        Rs1_op = this->reg[REG_A0];
+        Rs2_op = this->reg[REG_A7];
+        reg1 = REG_A0;
+        reg2 = REG_A7;
+        dest = REG_A0;
+        insttype = ECALL;
+      }
+      else if(csr_address==0x001)
+      {
+        instname = "ebreak";
+        insttype = Ebreak;
+        exception_out=true;
+        ecause_out=3;
+      }
       
-      instname = "ecall";
-      Rs1_op = this->reg[REG_A0];
-      Rs2_op = this->reg[REG_A7];
-      reg1 = REG_A0;
-      reg2 = REG_A7;
-      dest = REG_A0;
-      insttype = ECALL;
     } 
     
     //else this->panic("Unknown OP_CSR inst with funct3 0x%x and funct7 0x%x\n",funct3, funct7);
@@ -615,19 +645,13 @@ void Simulator::decode() {
     instname = "sret";
     insttype = SRET;
   }
-
   
   //judgement inst legal
   if(insttype==UNKNOWN){//The commands are not matched
     exception_out=true;
     ecause_out=2;
   }
-  else{
-    exception_out=false;
-    ecause_out=0;
-  }
-
-  
+  if(verbose)printf("\n\n>>>>>exception:%d,ecause:%d\n\n\n",exception_out,ecause_out);
   if (verbose){
      //output info
     char buf[4096];
@@ -715,14 +739,16 @@ void Simulator::execute() {
   //handle exception
   bool csr_exception=(this->ID_EXReg.csr_read!=readable)||(this->ID_EXReg.csr_write!=writeable);//check csr operate whether legal
   if(verbose) printf("\tcsr_address:%x,csr_read:%d,readable:%d,csr_write:%d,writeable:%d\n",this->ID_EXReg.csr_address,this->ID_EXReg.csr_read,readable,this->ID_EXReg.csr_write,writeable);
-  if(!exception_in &&csr_exception){//The exception is not handled and the CSR operation is illegal
-    exception_out=true;
-    ecause_out=2;
-  }
-  else{
-    exception_out=exception_in;
-    ecause_out=ecause_in;
-  }
+  // if(!exception_in &&csr_exception){//The exception is not handled and the CSR operation is illegal
+  //   exception_out=true;
+  //   ecause_out=2;
+  // }
+  // else{
+  //   exception_out=exception_in;
+  //   ecause_out=ecause_in;
+  // }
+  exception_out=exception_in;
+  ecause_out=ecause_in;
 
   uint32_t ex_pc = this->ID_EXReg.ex_pc;
   uint32_t target_pc = 0;
@@ -783,6 +809,7 @@ void Simulator::execute() {
   case MRET:break;
   case WFI:break;
   case SRET:break;
+  case Ebreak:break;
   default:    this->panic("Unknown instruction type %d\n", insttype);
   }
  // printf(">>csr_write_out:%x",csr_write_out);
@@ -890,7 +917,7 @@ void Simulator::execute() {
   //printf(">>rd:%x\n",ex_rd);
   this->EX_MEMRegNew.bubble = false;
   this->EX_MEMRegNew.stall = false;
- 
+  if(verbose)printf("\n\n>>>>>exception:%d,ecause:%d\n\n\n",exception_out,ecause_out);
   //control
   this->EX_MEMRegNew.mem_pc  =this->ID_EXReg.ex_pc;
   this->EX_MEMRegNew.isBranch=this->ID_EXReg.isBranch;
@@ -915,7 +942,6 @@ void Simulator::execute() {
   this->EX_MEMRegNew.wfi_out=this->ID_EXReg.wfi_out;
   this->EX_MEMRegNew.exception_out=exception_out;
   this->EX_MEMRegNew.ecause_out=ecause_out;
-
 }
 
 void Simulator::memoryAccess() {
@@ -948,11 +974,12 @@ void Simulator::memoryAccess() {
   bool eip=ie&&msie&&msip;
 
   bool exception_in=this->EX_MEMReg.exception_out;
-  bool ecause_in=this->EX_MEMReg.ecause_out;
+  uint32_t ecause_in=this->EX_MEMReg.ecause_out;
   bool wfi_in=this->EX_MEMReg.wfi_out;
   bool load_exception=this->EX_MEMReg.MemRead &&(rd==0);
   bool misaligned_exception=(this->EX_MEMReg.MemRead||this->EX_MEMReg.MemWrite)&&(ALU_Result&&0x3?true:false);
-  
+  //if(misaligned_exception)this->EX_MEMReg.MemRead?printf("----------->>>load_m:is%x\n",ALU_Result):printf("--------------->>>write_mis:is%x\n",ALU_Result);
+  if(load_exception)printf(">>>load_exception\n");
   bool exception_out=false;
   uint32_t ecause_out=0;
   bool interrupt=false;
@@ -970,18 +997,18 @@ void Simulator::memoryAccess() {
     ecause_out=3;
     interrupt=true;
   }
-  else if(!exception_in&&load_exception){
-    exception_out=true;
-    ecause_out=5;
-    interrupt=false;
-    if (verbose) printf("\texception_in=0,load_exception=1\n");
-  }
-  else if(!exception_in&&misaligned_exception){
-    exception_out=true;
-    ecause_out=this->EX_MEMReg.MemRead?4:6;
-    interrupt=false;
-   // printf("exception_in=0,misaligned_exception=1\n");
-  }
+  // else if(!exception_in&&load_exception){
+  //   exception_out=true;
+  //   ecause_out=5;
+  //   interrupt=false;
+  //   if (verbose) printf("\texception_in=0,load_exception=1\n");
+  // }
+  // else if(!exception_in&&misaligned_exception){
+  //   exception_out=true;
+  //   ecause_out=this->EX_MEMReg.MemRead?4:6;
+  //   interrupt=false;
+  //  // printf("exception_in=0,misaligned_exception=1\n");
+  // }
   else{
     exception_out=exception_in;
     ecause_out=ecause_in;
@@ -993,9 +1020,10 @@ void Simulator::memoryAccess() {
                                                    this->EX_MEMRegNew.exception_out,
                                                    exception_out);
   } 
-  
+  if(verbose)printf("\n\n>>>>>exception:%d,ecause_in:%d,ecause:%d\n\n\n",exception_out,ecause_in,ecause_out);
   trapped=sip||tip||eip||exception_out;
   retried=!trapped&&!wfi_in;
+  if(trapped)printf("boom!\n\n\n\n");
   if(retried)this->history.retried_Count++;
   /*if((this->EX_MEMReg.MemRead||this->EX_MEMReg.MemWrite)){
     if(ALU_Result&&0x3)printf("mis:address is 0x%x\n",ALU_Result);
@@ -1128,11 +1156,6 @@ void Simulator::writeBack() {
   }
 }
 void Simulator::csr(){
-
-  
-  this->IF_IDRegNew.trap_vector=this->csr_reg[Mtvec];
-  this->IF_IDRegNew.mret_vector=this->csr_reg[Mepc];
-  this->IF_IDRegNew.sret_vector=this->csr_reg[SEPC];
   
   //---update reg data
   //cycle
@@ -1147,7 +1170,7 @@ void Simulator::csr(){
   bool csr_interrupt=this->MEM_WBNew.csr_interrupt;
   uint32_t csr_ecause=this->MEM_WBNew.csr_ecause;
   bool csr_mret=this->MEM_WBNew.mret_out;
-
+  if(verbose)printf("\n\n>>>>>ecause:%d\n\n\n",csr_ecause);
   if(csr_trapped){
     //update pie
     this->csr_reg[Mstatus]&= ~(0x1 << 7);//clean
@@ -1217,6 +1240,10 @@ void Simulator::csr(){
   this->csr_reg[Mip]&=~(0x880);//clean
   this->csr_reg[Mip]=this->csr_reg[Mip]|(this->meip<<11);
   this->csr_reg[Mip]=this->csr_reg[Mip]|((this->csr_reg[Mcycle]>=0X7FFFFFFF)<<7);
+
+  this->IF_IDRegNew.trap_vector=this->csr_reg[Mtvec];
+  this->IF_IDRegNew.mret_vector=this->csr_reg[Mepc];
+  this->IF_IDRegNew.sret_vector=this->csr_reg[SEPC];
 }
 
 int32_t Simulator::handleSystemCall(int32_t op1, int32_t op2) {

@@ -28,8 +28,12 @@ Or run ./run-inclass-tests.sh
 ## Usage
 
 ```
+#Testing individual file:
 ./model riscv-elf-file-name [-v] [-s]  
 (eg: ./build/model  ./32riscv-elf/test_branch.riscv -s -v)
+
+Test the riscv-tests files:
+./test_riscv-tests.sh 
 ```
 Parameters:
 
